@@ -2,6 +2,7 @@
 import { SidebarProvider } from "@/context/SidebarContext";
 import Header from "../common/Header";
 import { SideBar } from "../common/SideBar";
+import DisplayAllPapers from "./DisplayAllPapers";
 
 export default function HomePage() {
   return (
@@ -12,7 +13,7 @@ export default function HomePage() {
           <SideBar />
           <div className="overflow-x-hidden px-8 pb-4">
             <div className="grid gap-4 grid-cols-[repeat(auto-fill,minmax(300px,1fr))]">
-            hello
+            <DisplayAllPapers/>
             </div>
           </div>
         </div>
