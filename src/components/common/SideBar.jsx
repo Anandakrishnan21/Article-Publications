@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 "use client"
 import React, { useState } from "react";
+=======
+"use client";
+import React from "react";
+>>>>>>> ee16c38367470ae85fcdd42e647c901d216df313
 import { useSidebarContext } from "@/context/SidebarContext";
 import { twMerge } from "tailwind-merge";
 import {
@@ -15,9 +20,10 @@ import {
 } from "react-icons/io5";
 import { WiMoonAltWaningCrescent1 } from "react-icons/wi";
 import { signOut, useSession } from "next-auth/react";
+import { data } from "autoprefixer";
 
 export function SideBar() {
-  const { data: session } = useSession();
+  const { session } = useSession();
   const { isLargeOpen, isSmallOpen, close } = useSidebarContext();
   const [activeItem, setActiveItem] = useState("Home");
 
@@ -34,18 +40,19 @@ export function SideBar() {
         <SmallSidebarItem Icon={HiOutlineHome} title="Home" onClick={() => handleItemClick("Home")} />
         <SmallSidebarItem Icon={HiOutlinePlus} />
         <SmallSidebarItem Icon={HiOutlineHome} />
-        <SmallSidebarItem Icon={HiOutlineViewGrid} />  
+        <SmallSidebarItem Icon={HiOutlineViewGrid} />
         <SmallSidebarItem Icon={IoLayersOutline} />
         <SmallSidebarItem Icon={IoSettingsOutline} />
-        <SmallSidebarItem Icon={IoPersonOutline} /> 
-        <SmallSidebarItem Icon={WiMoonAltWaningCrescent1} /> 
+        <SmallSidebarItem Icon={IoPersonOutline} />
+        <SmallSidebarItem Icon={WiMoonAltWaningCrescent1} />
         <SmallSidebarItem Icon={HiOutlineLogout} />
       </aside>
       <aside
-        className={`${commonClasses} w-56 bg-white lg:sticky absolute top-0 p-2 gap-2 ${
+        className={`${commonClasses} flex flex-col justify-between w-56 bg-white lg:sticky absolute top-0 p-2 gap-2 ${
           isLargeOpen ? "lg:flex" : "lg:hidden"
         } ${isSmallOpen ? "flex z-[999] bg-white max-h-screen" : "hidden"}`}
       >
+<<<<<<< HEAD
               <LargeSidebarItem
           IconOrImgUrl={HiOutlinePlus}
           title="Upload"
@@ -103,6 +110,63 @@ export function SideBar() {
           <HiOutlineLogout className="w-6 h-6" />
           <button onClick={() => signOut()}>Logout</button>
         </p>
+=======
+        <div className="flex flex-col gap-3 w-full">
+          <LargeSidebarItem
+            IconOrImgUrl={HiOutlinePlus}
+            title="Upload"
+            url=""
+            className="bg-blue-400"
+          />
+          <LargeSidebarItem
+            isActive
+            IconOrImgUrl={HiOutlineHome}
+            title="Home"
+            url=""
+          />
+          <LargeSidebarItem
+            IconOrImgUrl={HiOutlineViewGrid}
+            title="Dashboard"
+            url=""
+          />
+          <hr />
+          <LargeSidebarItem
+            IconOrImgUrl={IoLayersOutline}
+            title="Groups"
+            url=""
+          />
+          <LargeSidebarItem
+            IconOrImgUrl={IoSettingsOutline}
+            title="Settings"
+            url=""
+          />
+          <LargeSidebarItem
+            IconOrImgUrl={IoPersonOutline}
+            title="Profle"
+            url=""
+          />
+          <hr />
+        </div>
+
+        <div className="flex flex-col gap-3 w-full">
+          <LargeSidebarItem
+            IconOrImgUrl={WiMoonAltWaningCrescent1}
+            title="Dark"
+            url=""
+          />
+          <p className="text-left text-sm bg-neutral-100 py-2 px-2 rounded">
+          {session?.user?.name}
+          </p>
+          <button
+            onClick={() => signOut()}
+            className="flex justify-center flex-row gap-2 items-center bg-slate-900 text-white hover:bg-slate-800 duration-500 p-1.5 rounded"
+          >
+            <HiOutlineLogout className="w-6 h-6" />
+            <p></p>
+            Logout
+          </button>
+        </div>
+>>>>>>> ee16c38367470ae85fcdd42e647c901d216df313
       </aside>
     </>
   );
