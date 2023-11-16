@@ -1,5 +1,5 @@
 "use client"
-import React from "react";
+import React, { useState } from "react";
 import { useSidebarContext } from "@/context/SidebarContext";
 import { twMerge } from "tailwind-merge";
 import {
@@ -19,6 +19,7 @@ import { signOut, useSession } from "next-auth/react";
 export function SideBar() {
   const { data: session } = useSession();
   const { isLargeOpen, isSmallOpen, close } = useSidebarContext();
+  const [activeItem, setActiveItem] = useState("Home");
 
   const commonClasses = "flex flex-col overflow-y-auto scrollbar-hidden p-4";
 
@@ -29,6 +30,8 @@ export function SideBar() {
           isLargeOpen ? "lg:hidden" : "lg:flex"
         }`}
       >
+       <SmallSidebarItem Icon={HiOutlinePlus} title="Upload" onClick={() => handleItemClick("Upload")} />
+        <SmallSidebarItem Icon={HiOutlineHome} title="Home" onClick={() => handleItemClick("Home")} />
         <SmallSidebarItem Icon={HiOutlinePlus} />
         <SmallSidebarItem Icon={HiOutlineHome} />
         <SmallSidebarItem Icon={HiOutlineViewGrid} />  
@@ -43,6 +46,20 @@ export function SideBar() {
           isLargeOpen ? "lg:flex" : "lg:hidden"
         } ${isSmallOpen ? "flex z-[999] bg-white max-h-screen" : "hidden"}`}
       >
+              <LargeSidebarItem
+          IconOrImgUrl={HiOutlinePlus}
+          title="Upload"
+          url=""
+          onClick={() => handleItemClick("Upload")}
+          className={activeItem === "Upload" ? "bg-blue-400" : ""}
+        />
+        <LargeSidebarItem
+          IconOrImgUrl={HiOutlineHome}
+          title="Home"
+          url=""
+          onClick={() => handleItemClick("Home")}
+          isActive={activeItem === "Home"}
+        />
         <LargeSidebarItem
           IconOrImgUrl={HiOutlinePlus}
           title="Upload"
@@ -91,46 +108,46 @@ export function SideBar() {
   );
 }
 
-function SmallSidebarItem({ Icon, title, url }) {
-  const buttonStyles = { variant: "ghost" };
-
-  return (
-    <a
-      href={url}
-      className={twMerge(
-        buttonStyles,
-        "py-4 px-1 flex flex-col items-center rounded-lg gap-1"
-      )}
-    >
-      <Icon className="w-6 h-6" />
-      <div className="text-sm">{title}</div>
-    </a>
-  );
-}
-
-function LargeSidebarItem({ IconOrImgUrl, title, url, isActive = false }) {
-  const buttonStyles = { variant: "ghost" };
-
-  return (
-    <a
-      href=""
-      className={twMerge(
-        buttonStyles,
-        `w-full flex items-center rounded-lg gap-4 p-1.5 ${
-          isActive
-            ? "font-bold bg-stone-200 border-2 border-gray-200 hover:border-gray-300 duration-500 hover:bg-secondary"
-            : ""
-        }`
-      )}
-    >
-      {typeof IconOrImgUrl === "string" ? (
-        <img src={IconOrImgUrl} className="w-6 h-6 rounded-full" alt={title} />
-      ) : (
-        <IconOrImgUrl className="w-6 h-6" />
-      )}
-      <div className="whitespace-nowrap overflow-hidden text-ellipsis">
-        {title}
-      </div>
-    </a>
-  );
-}
+export function SmallSidebarItem({ Icon, title, url, onClick }) {
+    const buttonStyles = { variant: "ghost" };
+  
+    return (
+      <a
+        href={url}
+        className={twMerge(
+          buttonStyles,
+          "py-4 px-1 flex flex-col items-center rounded-lg gap-1",
+          onClick && "cursor-pointer",
+        )}
+        onClick={onClick}
+      >
+        <Icon className="w-6 h-6" />
+        <div className="text-sm">{title}</div>
+      </a>
+    );
+  }
+  
+  export function LargeSidebarItem({ IconOrImgUrl, title, url, isActive = false, onClick, className }) {
+    const buttonStyles = { variant: "ghost" };
+  
+    return (
+      <a
+        href=""
+        className={twMerge(
+          buttonStyles,
+          `w-full flex items-center rounded-lg gap-4 p-1.5 ${isActive ? "font-bold bg-stone-200 border-2 border-gray-200 hover:border-gray-300 duration-500 hover:bg-secondary" : ""}`,
+          className,
+        )}
+        onClick={onClick}
+      >
+        {typeof IconOrImgUrl === "string" ? (
+          <img src={IconOrImgUrl} className="w-6 h-6 rounded-full" alt={title} />
+        ) : (
+          <IconOrImgUrl className="w-6 h-6" />
+        )}
+        <div className="whitespace-nowrap overflow-hidden text-ellipsis">
+          {title}
+        </div>
+      </a>
+    );
+  }
