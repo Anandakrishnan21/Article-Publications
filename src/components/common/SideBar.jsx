@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-"use client"
-import React, { useState } from "react";
-=======
 "use client";
-import React from "react";
->>>>>>> ee16c38367470ae85fcdd42e647c901d216df313
+import React, { useState } from "react";
 import { useSidebarContext } from "@/context/SidebarContext";
 import { twMerge } from "tailwind-merge";
 import {
@@ -20,13 +15,50 @@ import {
 } from "react-icons/io5";
 import { WiMoonAltWaningCrescent1 } from "react-icons/wi";
 import { signOut, useSession } from "next-auth/react";
-import { data } from "autoprefixer";
+import Link from "next/link";
+import { useSelectedLayoutSegment } from "next/navigation";
 
+function classNames(...classes){
+  return classes.filter(Boolean).join('');
+}
 export function SideBar() {
-  const { session } = useSession();
+  const { data: session } = useSession();
   const { isLargeOpen, isSmallOpen, close } = useSidebarContext();
-  const [activeItem, setActiveItem] = useState("Home");
+  const [isActive, setIsActive] = useState("Dashboard");
+  const segment = useSelectedLayoutSegment()
 
+  const sidebarOptions = [
+    {
+      name:"Home",
+      href:"/dashboard/home",
+      icon: HiOutlineHome,
+      current: true,
+    },
+    {
+      name:"Dashboard",
+      href:"/dashboard",
+      icon: HiOutlineViewGrid,
+      current: false,
+    },
+    {
+      name:"Group",
+      href:"/dashboard/group",
+      icon: IoLayersOutline,
+      current: false,
+    },
+    {
+      name:"Settings",
+      href:"/dashboard/settings",
+      icon: HiOutlineHome,
+      current: false,
+    },
+    {
+      name:"Profile",
+      href:"/dashboard/profile",
+      icon: IoPersonOutline,
+      current: false,
+    },
+  ]
   const commonClasses = "flex flex-col overflow-y-auto scrollbar-hidden p-4";
 
   return (
@@ -52,67 +84,8 @@ export function SideBar() {
           isLargeOpen ? "lg:flex" : "lg:hidden"
         } ${isSmallOpen ? "flex z-[999] bg-white max-h-screen" : "hidden"}`}
       >
-<<<<<<< HEAD
-              <LargeSidebarItem
-          IconOrImgUrl={HiOutlinePlus}
-          title="Upload"
-          url=""
-          onClick={() => handleItemClick("Upload")}
-          className={activeItem === "Upload" ? "bg-blue-400" : ""}
-        />
-        <LargeSidebarItem
-          IconOrImgUrl={HiOutlineHome}
-          title="Home"
-          url=""
-          onClick={() => handleItemClick("Home")}
-          isActive={activeItem === "Home"}
-        />
-        <LargeSidebarItem
-          IconOrImgUrl={HiOutlinePlus}
-          title="Upload"
-          url=""
-          className="bg-blue-400"
-        />
-        <LargeSidebarItem
-          isActive
-          IconOrImgUrl={HiOutlineHome}
-          title="Home"
-          url=""
-        />
-        <LargeSidebarItem
-          IconOrImgUrl={HiOutlineViewGrid}
-          title="Dashboard"
-          url=""
-        />
-        <hr />
-        <LargeSidebarItem
-          IconOrImgUrl={IoLayersOutline}
-          title="Groups"
-          url=""
-        />
-        <LargeSidebarItem
-          IconOrImgUrl={IoSettingsOutline}
-          title="Settings"
-          url=""
-        />
-        <LargeSidebarItem
-          IconOrImgUrl={IoPersonOutline}
-          title="Profile"
-          url=""
-        />
-        <hr />
-        <LargeSidebarItem
-          IconOrImgUrl={WiMoonAltWaningCrescent1}
-          title="Dark"
-          url=""
-        />
-        <p className="flex justify-center flex-row gap-2 items-center bg-slate-900 text-white hover:bg-slate-800 duration-500 p-1.5 rounded">
-          <HiOutlineLogout className="w-6 h-6" />
-          <button onClick={() => signOut()}>Logout</button>
-        </p>
-=======
-        <div className="flex flex-col gap-3 w-full">
-          <LargeSidebarItem
+        <ul className="flex flex-col gap-3 w-full">
+          {/* <LargeSidebarItem
             IconOrImgUrl={HiOutlinePlus}
             title="Upload"
             url=""
@@ -145,8 +118,17 @@ export function SideBar() {
             title="Profle"
             url=""
           />
-          <hr />
-        </div>
+          <hr /> */}
+          {sidebarOptions.map(option => (
+            <li key={option.name}>
+              <Link href={option.href} className={classNames(option.current ? "bg-gray-700 text-white" : "text-gray-400 hover:text-white hover:bg-gray-700","group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold")}
+                onClick={(e) => setIsActive(option.name)}>
+                <option.icon className="text-gray-300 group-hover:text-white h-6 w-6 shrink-0" />
+                {option.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
 
         <div className="flex flex-col gap-3 w-full">
           <LargeSidebarItem
@@ -166,24 +148,20 @@ export function SideBar() {
             Logout
           </button>
         </div>
->>>>>>> ee16c38367470ae85fcdd42e647c901d216df313
       </aside>
     </>
   );
 }
 
-export function SmallSidebarItem({ Icon, title, url, onClick }) {
+export function SmallSidebarItem({ Icon, title}) {
     const buttonStyles = { variant: "ghost" };
   
     return (
       <a
-        href={url}
         className={twMerge(
           buttonStyles,
-          "py-4 px-1 flex flex-col items-center rounded-lg gap-1",
-          onClick && "cursor-pointer",
+          "py-4 px-1 flex flex-col items-center rounded-lg gap-1 cursor-pointer",
         )}
-        onClick={onClick}
       >
         <Icon className="w-6 h-6" />
         <div className="text-sm">{title}</div>
@@ -196,13 +174,10 @@ export function SmallSidebarItem({ Icon, title, url, onClick }) {
   
     return (
       <a
-        href=""
         className={twMerge(
           buttonStyles,
-          `w-full flex items-center rounded-lg gap-4 p-1.5 ${isActive ? "font-bold bg-stone-200 border-2 border-gray-200 hover:border-gray-300 duration-500 hover:bg-secondary" : ""}`,
-          className,
+          "w-full flex items-center rounded-lg gap-4 p-1.5 "
         )}
-        onClick={onClick}
       >
         {typeof IconOrImgUrl === "string" ? (
           <img src={IconOrImgUrl} className="w-6 h-6 rounded-full" alt={title} />

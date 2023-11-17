@@ -38,7 +38,7 @@ const paperSchema = new Schema(
       type: String,
       required: true,
     },
-    pubyear: {
+    pubYear: {
       type: Number,
       required: true,
     },

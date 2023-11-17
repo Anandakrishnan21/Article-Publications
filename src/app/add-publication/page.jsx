@@ -11,7 +11,7 @@ const Page = () => {
   const [author5, setAuthor5] = useState("");
   const [dept, setDept] = useState("");
   const [journal, setJournal] = useState("");
-  const [pubyear, setPubyear] = useState(0);
+  const [pubYear, setPubyear] = useState(0);
   const [issn, setIssn] = useState("");
   const [vol, setVol] = useState(0);
   const [issue, setIssue] = useState(0);
@@ -57,7 +57,7 @@ const Page = () => {
           author5,
           dept,
           journal,
-          pubyear,
+          pubYear,
           issn,
           vol,
           issue,
@@ -71,7 +71,6 @@ const Page = () => {
         const form = e.target;
         form.reset();
         setSuccess("Form submitted successfully!");
-        // router.push("/");
       } else {
         console.log("Paper submission failed.");
         setError("Paper submission failed.");
