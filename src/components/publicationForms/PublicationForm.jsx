@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-const Page = () => {
+const PublicationForm = () => {
   const [title, setTitle] = useState("");
   const [author1, setAuthor1] = useState("");
   const [author2, setAuthor2] = useState("");
@@ -343,4 +343,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default PublicationForm;
