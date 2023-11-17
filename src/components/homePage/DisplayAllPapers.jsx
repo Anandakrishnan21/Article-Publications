@@ -1,6 +1,14 @@
+import { notFound } from 'next/navigation';
 import React from 'react'
 
-const DisplayAllPapers = () => {
+async function getData(){
+  const res = await fetch("http://localhost:3000/api/addPublication",{cache: "no-store"});
+  if(!res.ok) return notFound();
+  return res.json();
+}
+
+const DisplayAllPapers = async () => {
+  const data = await getData();
   return (
     <div className='w-full'>
         <p>All Papers</p>
@@ -12,6 +20,11 @@ const DisplayAllPapers = () => {
                     <p>Author 2</p>
                     <p>Author 3</p>
                 </div>
+                {data.map(item => (
+                  <div>
+                    <p>{item.title}</p>
+                  </div>
+                ))}
             </div>
         </div>
     </div>

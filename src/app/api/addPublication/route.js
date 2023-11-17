@@ -54,3 +54,13 @@ export async function POST(req) {
     );
   }
 }
+
+export const GET = async(request) => {
+  try{
+    await connection();
+    const papers = await Paper.find();
+    return new NextResponse(JSON.stringify(papers),{status: 200});
+  }catch(error){
+    return new NextResponse("eRROR IS FETCHED POSTS" + error, {status: 500});
+  }
+}

@@ -1,9 +1,10 @@
+import DisplayAllPapers from '@/components/homePage/DisplayAllPapers'
 import React from 'react'
 
 function HomePage() {
   return (
     <div>
-      HomePage
+      <DisplayAllPapers />
     </div>
   )
 }
