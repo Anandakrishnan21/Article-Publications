@@ -74,3 +74,16 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* External Styles */
+
+.inputFields{
+  @apply w-full border-2 border-gray-200 hover:border-gray-500 duration-500 p-2 rounded
+}
+.blueLink{
+  @apply text-blue-600 hover:text-blue-800 duration-500 text-sm md:text-base leading-normal
+}
+
+.AuthForm{
+  @apply w-10/12 md:w-4/12 lg:w-3/12 flex flex-col gap-6 relative
+}
