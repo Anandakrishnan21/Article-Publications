@@ -16,7 +16,7 @@ const DisplayAllPapers = async () => {
             <div className='bg-neutral-300 p-3 w-full'>
                 <p>Title of the project</p>
                 {data.map(item => (
-                  <div>
+                  <div key={item._id}>
                     <p>{item.title}</p>
                   </div>
                 ))}
