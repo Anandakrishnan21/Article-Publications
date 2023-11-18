@@ -3,6 +3,7 @@ import { connection } from "@/utils/db";
 import Paper from "@/models/Paper";
 import { authOptions } from "../auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
+import User from "@/models/User";
 
 export async function POST(req) {
   const session = await getServerSession(authOptions);
@@ -55,12 +56,22 @@ export async function POST(req) {
   }
 }
 
-export const GET = async(request) => {
-  try{
+export const GET = async (req) => {
+  try {
+    const session = await getServerSession(authOptions);
+    const email = session?.user?.email;
+
     await connection();
-    const papers = await Paper.find();
-    return new NextResponse(JSON.stringify(papers),{status: 200});
-  }catch(error){
-    return new NextResponse("eRROR IS FETCHED POSTS" + error, {status: 500});
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return new NextResponse("User not found", { status: 404 });
+    }
+
+    const papers = await Paper.find({ dept: user.affiliation });
+
+    return new NextResponse(JSON.stringify(papers), { status: 200 });
+  } catch (error) {
+    return new NextResponse("Error fetching papers: " + error, { status: 500 });
   }
-}
+};
