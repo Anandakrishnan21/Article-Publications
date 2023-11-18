@@ -1,11 +1,11 @@
 import React from 'react'
 
-function GroupPage() {
+function Input() {
   return (
     <div>
-      group
+      
     </div>
   )
 }
 
-export default GroupPage
+export default Input

@@ -5,8 +5,8 @@ import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { Button } from "../ui/button";
-import Link from "next/link";
 import GoogleButton from "../registerPage/GoogleButton";
+import Separator from "../auths/Separator";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
@@ -52,7 +52,7 @@ export default function LoginForm() {
           onChange={(e) => setEmail(e.target.value)}
           type="text"
           placeholder="Email"
-          className="inputFields"  //inputFieds class is defined in globals.css
+          className="inputFields"
         />
       </div>
       <div>
@@ -85,16 +85,7 @@ export default function LoginForm() {
           {error}
         </div>
       )}
-      <p className="text-slate-600 text-sm md:text-base leading-normal text-center">
-        Don&apos;t have an account ? {""}
-        <Link
-          href="/register"
-          className="blueLink"
-        >
-          Sign Up
-        </Link>
-      </p>
-      <p className="text-center text-neutral-500">or</p>
+      <Separator url="/register" linkName="Register" />
       <GoogleButton />
     </form>
   );

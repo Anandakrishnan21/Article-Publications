@@ -64,10 +64,6 @@ export const GET = async (req) => {
     await connection();
     const user = await User.findOne({ email });
 
-    if (!user) {
-      return new NextResponse("User not found", { status: 404 });
-    }
-
     const papers = await Paper.find({ dept: user.affiliation });
 
     return new NextResponse(JSON.stringify(papers), { status: 200 });

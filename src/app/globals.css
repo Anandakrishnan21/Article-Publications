@@ -78,7 +78,8 @@
 /* External Styles */
 
 .inputFields{
-  @apply w-full border-2 border-gray-200 hover:border-gray-500 duration-500 p-2 rounded
+  @apply w-full border-[1px] bg-neutral-50 dark:bg-neutral-900
+   border-neutral-200 hover:border-neutral-800 dark:border-neutral-800 hover:dark:border-neutral-700 duration-500 p-2 rounded
 }
 .blueLink{
   @apply text-blue-600 hover:text-blue-800 duration-500 text-sm md:text-base leading-normal
@@ -86,4 +87,8 @@
 
 .AuthForm{
   @apply w-10/12 md:w-4/12 lg:w-3/12 flex flex-col gap-6 relative
+}
+
+.inputLabel{
+  @apply   dark:text-neutral-400 duration-200 font-medium text-sm
 }

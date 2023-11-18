@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { useSidebarContext } from "@/context/SidebarContext";
-import { twMerge } from "tailwind-merge";
 import {
   HiOutlineHome,
   HiOutlineLogout,
@@ -9,15 +8,18 @@ import {
   HiOutlineViewGrid,
 } from "react-icons/hi";
 import {
+  IoAddCircle,
+  IoAddCircleOutline,
   IoLayersOutline,
   IoPersonOutline,
   IoSettingsOutline,
 } from "react-icons/io5";
-import { WiMoonAltWaningCrescent1 } from "react-icons/wi";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
 import { Button } from "../ui/button";
+import Pung from "../ui/Pung";
+import { ModeToggle } from "../mode-toggle";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join("");
@@ -30,41 +32,48 @@ export function SideBar() {
   const sidebarOptions = [
     {
       name: "Home",
-      href: "/dashboard/home",
+      href: "/home",
       icon: HiOutlineHome,
-      current: `/${segment}` === "/home" ? true : false,
-    },
-    {
-      name: "Dashboard",
-      href: "/dashboard",
-      icon: HiOutlineViewGrid,
       current: !segment ? true : false,
     },
     {
+      name: "Dashboard",
+      href: "/home/dashboard",
+      icon: HiOutlineViewGrid,
+      current: `/${segment}` === "/home" ? true : false,
+    },
+    {
       name: "Group",
-      href: "/dashboard/group",
+      href: "/home/group",
       icon: IoLayersOutline,
       current: `/${segment}` === "/group" ? true : false,
     },
     {
       name: "Settings",
-      href: "/dashboard/settings",
+      href: "/home/settings",
       icon: IoSettingsOutline,
       current: `/${segment}` === "/settings" ? true : false,
     },
     {
       name: "Profile",
-      href: "/dashboard/profile",
+      href: "/home/profile",
       icon: IoPersonOutline,
       current: `/${segment}` === "/profile" ? true : false,
     },
+    {
+      name: "Upload",
+      href: "/home/add-publication",
+      icon: IoAddCircleOutline,
+      current: `/${segment}` === "/add-publication" ? true : false,
+    }
   ];
-  const commonClasses = "flex flex-col overflow-y-auto scrollbar-hidden p-4";
-
+  const commonClasses = "flex flex-col overflow-y-auto scrollbar-hidden bg-neutral-50 dark:bg-neutral-950 dark:border-r-neutral-800 dark:border-[1px] p-4";
+  const commonClasses1 = " bg-neutral-200 dark:bg-neutral-900 border-[1px] dark:border-neutral-700 hover:dark:border-neutral-700 hover:dark:border-neutral-700 duration-500 dark:text-white font-bold text-sm";
+  const commonClasses2 = "hover:bg-neutral-100 hover:dark:bg-neutral-900 dark:text-neutral-400 duration-200 font-normal";
   return (
     <>
       <aside
-        className={`${commonClasses} bg-white sticky top-0 ${
+        className={`${commonClasses} sticky top-0 ${
           isLargeOpen ? "lg:hidden" : "lg:flex"
         }`}
       >
@@ -75,21 +84,25 @@ export function SideBar() {
                 href={option.href}
                 className={classNames(
                   option.current
-                    ? "bg-blue-100 text-white"
-                    : "",
-                  "group hover:bg-blue-50 duration-300 flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                    ? `${commonClasses1}`
+                    : `${commonClasses2}`,
+                  "group flex gap-x-3 rounded-md p-2 text-sm tracking-wide leading-6"
                 )}
               >
-                <option.icon className=" h-6 w-6 shrink-0" />
+                <option.icon className="h-6 w-6 shrink-0" />
               </Link>
             </li>
           ))}
         </ul>
       </aside>
       <aside
-        className={`${commonClasses} flex flex-col justify-between w-56 bg-white lg:sticky absolute top-0 p-2 gap-2 ${
+        className={`${commonClasses} flex flex-col justify-between w-56 lg:sticky absolute top-0 p-2 gap-2 ${
           isLargeOpen ? "lg:flex" : "lg:hidden"
-        } ${isSmallOpen ? "flex z-[999] bg-white max-h-screen" : "hidden"}`}
+        } ${
+          isSmallOpen
+            ? "flex z-[999] bg-neutral-50 dark:bg-slate-950 max-h-screen"
+            : "hidden"
+        }`}
       >
         <ul className="flex flex-col gap-3 w-full">
           {sidebarOptions.map((option) => (
@@ -98,32 +111,35 @@ export function SideBar() {
                 href={option.href}
                 className={classNames(
                   option.current
-                    ? "bg-blue-100 text-white"
-                    : "",
-                  "group hover:bg-blue-50 duration-300 flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                    ? `${commonClasses1}`
+                    : `${commonClasses2}`,
+                  "group flex gap-x-3 rounded-md p-2 text-sm tracking-wide leading-6"
                 )}
               >
-                <option.icon className=" h-6 w-6 shrink-0" />
+                <option.icon className="h-6 w-6 shrink-0" />
                 {option.name}
               </Link>
             </li>
           ))}
         </ul>
-
-        <div className="flex flex-col gap-3 w-full">
-          {/* <LargeSidebarItem
-            IconOrImgUrl={WiMoonAltWaningCrescent1}
-            title="Dark"
-            url=""
-          /> */}
-          <p className="text-left text-sm bg-neutral-100 py-2 px-2 rounded">
-            {session?.user?.name}
-          </p>
+        <ul className="flex flex-col gap-3">
+          <li>
+            <p className="flex items-center justify-center dark:border-[1px] dark:hover:border-neutral-700 duration-200 text-sm font-normal gap-2 rounded">
+              Theme
+              <ModeToggle />
+            </p>
+          </li>
+          <li>
+            <p className="flex items-center justify-center text-sm bg-neutral-200 dark:bg-neutral-900 dark:border-[1px] border-neutral-700 duration-200 font-bold capitalize py-2 px-2 gap-2 rounded">
+              {session?.user?.name}
+              <Pung />
+            </p>
+          </li>
           <Button onClick={() => signOut()}>
-            <HiOutlineLogout className="w-6 h-6" />
+            <HiOutlineLogout className="w-6 h-6 mr-2" />
             Logout
           </Button>
-        </div>
+        </ul>
       </aside>
     </>
   );

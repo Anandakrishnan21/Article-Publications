@@ -3,9 +3,9 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
-import Link from "next/link";
 import GoogleButton from "./GoogleButton";
 import { Button } from "../ui/button";
+import Separator from "../auths/Separator";
 // import PhoneInput from "react-phone-number-input";
 // import 'react-phone-number-input/style.css'
 
@@ -165,14 +165,7 @@ export default function RegisterForm() {
           {error}
         </div>
       )}
-      <p className="text-slate-600 text-sm md:text-base leading-normal text-center">
-        Already have an account ? {""}
-        <Link href="/" className="blueLink">
-          Sign In
-        </Link>
-      </p>
-      <p className="text-center text-neutral-500">or</p>
-
+      <Separator url="/" linkName="Login" />
       <GoogleButton />
     </form>
   );

@@ -2,7 +2,7 @@ import React from 'react'
 
 function SettingsPage() {
   return (
-    <div>
+    <div className='w-screen'>
       SettingsPage
     </div>
   )

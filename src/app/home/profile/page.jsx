@@ -2,7 +2,7 @@ import React from 'react'
 
 function ProfilePage() {
   return (
-    <div>
+    <div className='h-screen'>
       ProfilePage
     </div>
   )

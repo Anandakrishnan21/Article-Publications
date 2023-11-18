@@ -1,12 +1,12 @@
 import DisplayAllPapers from '@/components/homePage/DisplayAllPapers'
 import React from 'react'
 
-function HomePage() {
+function DashboardPage() {
   return (
-    <div>
+    <div className='h-screen'>
       <DisplayAllPapers />
     </div>
   )
 }
 
-export default HomePage
+export default DashboardPage

@@ -4,7 +4,7 @@ import AuthPageTitle from "../auths/AuthPageTitle";
 
 function LoginPageContent() {
   return (
-    <div className="font-custom flex flex-col justify-center items-center gap-6 text-center mt-10 mb-10">
+    <div className="flex flex-col justify-center items-center gap-6 text-center mt-10 mb-10">
       <AuthPageTitle title="Sign in" />
       <LoginForm />
     </div>

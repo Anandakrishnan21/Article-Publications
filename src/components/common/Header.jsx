@@ -1,37 +1,27 @@
 "use client";
-import React, { useEffect } from "react";
-import { useState } from "react";
-import { SearchIcon  } from "@heroicons/react/outline";
+import React from "react";
+import { SearchIcon } from "@heroicons/react/outline";
+import Logo from "../../../public/publication-logo.png";
+import Image from "next/image";
 
 function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   return (
     <div
-      className={`w-full font-custom sticky top-0 z-[10] bg-stone-200 p-2 ${
-        isScrolled ? "shadow-lg" : ""
-      }`}
+      className="bg-neutral-50 dark:bg-neutral-950 border-[1px] border-b-neutral-200 dark:border-b-neutral-800 w-full font-custom sticky top-0 z-[10] p-1.5"
     >
-      <header className="max-w-7xl flex justify-between items-center p-1 mx-auto">
-        <h1 className="text-xl font-bold">Particle</h1>
+      <header className="mx-4 flex justify-between items-center p-1 ">
+        <div className="flex gap-2">
+          <Image src={Logo} alt="" className="h-8 w-8" />
+          <h1 className="text-xl font-bold">P<span className="text-base font-medium">Article</span></h1>
+        </div>
         <div className="block">
           <ul className="flex items-center space-x-10">
-            <li className="w-full flex flex-row gap-2 items-center bg-slate-100 border-2 border-slate-200 hover:border-slate-300 duration-500 p-1.5 rounded-lg">
+            <li className="w-full flex flex-row gap-2 items-center dark:bg-neutral-800 border-2 dark:border-neutral-700 duration-500 p-1.5 rounded-lg">
               <SearchIcon className="w-6 h-6 " />
               <input
                 type="text"
-                placeholder="Search here..."
-                className="outline-none w-full bg-slate-100"
+                placeholder="Search papers"
+                className="outline-none w-full dark:bg-neutral-800"
               />
             </li>
           </ul>
