@@ -49,7 +49,7 @@ export function SideBar() {
     {
       name: "Settings",
       href: "/dashboard/settings",
-      icon: HiOutlineHome,
+      icon: IoSettingsOutline,
       current: `/${segment}` === "/settings" ? true : false,
     },
     {

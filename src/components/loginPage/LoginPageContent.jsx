@@ -5,9 +5,9 @@ import Logo from "../../../public/publication-logo.png";
 
 function LoginPageContent() {
   return (
-    <div className="font-custom flex flex-col justify-center items-center gap-6 my-10">
-      <div className="w-10/12 md:w-4/12 lg:w-3/12 text-center">
-        <div className="flex w-full justify-center">
+    <div className="font-custom box-border h-screen flex flex-col justify-center items-center gap-6 ">
+      <div className="w-10/12 md:w-4/12 lg:w-3/12">
+      <div className="flex w-full justify-center">
           <Image src={Logo} height={150} width={150} alt="" />
         </div>
         <h1 className="text-2xl font-bold leading-normal md:leading-relaxed">
