@@ -4,6 +4,9 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
+import { Button } from "../ui/button";
+import Link from "next/link";
+import GoogleButton from "../registerPage/GoogleButton";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
@@ -42,14 +45,14 @@ export default function LoginForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-10/12 md:w-4/12 lg:w-3/12 flex flex-col gap-6 relative"
+      className="AuthForm"
     >
       <div>
         <input
           onChange={(e) => setEmail(e.target.value)}
           type="text"
           placeholder="Email"
-          className="w-full border-2 border-gray-200 hover:border-gray-500 duration-500 p-2 rounded"
+          className="inputFields"  //inputFieds class is defined in globals.css
         />
       </div>
       <div>
@@ -57,7 +60,7 @@ export default function LoginForm() {
           onChange={(e) => setPassword(e.target.value)}
           type={showPassword ? "text" : "password"}
           placeholder="Password"
-          className="w-full border-2 border-gray-200 hover:border-gray-500 duration-500 p-2 rounded"
+          className="inputFields"
         />
         <button
           className="absolute right-2 top-20 cursor-pointer"
@@ -76,14 +79,23 @@ export default function LoginForm() {
           )}
         </button>
       </div>
-      <button className="w-full bg-slate-900 rounded text-white hover:bg-slate-800 duration-500 p-2">
-        Login
-      </button>
+      <Button>Login</Button>
       {error && (
         <div className="bg-red-500 text-white w-fit text-sm py-1 px-3 rounded-md mt-2">
           {error}
         </div>
       )}
+      <p className="text-slate-600 text-sm md:text-base leading-normal text-center">
+        Don&apos;t have an account ? {""}
+        <Link
+          href="/register"
+          className="blueLink"
+        >
+          Sign Up
+        </Link>
+      </p>
+      <p className="text-center text-neutral-500">or</p>
+      <GoogleButton />
     </form>
   );
 }

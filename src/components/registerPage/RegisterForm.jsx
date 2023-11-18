@@ -3,17 +3,20 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
+import Link from "next/link";
+import GoogleButton from "./GoogleButton";
+import { Button } from "../ui/button";
 // import PhoneInput from "react-phone-number-input";
 // import 'react-phone-number-input/style.css'
 
 export default function RegisterForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [value, setValue] = useState("")
+  const [value, setValue] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [ affiliation, setAffiliation] = useState("");
+  const [affiliation, setAffiliation] = useState("");
   const [scholar, setScholar] = useState("");
   const [scopus, setScopus] = useState("");
   const [orcid, setOrcid] = useState("");
@@ -23,7 +26,7 @@ export default function RegisterForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!name || !email || !password ||  !affiliation) {
+    if (!name || !email || !password || !affiliation) {
       setError("All fields are necessary.");
       return;
     }
@@ -56,7 +59,7 @@ export default function RegisterForm() {
           affiliation,
           scholar,
           scopus,
-          orcid
+          orcid,
         }),
       });
 
@@ -80,14 +83,14 @@ export default function RegisterForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-10/12 md:w-4/12 lg:w-3/12 flex flex-col gap-6 relative"
+      className="AuthForm"
     >
       <div>
         <input
           onChange={(e) => setName(e.target.value)}
           type="text"
           placeholder="Full Name"
-          className="w-full border-2 border-gray-200 hover:border-gray-500 duration-500 p-2 rounded"
+          className="inputFields"
         />
       </div>
       <div>
@@ -95,7 +98,7 @@ export default function RegisterForm() {
           onChange={(e) => setEmail(e.target.value)}
           type="email"
           placeholder="Email"
-          className="w-full border-2 border-gray-200 hover:border-gray-500 duration-500 p-2 rounded"
+          className="inputFields"
         />
       </div>
       <div>
@@ -103,7 +106,7 @@ export default function RegisterForm() {
           onChange={(e) => setPassword(e.target.value)}
           type={showPassword ? "text" : "password"}
           placeholder="Password"
-          className="w-full border-2 border-gray-200 hover:border-gray-500 duration-500 p-2 rounded"
+          className="inputFields"
         />
         <button
           className="absolute right-2 top-36 cursor-pointer"
@@ -127,7 +130,7 @@ export default function RegisterForm() {
           onChange={(e) => setScholar(e.target.value)}
           type="text"
           placeholder="Google Scholar ID"
-          className="w-full border-2 border-gray-200 hover:border-gray-500 duration-500 p-2 rounded"
+          className="inputFields"
         />
       </div>
       <div>
@@ -135,7 +138,7 @@ export default function RegisterForm() {
           onChange={(e) => setAffiliation(e.target.value)}
           type="text"
           placeholder="Affiliation"
-          className="w-full border-2 border-gray-200 hover:border-gray-500 duration-500 p-2 rounded"
+          className="inputFields"
           required
         />
       </div>
@@ -144,7 +147,7 @@ export default function RegisterForm() {
           onChange={(e) => setScopus(e.target.value)}
           type="number"
           placeholder="Scopus ID"
-          className="w-full border-2 border-gray-200 hover:border-gray-500 duration-500 p-2 rounded"
+          className="inputFields"
         />
       </div>
       <div>
@@ -152,18 +155,25 @@ export default function RegisterForm() {
           onChange={(e) => setOrcid(e.target.value)}
           type="number"
           placeholder="ORCid ID"
-          className="w-full border-2 border-gray-200 hover:border-gray-500 duration-500 p-2 rounded"
+          className="inputFields"
         />
       </div>
-      <button className="w-full bg-slate-900 rounded text-white hover:bg-slate-800 duration-500 p-2">
-        Register
-      </button>
+      <Button>Register</Button>
 
       {error && (
-        <div className="bg-red-500 text-white w-fit text-sm py-1 px-3 rounded-md mt-2">
+        <div className="bg-red-200 text-red-700 w-fit text-sm py-1 px-3 rounded mt-2">
           {error}
         </div>
       )}
+      <p className="text-slate-600 text-sm md:text-base leading-normal text-center">
+        Already have an account ? {""}
+        <Link href="/" className="blueLink">
+          Sign In
+        </Link>
+      </p>
+      <p className="text-center text-neutral-500">or</p>
+
+      <GoogleButton />
     </form>
   );
 }
