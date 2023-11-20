@@ -19,7 +19,8 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         iconBtn:
-          "flex gap-4 bg-neutral-100 outline outline-1 outline-gray-300 hover:bg-neutral-100/50",
+          "flex gap-4 bg-neutral-100 outline outline-1 outline-gray-300 hover:bg-primary/90 dark:text-neutral-600",
+        noOutline: "outline-none",
       },
       size: {
         default: "h-10 px-4 py-2",
