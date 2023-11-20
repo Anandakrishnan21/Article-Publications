@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function GroupPage() {
-  return (
-    <div className='h-screen'>
-      group
-    </div>
-  )
+  return <div className="h-screen">Group</div>;
 }
 
-export default GroupPage
+export default GroupPage;

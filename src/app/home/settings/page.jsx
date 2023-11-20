@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function SettingsPage() {
-  return (
-    <div className='w-screen'>
-      SettingsPage
-    </div>
-  )
+  return <div className="h-screen">Settings</div>;
 }
 
-export default SettingsPage
+export default SettingsPage;

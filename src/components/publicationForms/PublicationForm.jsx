@@ -29,7 +29,7 @@ const PublicationForm = () => {
     e.preventDefault();
 
     try {
-      const resPubExists = await fetch("api/publicationExists", {
+      const resPubExists = await fetch("/api/publicationExists", {
         method: "POST",
         headers: {
           "content-Type": "application/json",
@@ -44,7 +44,7 @@ const PublicationForm = () => {
         return;
       }
 
-      const res = await fetch("api/addPublication", {
+      const res = await fetch("/api/addPublication", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,16 +1,10 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
-import { redirect } from "next/navigation";
+import DisplayAllPapers from "@/components/homePage/DisplayAllPapers";
 
 export default async function HomePage() {
-  // const session = await getServerSession(authOptions);
-  // if(!session){
-  //   redirect('/')
-  // }
-  // const email = session?.user?.email;
   return (
-    <div>
-      Home
+    <div className="h-screen">
+      <DisplayAllPapers />
     </div>
   );
 }

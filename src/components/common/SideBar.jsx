@@ -40,7 +40,7 @@ export function SideBar() {
       name: "Dashboard",
       href: "/home/dashboard",
       icon: HiOutlineViewGrid,
-      current: `/${segment}` === "/home" ? true : false,
+      current: `/${segment}` === "/dashboard" ? true : false,
     },
     {
       name: "Group",
@@ -62,9 +62,9 @@ export function SideBar() {
     },
     {
       name: "Upload",
-      href: "/home/add-publication",
+      href: "/home/upload",
       icon: IoAddCircleOutline,
-      current: `/${segment}` === "/add-publication" ? true : false,
+      current: `/${segment}` === "/upload" ? true : false,
     }
   ];
   const commonClasses = "flex flex-col overflow-y-auto scrollbar-hidden bg-neutral-50 dark:bg-neutral-950 dark:border-r-neutral-800 dark:border-[1px] p-4";

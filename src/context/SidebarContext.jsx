@@ -30,29 +30,11 @@ export function SidebarProvider({ children }) {
     return window.innerWidth < 1024;
   }
 
-  function toggle() {
-    if (isScreenSmall()) {
-      setIsSmallOpen((s) => !s);
-    } else {
-      setIsLargeOpen((l) => !l);
-    }
-  }
-
-  function close() {
-    if (isScreenSmall()) {
-      setIsSmallOpen(false);
-    } else {
-      setIsLargeOpen(false);
-    }
-  }
-
   return (
     <SidebarContext.Provider
       value={{
         isLargeOpen,
         isSmallOpen,
-        toggle,
-        close,
       }}
     >
       {children}

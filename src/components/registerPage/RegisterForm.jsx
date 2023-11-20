@@ -106,10 +106,10 @@ export default function RegisterForm() {
           onChange={(e) => setPassword(e.target.value)}
           type={showPassword ? "text" : "password"}
           placeholder="Password"
-          className="inputFields"
+          className="relative inputFields"
         />
         <button
-          className="absolute right-2 top-36 cursor-pointer"
+          className="absolute right-2 top-[140px] cursor-pointer"
           onClick={toggleVisibility}
         >
           {showPassword ? (

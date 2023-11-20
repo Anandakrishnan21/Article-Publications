@@ -31,7 +31,7 @@ export default function LoginForm() {
         return;
       }
 
-      router.replace("dashboard");
+      router.replace("home");
     } catch (error) {
       console.log(error);
     }
@@ -60,10 +60,10 @@ export default function LoginForm() {
           onChange={(e) => setPassword(e.target.value)}
           type={showPassword ? "text" : "password"}
           placeholder="Password"
-          className="inputFields"
+          className="relative inputFields"
         />
         <button
-          className="absolute right-2 top-20 cursor-pointer"
+          className="absolute right-2 top-[72px] cursor-pointer"
           onClick={toggleVisibility}
         >
           {showPassword ? (

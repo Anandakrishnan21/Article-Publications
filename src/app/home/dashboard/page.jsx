@@ -1,12 +1,7 @@
-import DisplayAllPapers from '@/components/homePage/DisplayAllPapers'
-import React from 'react'
+import React from "react";
 
 function DashboardPage() {
-  return (
-    <div className='h-screen'>
-      <DisplayAllPapers />
-    </div>
-  )
+  return <div className="h-screen">Dashboard</div>;
 }
 
-export default DashboardPage
+export default DashboardPage;
