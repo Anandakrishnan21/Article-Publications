@@ -7,11 +7,12 @@ import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { Button } from "../ui/button";
 import GoogleButton from "../registerPage/GoogleButton";
 import Separator from "../auths/Separator";
+import { useToast } from "../ui/use-toast";
 
 export default function LoginForm() {
+  const { toast } = useToast();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const router = useRouter();
@@ -27,7 +28,11 @@ export default function LoginForm() {
       });
 
       if (res.error) {
-        setError("Invalid Credentials");
+        toast({
+          variant: "destructive",
+          title: "Uh oh! Invalid Credentials.",
+          description: "There was a problem with your request.",
+        });
         return;
       }
 
@@ -43,10 +48,7 @@ export default function LoginForm() {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="AuthForm"
-    >
+    <form onSubmit={handleSubmit} className="AuthForm">
       <div>
         <input
           onChange={(e) => setEmail(e.target.value)}
@@ -80,11 +82,7 @@ export default function LoginForm() {
         </button>
       </div>
       <Button>Login</Button>
-      {error && (
-        <div className="bg-red-500 text-white w-fit text-sm py-1 px-3 rounded-md mt-2">
-          {error}
-        </div>
-      )}
+
       <Separator url="/register" linkName="Register" />
       <GoogleButton />
     </form>

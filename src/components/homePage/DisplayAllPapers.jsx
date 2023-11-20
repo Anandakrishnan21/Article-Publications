@@ -42,7 +42,7 @@ const DisplayAllPapers = () => {
           <thead>
             <tr>
               {tableHeader.map((header) => (
-                <th className="dark:text-neutral-400 text-sm">{header.name}</th>
+                <th key={header.id} className="dark:text-neutral-400 text-sm">{header.name}</th>
               ))}
             </tr>
           </thead>
