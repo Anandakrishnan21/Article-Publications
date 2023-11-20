@@ -69,7 +69,7 @@ export function SideBar() {
   const commonClasses =
     "flex flex-col overflow-y-auto scrollbar-hidden bg-neutral-50 dark:bg-neutral-950 dark:border-r-neutral-800 dark:border-[1px] p-4";
   const commonClasses1 =
-    " bg-neutral-200 dark:bg-neutral-900 border-[1px] dark:border-neutral-700 hover:dark:border-neutral-700 hover:dark:border-neutral-700 duration-500 dark:text-white font-bold text-sm";
+    " bg-neutral-200 dark:bg-neutral-900 border-[1px] dark:border-neutral-700 hover:dark:border-neutral-700 duration-500 dark:text-white font-bold text-sm";
   const commonClasses2 =
     "hover:bg-neutral-100 hover:dark:bg-neutral-900 dark:text-neutral-400 duration-200 font-normal";
 
