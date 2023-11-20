@@ -4,11 +4,9 @@ import { useSidebarContext } from "@/context/SidebarContext";
 import {
   HiOutlineHome,
   HiOutlineLogout,
-  HiOutlinePlus,
   HiOutlineViewGrid,
 } from "react-icons/hi";
 import {
-  IoAddCircle,
   IoAddCircleOutline,
   IoLayersOutline,
   IoPersonOutline,
@@ -20,6 +18,7 @@ import { useSelectedLayoutSegment } from "next/navigation";
 import { Button } from "../ui/button";
 import Pung from "../ui/Pung";
 import { ModeToggle } from "../mode-toggle";
+import { VscColorMode } from "react-icons/vsc";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join("");
@@ -65,15 +64,18 @@ export function SideBar() {
       href: "/home/upload",
       icon: IoAddCircleOutline,
       current: `/${segment}` === "/upload" ? true : false,
-    }
+    },
   ];
-  const commonClasses = "flex flex-col overflow-y-auto scrollbar-hidden bg-neutral-50 dark:bg-neutral-950 dark:border-r-neutral-800 dark:border-[1px] p-4";
-  const commonClasses1 = " bg-neutral-200 dark:bg-neutral-900 border-[1px] dark:border-neutral-700 hover:dark:border-neutral-700 hover:dark:border-neutral-700 duration-500 dark:text-white font-bold text-sm";
-  const commonClasses2 = "hover:bg-neutral-100 hover:dark:bg-neutral-900 dark:text-neutral-400 duration-200 font-normal";
+  const commonClasses =
+    "flex flex-col overflow-y-auto scrollbar-hidden bg-neutral-50 dark:bg-neutral-950 dark:border-r-neutral-800 dark:border-[1px] p-4";
+  const commonClasses1 =
+    " bg-neutral-200 dark:bg-neutral-900 border-[1px] dark:border-neutral-700 hover:dark:border-neutral-700 hover:dark:border-neutral-700 duration-500 dark:text-white font-bold text-sm";
+  const commonClasses2 =
+    "hover:bg-neutral-100 hover:dark:bg-neutral-900 dark:text-neutral-400 duration-200 font-normal";
   return (
     <>
       <aside
-        className={`${commonClasses} sticky top-0 ${
+        className={`${commonClasses} sticky top-0 justify-between ${
           isLargeOpen ? "lg:hidden" : "lg:flex"
         }`}
       >
@@ -83,9 +85,7 @@ export function SideBar() {
               <Link
                 href={option.href}
                 className={classNames(
-                  option.current
-                    ? `${commonClasses1}`
-                    : `${commonClasses2}`,
+                  option.current ? `${commonClasses1}` : `${commonClasses2}`,
                   "group flex gap-x-3 rounded-md p-2 text-sm tracking-wide leading-6"
                 )}
               >
@@ -93,6 +93,21 @@ export function SideBar() {
               </Link>
             </li>
           ))}
+        </ul>
+        <ul className="flex flex-col gap-3">
+          <li>
+            <p className="flex items-center justify-center dark:border-[1px] dark:hover:border-neutral-700 duration-200 text-sm font-normal gap-7 rounded">
+              <ModeToggle />
+            </p>
+          </li>
+
+          <Link
+            href=""
+            onClick={() => signOut()}
+            className="group flex justify-center gap-x-3 rounded-md p-2 text-sm tracking-wide leading-6 bg-neutral-800 text-white"
+          >
+            <HiOutlineLogout className="w-5 h-5" />
+          </Link>
         </ul>
       </aside>
       <aside
@@ -110,9 +125,7 @@ export function SideBar() {
               <Link
                 href={option.href}
                 className={classNames(
-                  option.current
-                    ? `${commonClasses1}`
-                    : `${commonClasses2}`,
+                  option.current ? `${commonClasses1}` : `${commonClasses2}`,
                   "group flex gap-x-3 rounded-md p-2 text-sm tracking-wide leading-6"
                 )}
               >
@@ -124,7 +137,8 @@ export function SideBar() {
         </ul>
         <ul className="flex flex-col gap-3">
           <li>
-            <p className="flex items-center justify-center dark:border-[1px] dark:hover:border-neutral-700 duration-200 text-sm font-normal gap-2 rounded">
+            <p className="flex items-center justify-center dark:border-[1px] dark:hover:border-neutral-700 duration-200 text-sm font-normal gap-7 rounded">
+              <VscColorMode />
               Theme
               <ModeToggle />
             </p>
