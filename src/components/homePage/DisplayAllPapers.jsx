@@ -33,11 +33,11 @@ const DisplayAllPapers = () => {
   }
 
   return (
-    <div className="flex justify-center pt-6">
+    <div className="flex flex-col items-center justify-center pt-6">
+      <p className="text-3xl dark:text-neutral-50 font-semibold pb-6">
+        Latest Uploaded Papers
+      </p>
       <div className="w-11/12 h-full bg-neutral-50 dark:bg-neutral-950 border-[1px] border-neutral-200 dark:border-neutral-800 p-4 rounded overflow-auto">
-        <p className="text-3xl dark:text-neutral-50 font-semibold pb-6">
-          Latest Uploaded Papers
-        </p>
         <table className="w-full">
           <thead>
             <tr>

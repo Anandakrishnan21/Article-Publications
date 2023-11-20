@@ -4,11 +4,9 @@ import { useSidebarContext } from "@/context/SidebarContext";
 import {
   HiOutlineHome,
   HiOutlineLogout,
-  HiOutlinePlus,
   HiOutlineViewGrid,
 } from "react-icons/hi";
 import {
-  IoAddCircle,
   IoAddCircleOutline,
   IoLayersOutline,
   IoPersonOutline,
@@ -68,7 +66,7 @@ export function SideBar() {
     }
   ];
   const commonClasses = "flex flex-col overflow-y-auto scrollbar-hidden bg-neutral-50 dark:bg-neutral-950 dark:border-r-neutral-800 dark:border-[1px] p-4";
-  const commonClasses1 = " bg-neutral-200 dark:bg-neutral-900 border-[1px] dark:border-neutral-700 hover:dark:border-neutral-700 hover:dark:border-neutral-700 duration-500 dark:text-white font-bold text-sm";
+  const commonClasses1 = " bg-neutral-200 dark:bg-neutral-900 border-[1px] dark:border-neutral-700 hover:dark:border-neutral-700 duration-500 dark:text-white font-bold text-sm";
   const commonClasses2 = "hover:bg-neutral-100 hover:dark:bg-neutral-900 dark:text-neutral-400 duration-200 font-normal";
   return (
     <>
@@ -144,39 +142,3 @@ export function SideBar() {
     </>
   );
 }
-
-// export function SmallSidebarItem({ Icon, title }) {
-//   const buttonStyles = { variant: "ghost" };
-
-//   return (
-//     <a
-//       className={twMerge(
-//         buttonStyles,
-//         "py-4 px-1 flex flex-col items-center rounded-lg gap-1 cursor-pointer"
-//       )}
-//     >
-//       <Icon className="w-6 h-6" />
-//       <div className="text-sm">{title}</div>
-//     </a>
-//   );
-// }
-
-// export function LargeSidebarItem({ IconOrImgUrl, title }) {
-//   return (
-//     <a
-//       className={twMerge(
-//         buttonStyles,
-//         "w-full flex items-center rounded-lg gap-4 p-1.5 "
-//       )}
-//     >
-//       {typeof IconOrImgUrl === "string" ? (
-//         <img src={IconOrImgUrl} className="w-6 h-6 rounded-full" alt={title} />
-//       ) : (
-//         <IconOrImgUrl className="w-6 h-6" />
-//       )}
-//       <div className="whitespace-nowrap overflow-hidden text-ellipsis">
-//         {title}
-//       </div>
-//     </a>
-//   );
-// }

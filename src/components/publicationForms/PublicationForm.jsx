@@ -272,7 +272,8 @@ const PublicationForm = () => {
                 onChange={(e) => setIssn(e.target.value)}
                 type="text"
                 id="issn"
-                placeholder="ISSN Number of Paper"
+                pattern="\d{4}-\d{4}"
+                placeholder="ISSN Number (eg:1234-7890)"
                 className="inputFields"
               />
             </div>
