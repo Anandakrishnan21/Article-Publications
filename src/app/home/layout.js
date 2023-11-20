@@ -11,7 +11,6 @@ export default async function HomeLayout({ children }) {
     redirect("/");
   }
   return (
-    <body className="dark:bg-neutral-950">
       <SidebarProvider>
         <div className="max-h-screen flex flex-col">
           <Header />
@@ -23,6 +22,5 @@ export default async function HomeLayout({ children }) {
           </div>
         </div>
       </SidebarProvider>
-    </body>
   );
 }
