@@ -1,8 +1,8 @@
+import { ThemeProvider } from "@/components/ThemeProvider";
 import { cn } from "@/lib/utils";
 import { AuthProvider } from "./Providers";
 import "./globals.css";
 import { Inter } from "next/font/google";
-import { ThemeProvider } from "@/components/ThemeProvider";
 import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -14,11 +14,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en"  suppressHydrationWarning>
       <body className={cn(inter.className, "dark:bg-neutral-950")}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
+          defaultTheme="system"
           enableSystem
           storageKey="particles"
         >
