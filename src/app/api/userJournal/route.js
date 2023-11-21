@@ -63,22 +63,6 @@ export const GET = async (req) => {
 
     await connection();
     const user = await User.findOne({ email });
-
-    const papers = await Paper.find({ dept: user.affiliation });
-
-    return new NextResponse(JSON.stringify(papers), { status: 200 });
-  } catch (error) {
-    return new NextResponse("Error fetching papers: " + error, { status: 500 });
-  }
-};
-
-export const GETUserPapers = async (req) => {
-  try {
-    const session = await getServerSession(authOptions);
-    const email = session?.user?.email;
-
-    await connection();
-    const user = await User.findOne({ email });
     const userJournals = await Paper.find({ email: user.email });
     return new NextResponse(JSON.stringify(userJournals), { status: 200 });
   } catch (error) {

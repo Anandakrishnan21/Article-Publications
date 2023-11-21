@@ -2,14 +2,14 @@
 import { tableHeader } from "@/utils/constants";
 import { useState, useEffect } from "react";
 
-const DisplayAllPapers = () => {
+const DisplayUserJournal = () => {
   const [papers, setPapers] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:3000/api/addPublication", {
+        const res = await fetch("http://localhost:3000/api/userJournal", {
           cache: "no-store",
         });
 
@@ -34,13 +34,15 @@ const DisplayAllPapers = () => {
 
   return (
     <div className="p-5">
-      <p className="text-center text-3xl bg-neutral-200 dark:bg-neutral-900 border-[1px] dark:border-neutral-700
-       hover:dark:border-neutral-700 duration-500 dark:text-white font-semibold p-2 px-4 rounded-full">
+      <p
+        className="text-center text-3xl bg-neutral-200 dark:bg-neutral-900 border-[1px] dark:border-neutral-700
+     hover:dark:border-neutral-700 duration-500 dark:text-white font-semibold p-2 px-4 rounded-full"
+      >
         Journal - {papers.length}
       </p>
       <div className="flex flex-col items-center justify-center pt-6">
         <p className="text-3xl dark:text-neutral-50 font-semibold pb-6">
-          Latest Uploaded Journals
+          Latest Uploaded Papers
         </p>
         <div className="w-11/12 h-full bg-neutral-50 dark:bg-neutral-950 border-[1px] border-neutral-200 dark:border-neutral-800 p-4 rounded overflow-auto">
           <table className="w-full">
@@ -76,4 +78,4 @@ const DisplayAllPapers = () => {
   );
 };
 
-export default DisplayAllPapers;
+export default DisplayUserJournal;

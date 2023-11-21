@@ -2,13 +2,14 @@
 import React from "react";
 import { useSidebarContext } from "@/context/SidebarContext";
 import {
-  HiOutlineHome,
   HiOutlineLogout,
-  HiOutlineViewGrid,
 } from "react-icons/hi";
 import {
-  IoAddCircleOutline,
-  IoLayersOutline,
+  IoGridOutline,
+  IoHomeOutline,
+  IoJournalOutline,
+  IoLogOutOutline,
+  IoPeopleOutline,
   IoPersonOutline,
   IoSettingsOutline,
 } from "react-icons/io5";
@@ -32,26 +33,14 @@ export function SideBar() {
     {
       name: "Home",
       href: "/home",
-      icon: HiOutlineHome,
+      icon: IoHomeOutline,
       current: !segment ? true : false,
     },
     {
       name: "Dashboard",
       href: "/home/dashboard",
-      icon: HiOutlineViewGrid,
+      icon: IoGridOutline,
       current: `/${segment}` === "/dashboard" ? true : false,
-    },
-    {
-      name: "Group",
-      href: "/home/group",
-      icon: IoLayersOutline,
-      current: `/${segment}` === "/group" ? true : false,
-    },
-    {
-      name: "Settings",
-      href: "/home/settings",
-      icon: IoSettingsOutline,
-      current: `/${segment}` === "/settings" ? true : false,
     },
     {
       name: "Profile",
@@ -60,10 +49,22 @@ export function SideBar() {
       current: `/${segment}` === "/profile" ? true : false,
     },
     {
-      name: "Upload",
-      href: "/home/upload",
-      icon: IoAddCircleOutline,
-      current: `/${segment}` === "/upload" ? true : false,
+      name: "Journal",
+      href: "/home/journal",
+      icon: IoJournalOutline,
+      current: `/${segment}` === "/journal" ? true : false,
+    },
+    {
+      name: "Conference",
+      href: "/home/conference",
+      icon: IoPeopleOutline,
+      current: `/${segment}` === "/conference" ? true : false,
+    },
+    {
+      name: "Settings",
+      href: "/home/settings",
+      icon: IoSettingsOutline,
+      current: `/${segment}` === "/settings" ? true : false,
     },
   ];
   const commonClasses =
@@ -151,7 +152,7 @@ export function SideBar() {
             </p>
           </li>
           <Button onClick={() => signOut()}>
-            <HiOutlineLogout className="w-6 h-6 mr-2" />
+            <IoLogOutOutline className="w-6 h-6 mr-2" />
             Logout
           </Button>
         </ul>
