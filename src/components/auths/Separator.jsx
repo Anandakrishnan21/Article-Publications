@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-function Separator({url, linkName}) {
+function Separator({ url, linkName }) {
   return (
     <>
       <p className="text-slate-600 dark:text-neutral-500 text-sm md:text-base leading-normal text-center">
