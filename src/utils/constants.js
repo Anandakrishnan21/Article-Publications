@@ -17,26 +17,22 @@ export const tableHeader = [
     },
     {
         id: "5",
-        name: "Month",
-    },
-    {
-        id: "6",
         name: "Year",
     },
     {
-        id: "7",
+        id: "6",
         name: "Issn",
     },
     {
-        id: "8",
+        id: "7",
         name: "Volume",
     },
     {
-        id: "9",
+        id: "8",
         name: "Page No",
     },
     {
-        id: "10",
+        id: "9",
         name: "DOI",
     }
 ]

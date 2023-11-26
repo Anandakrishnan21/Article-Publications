@@ -5,11 +5,10 @@ import {
   HiOutlineLogout,
 } from "react-icons/hi";
 import {
+  IoAddCircleOutline,
   IoGridOutline,
   IoHomeOutline,
-  IoJournalOutline,
   IoLogOutOutline,
-  IoPeopleOutline,
   IoPersonOutline,
   IoSettingsOutline,
 } from "react-icons/io5";
@@ -49,22 +48,16 @@ export function SideBar() {
       current: `/${segment}` === "/profile" ? true : false,
     },
     {
-      name: "Journal",
-      href: "/home/journal",
-      icon: IoJournalOutline,
-      current: `/${segment}` === "/journal" ? true : false,
-    },
-    {
-      name: "Conference",
-      href: "/home/conference",
-      icon: IoPeopleOutline,
-      current: `/${segment}` === "/conference" ? true : false,
-    },
-    {
       name: "Settings",
       href: "/home/settings",
       icon: IoSettingsOutline,
       current: `/${segment}` === "/settings" ? true : false,
+    },
+    {
+      name: "Upload",
+      href: "/home/upload",
+      icon: IoAddCircleOutline,
+      current: `/${segment}` === "/upload" ? true : false,
     },
   ];
   const commonClasses =

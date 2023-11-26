@@ -71,6 +71,7 @@ const PublicationForm = () => {
       if (res.ok) {
         const form = e.target;
         form.reset();
+        router.push("/home")
         setSuccess("Form submitted successfully!");
       } else {
         console.log("Paper submission failed.");

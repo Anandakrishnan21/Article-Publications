@@ -72,16 +72,14 @@ export const GET = async (req) => {
   }
 };
 
-export const GETUserPapers = async (req) => {
+export const DELETE = async (req) => {
+  const id = req.nextUrl.searchParams.get("id");
   try {
-    const session = await getServerSession(authOptions);
-    const email = session?.user?.email;
-
     await connection();
-    const user = await User.findOne({ email });
-    const userJournals = await Paper.find({ email: user.email });
-    return new NextResponse(JSON.stringify(userJournals), { status: 200 });
+    await Paper.findByIdAndDelete(id);
+    const updatedPapers = await Paper.find();
+    return new NextResponse(JSON.stringify(updatedPapers), { status: 200 });
   } catch (error) {
-    return new NextResponse("Error fetching papers: " + error, { status: 500 });
+    return new NextResponse("Error deleting paper: ", error, { status: 500 });
   }
 };
