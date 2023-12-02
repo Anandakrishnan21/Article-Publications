@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Pagination from "../comp/Pagination";
 import PaperNumber from "../comp/PaperNumber";
 import { IoFilterCircleOutline } from "react-icons/io5";
-import Form from "../comp/Form";
+import Form from "../comp/Table";
 
 const DisplayAllPapers = () => {
   const [papers, setPapers] = useState([]);

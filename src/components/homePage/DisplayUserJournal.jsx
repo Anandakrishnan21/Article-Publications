@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import PaperNumber from "../comp/PaperNumber";
-import Form from "../comp/Form";
+import Form from "../comp/Table";
 import Pagination from "../comp/Pagination";
 import { IoFilterCircleOutline } from "react-icons/io5";
 

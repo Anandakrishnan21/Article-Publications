@@ -2,6 +2,7 @@
 import React from "react";
 import { IoTrashOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
+import { Button } from "../ui/button";
 
 function DeleteBtn({ id, setPapers }) {
   const router = useRouter();
@@ -22,12 +23,11 @@ function DeleteBtn({ id, setPapers }) {
     }
   };
   return (
-    <button
-      onClick={deletePaper}
-      className="bg-red-500 p-1.5 text-white rounded"
+    <Button
+      onClick={deletePaper} className="flex gap-2"
     >
-      <IoTrashOutline />
-    </button>
+     Delete <IoTrashOutline className="w-4 h-6" />
+    </Button>
   );
 }
 
