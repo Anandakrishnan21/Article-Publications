@@ -3,6 +3,7 @@ import React from "react";
 import DeleteBtn from "./DeleteBtn";
 import EditBtn from "./EditBtn";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 function Form({ currentItems, setPapers }) {
   const { data: session } = useSession();
@@ -33,7 +34,9 @@ function Form({ currentItems, setPapers }) {
               {session?.user?.email === paper.email ? (
                 <td className="p-3 px-5 flex gap-2">
                   <DeleteBtn id={paper._id} setPapers={setPapers} />
-                  <EditBtn />
+                  <Link href={`home/editJournal/${paper._id}`}>
+                    <EditBtn />
+                  </Link>
                 </td>
               ) : (
                 <td></td>
