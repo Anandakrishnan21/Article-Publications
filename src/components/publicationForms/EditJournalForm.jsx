@@ -1,110 +1,100 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
 
-const PublicationForm = () => {
-  const [title, setTitle] = useState("");
-  const [author1, setAuthor1] = useState("");
-  const [author2, setAuthor2] = useState("");
-  const [author3, setAuthor3] = useState("");
-  const [author4, setAuthor4] = useState("");
-  const [author5, setAuthor5] = useState("");
-  const [dept, setDept] = useState("");
-  const [journal, setJournal] = useState("");
-  const [pubYear, setPubyear] = useState(0);
-  const [issn, setIssn] = useState("");
-  const [vol, setVol] = useState(0);
-  const [issue, setIssue] = useState(0);
-  const [pageno, setPageno] = useState(0);
-  const [doi, setDoi] = useState("");
-  const [month, setMonth] = useState("");
-
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+function EditJournalForm({
+  id,
+  title,
+  author1,
+  author2,
+  author3,
+  author4,
+  author5,
+  dept,
+  journal,
+  pubYear,
+  month,
+  issn,
+  issue,
+  vol,
+  pageno,
+  doi,
+}) {
+  const [newTitle, setNewTitle] = useState(title);
+  const [newAuthor1, setNewAuthor1] = useState(author1);
+  const [newAuthor2, setNewAuthor2] = useState(author2);
+  const [newAuthor3, setNewAuthor3] = useState(author3);
+  const [newAuthor4, setNewAuthor4] = useState(author4);
+  const [newAuthor5, setNewAuthor5] = useState(author5);
+  const [newDept, setNewDept] = useState(dept);
+  const [newJournal, setNewJournal] = useState(journal);
+  const [newPubYear, setNewPubYear] = useState(pubYear);
+  const [newIssn, setNewIssn] = useState(issn);
+  const [newIssue, setNewIssue] = useState(issue);
+  const [newMonth, setNewMonth] = useState(month);
+  const [newVol, setNewVol] = useState(vol);
+  const [newPageno, setNewPageno] = useState(pageno);
+  const [newDoi, setNewDoi] = useState(doi);
 
   const router = useRouter();
 
-  const handleSubmit = async (e) => {
+  const onHandleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      const resPubExists = await fetch("/api/publicationExists", {
-        method: "POST",
-        headers: {
-          "content-Type": "application/json",
-        },
-        body: JSON.stringify({ title, issn }),
-      });
+      const res = await fetch(
+        `http://localhost:3000/api/addPublication/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            newTitle,
+            newAuthor1,
+            newAuthor2,
+            newAuthor3,
+            newAuthor4,
+            newAuthor5,
+            newDept,
+            newJournal,
+            newDoi,
+            newIssn,
+            newIssue,
+            newPubYear,
+            newPageno,
+            newMonth
+          }),
+        }
+      );
 
-      const { paper } = await resPubExists.json();
-
-      if (paper) {
-        setError("Paper with same title and ISSN number already exists.");
-        return;
+      if (!res.ok) {
+        throw new Error("Failed to update the paper");
       }
 
-      const res = await fetch("/api/addPublication", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title,
-          author1,
-          author2,
-          author3,
-          author4,
-          author5,
-          dept,
-          journal,
-          pubYear,
-          issn,
-          vol,
-          issue,
-          pageno,
-          doi,
-          month,
-        }),
-      });
-
-      if (res.ok) {
-        const form = e.target;
-        form.reset();
-        router.push("/home")
-        setSuccess("Form submitted successfully!");
-      } else {
-        console.log("Paper submission failed.");
-        setError("Paper submission failed.");
-      }
+      router.refresh();
+      router.push("/");
     } catch (error) {
-      console.log("Error during registration: ", error);
-      setError("Error during registration ");
+      console.log(error);
     }
   };
 
   return (
     <div className="box-border flex flex-col justify-center items-center py-10">
-      <div className="w-5/6 md:w-7/12 flex flex-col justify-center items-center
-       bg-neutral-50 dark:bg-neutral-950 border-[1px] border-neutral-200 dark:border-neutral-800 p-5 rounded-lg">
+      <div
+        className="w-5/6 md:w-7/12 flex flex-col justify-center items-center
+       bg-neutral-50 dark:bg-neutral-950 border-[1px] border-neutral-200 dark:border-neutral-800 p-5 rounded-lg"
+      >
         <div className="my-5 text-center">
-          <p className="text-3xl dark:text-neutral-50 font-semibold">Publication Form</p>
-          <p className="text-lg dark:text-neutral-400">Add your paper here</p>
+          <p className="text-3xl dark:text-neutral-50 font-semibold">
+            Publication Form
+          </p>
+          <p className="text-lg dark:text-neutral-400">
+            Update your paper here
+          </p>
         </div>
-        {success && (
-          <div className="mb-10">
-            <p className=" text-green-700 bg-green-200 w-fit p-2 rounded">
-              {success}
-            </p>
-          </div>
-        )}
-        {error && (
-          <div className="mb-10">
-            <p className="text-red-700 bg-red-200 w-fit p-2 rounded">{error}</p>
-          </div>
-        )}
         <form
-          onSubmit={handleSubmit}
+          onSubmit={onHandleSubmit}
           className="w-10/12 md:w-4/12 lg:w-3/4 flex flex-col gap-6 relative"
         >
           {/* title */}
@@ -114,7 +104,8 @@ const PublicationForm = () => {
             </label>
             <input
               required
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={(e) => setNewTitle(e.target.value)}
+              value={newTitle}
               type="text"
               id="title"
               placeholder="Enter Title"
@@ -129,7 +120,8 @@ const PublicationForm = () => {
               </label>
               <input
                 required
-                onChange={(e) => setAuthor1(e.target.value)}
+                onChange={(e) => setNewAuthor1(e.target.value)}
+                value={newAuthor1}
                 type="text"
                 id="author1"
                 placeholder="Name of Author 1"
@@ -141,7 +133,8 @@ const PublicationForm = () => {
                 Author 2
               </label>
               <input
-                onChange={(e) => setAuthor2(e.target.value)}
+                onChange={(e) => setNewAuthor2(e.target.value)}
+                value={newAuthor2}
                 type="text"
                 id="author2"
                 placeholder="Name of Author 2"
@@ -157,7 +150,8 @@ const PublicationForm = () => {
                 Author 3
               </label>
               <input
-                onChange={(e) => setAuthor3(e.target.value)}
+                onChange={(e) => setNewAuthor3(e.target.value)}
+                value={newAuthor3}
                 type="text"
                 id="author3"
                 placeholder="Name of Author 3"
@@ -169,7 +163,8 @@ const PublicationForm = () => {
                 Author 4
               </label>
               <input
-                onChange={(e) => setAuthor4(e.target.value)}
+                onChange={(e) => setNewAuthor4(e.target.value)}
+                value={newAuthor4}
                 type="text"
                 id="author4"
                 placeholder="Name of Author 4"
@@ -185,7 +180,8 @@ const PublicationForm = () => {
                 Author 5
               </label>
               <input
-                onChange={(e) => setAuthor5(e.target.value)}
+                onChange={(e) => setNewAuthor5(e.target.value)}
+                value={newAuthor5}
                 type="text"
                 id="author5"
                 placeholder="Name of Author 5"
@@ -202,7 +198,8 @@ const PublicationForm = () => {
               </label>
               <select
                 required
-                onChange={(e) => setDept(e.target.value)}
+                onChange={(e) => setNewDept(e.target.value)}
+                value={newDept}
                 name="dept"
                 id="dept"
                 className="inputFields"
@@ -219,7 +216,8 @@ const PublicationForm = () => {
               </label>
               <input
                 required
-                onChange={(e) => setJournal(e.target.value)}
+                onChange={(e) => setNewJournal(e.target.value)}
+                value={newJournal}
                 type="text"
                 id="journal"
                 placeholder="Name of Journal"
@@ -236,7 +234,8 @@ const PublicationForm = () => {
               </label>
               <select
                 required
-                onChange={(e) => setMonth(e.target.value)}
+                onChange={(e) => setNewMonth(e.target.value)}
+                value={newMonth}
                 name="month"
                 id="month"
                 className="inputFields"
@@ -253,7 +252,8 @@ const PublicationForm = () => {
               </label>
               <input
                 required
-                onChange={(e) => setPubyear(e.target.value)}
+                onChange={(e) => setNewPubyear(e.target.value)}
+                value={newPubYear}
                 type="number"
                 id="pubYear"
                 placeholder="Year of Publication"
@@ -270,7 +270,8 @@ const PublicationForm = () => {
               </label>
               <input
                 required
-                onChange={(e) => setIssn(e.target.value)}
+                onChange={(e) => setNewIssn(e.target.value)}
+                value={newIssn}
                 type="text"
                 id="issn"
                 pattern="\d{4}-\d{4}"
@@ -283,7 +284,8 @@ const PublicationForm = () => {
                 Volume
               </label>
               <input
-                onChange={(e) => setVol(e.target.value)}
+                onChange={(e) => setNewVol(e.target.value)}
+                value={newVol}
                 type="number"
                 id="vol"
                 placeholder="Volume Number"
@@ -299,7 +301,8 @@ const PublicationForm = () => {
                 Issue
               </label>
               <input
-                onChange={(e) => setIssue(e.target.value)}
+                onChange={(e) => setNewIssue(e.target.value)}
+                value={newIssue}
                 type="number"
                 id="issue"
                 placeholder="Issue Number"
@@ -311,7 +314,8 @@ const PublicationForm = () => {
                 Page No.
               </label>
               <input
-                onChange={(e) => setPageno(e.target.value)}
+                onChange={(e) => setNewPageno(e.target.value)}
+                value={newPageno}
                 type="text"
                 id="pageno"
                 placeholder="Page Numbers (eg: 34-99)"
@@ -328,7 +332,8 @@ const PublicationForm = () => {
               </label>
               <input
                 required
-                onChange={(e) => setDoi(e.target.value)}
+                onChange={(e) => setNewDoi(e.target.value)}
+                value={newDoi}
                 type="text"
                 id="doi"
                 placeholder="DOI Website Link"
@@ -337,11 +342,11 @@ const PublicationForm = () => {
             </div>
           </div>
 
-          <Button type="submit">Add Paper</Button>
+          <Button>Edit Paper</Button>
         </form>
       </div>
     </div>
   );
-};
+}
 
-export default PublicationForm;
+export default EditJournalForm;

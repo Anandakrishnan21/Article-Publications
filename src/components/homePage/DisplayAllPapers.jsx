@@ -1,10 +1,17 @@
 "use client";
-import { tableHeader } from "@/utils/constants";
 import { useState, useEffect } from "react";
+import Pagination from "../comp/Pagination";
+import PaperNumber from "../comp/PaperNumber";
+import { IoFilterCircleOutline } from "react-icons/io5";
+import Table from "../comp/Table";
 
 const DisplayAllPapers = () => {
   const [papers, setPapers] = useState([]);
   const [error, setError] = useState(null);
+  const [filterTitle, setFilterTitle] = useState("");
+  const [filterAuthor, setFilterAuthor] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,45 +39,72 @@ const DisplayAllPapers = () => {
     return <div>Error: {error}</div>;
   }
 
+  const handleTitleChange = (e) => {
+    setFilterTitle(e.target.value);
+  };
+
+  const handleAuthorChange = (e) => {
+    setFilterAuthor(e.target.value);
+  };
+
+  const filteredPapers = papers.filter((paper) => {
+    const matchesTitle = paper.title
+      .toLowerCase()
+      .includes(filterTitle.toLowerCase());
+    const matchesAuthor = paper.author1
+      .toLowerCase()
+      .includes(filterAuthor.toLowerCase());
+
+    return (
+      (filterTitle === "" || matchesTitle) &&
+      (filterAuthor === "" || matchesAuthor)
+    );
+  });
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredPapers.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
-    <div className="p-5">
-      <p className="text-center text-3xl bg-neutral-200 dark:bg-neutral-900 border-[1px] dark:border-neutral-700
-       hover:dark:border-neutral-700 duration-500 dark:text-white font-semibold p-2 px-4 rounded-full">
-        Journal - {papers.length}
-      </p>
-      <div className="flex flex-col items-center justify-center pt-6">
-        <p className="text-3xl dark:text-neutral-50 font-semibold pb-6">
+    <div className="p-5 box-border lg:h-screen">
+      <PaperNumber
+        journal="Journal"
+        conferences="conference"
+        journalLength={papers.length}
+        conferenceLength="0"
+      />
+      <div className="flex flex-col items-center pt-6">
+        <p className="text-base md:text-3xl dark:text-neutral-50 font-semibold pb-6">
           Latest Uploaded Journals
         </p>
-        <div className="w-11/12 h-full bg-neutral-50 dark:bg-neutral-950 border-[1px] border-neutral-200 dark:border-neutral-800 p-4 rounded overflow-auto">
-          <table className="w-full">
-            <thead>
-              <tr>
-                {tableHeader.map((header) => (
-                  <th key={header.id} className="dark:text-neutral-400 text-sm">
-                    {header.name}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody className="w-full dark:text-neutral-400 bg-neutral-200 dark:bg-neutral-900 text-sm tracking-wide leading-6 rounded">
-              {papers.map((paper) => (
-                <tr key={paper._id}>
-                  <td className="p-4 px-8">{paper.title}</td>
-                  <td className="p-4 px-8">{paper.author1}</td>
-                  <td className="p-4 px-8">{paper.dept}</td>
-                  <td className="p-4 px-8">{paper.journal}</td>
-                  <td className="p-4 px-8">{paper.month}</td>
-                  <td className="p-4 px-8">{paper.pubYear}</td>
-                  <td className="p-4 px-8">{paper.issn}</td>
-                  <td className="p-4 px-8">{paper.vol}</td>
-                  <td className="p-4 px-8">{paper.pageno}</td>
-                  <td className="p-4 px-8">{paper.doi}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="flex items-start p-2 gap-2">
+          <p className="bg-neutral-50 dark:bg-neutral-900 p-2 rounded-full">
+            <IoFilterCircleOutline className="h-6 w-6" />
+          </p>
+          <input
+            type="text"
+            placeholder="Filter by Title"
+            value={filterTitle}
+            onChange={handleTitleChange}
+            className="inputFields"
+          />
+          <input
+            type="text"
+            placeholder="Filter by Author"
+            value={filterAuthor}
+            onChange={handleAuthorChange}
+            className="inputFields"
+          />
         </div>
+        <Table currentItems={currentItems} setPapers={setPapers} />
+        <Pagination
+          itemsPerPage={itemsPerPage}
+          totalItems={papers.length}
+          paginate={paginate}
+          currentPage={currentPage}
+        />
       </div>
     </div>
   );
