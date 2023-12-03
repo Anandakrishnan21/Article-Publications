@@ -21,23 +21,25 @@ async function EditPage({ params }) {
   const {
     title,
     author1,
-    // author2,
-    // author3,
-    // author4,
-    // author5,
-    // dept,
-    // journal,
-    // month,
-    // pubYear,
-    // issn,
-    // vol,
-    // issue,
-    // pageno,
-    // doi,
+    author2,
+    author3,
+    author4,
+    author5,
+    dept,
+    journal,
+    month,
+    pubYear,
+    issn,
+    vol,
+    issue,
+    pageno,
+    doi,
   } = paper;
   return (
     <div>
-      <EditJournalForm id={id} title={title} author1={author1} />
+      <EditJournalForm id={id} title={title} author1={author1} author2={author2} author3={author3} author4={author4}
+       author5={author5} dept={dept} journal={journal} month={month} pubYear={pubYear} issn={issn} vol={vol} issue={issue} 
+       pageno={pageno} doi={doi} />
     </div>
   );
 }

@@ -1,35 +1,83 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
 
-function EditJournalForm({ id, title, author1 }) {
-    const [newTitle, setNewTitle] = useState(title);
-    const [newAuthor1, setNewAuthor1] = useState(author1);
-    const router = useRouter();
+function EditJournalForm({
+  id,
+  title,
+  author1,
+  author2,
+  author3,
+  author4,
+  author5,
+  dept,
+  journal,
+  pubYear,
+  month,
+  issn,
+  issue,
+  vol,
+  pageno,
+  doi,
+}) {
+  const [newTitle, setNewTitle] = useState(title);
+  const [newAuthor1, setNewAuthor1] = useState(author1);
+  const [newAuthor2, setNewAuthor2] = useState(author2);
+  const [newAuthor3, setNewAuthor3] = useState(author3);
+  const [newAuthor4, setNewAuthor4] = useState(author4);
+  const [newAuthor5, setNewAuthor5] = useState(author5);
+  const [newDept, setNewDept] = useState(dept);
+  const [newJournal, setNewJournal] = useState(journal);
+  const [newPubYear, setNewPubYear] = useState(pubYear);
+  const [newIssn, setNewIssn] = useState(issn);
+  const [newIssue, setNewIssue] = useState(issue);
+  const [newMonth, setNewMonth] = useState(month);
+  const [newVol, setNewVol] = useState(vol);
+  const [newPageno, setNewPageno] = useState(pageno);
+  const [newDoi, setNewDoi] = useState(doi);
 
-    const onHandleSubmit = async (e) =>{
-        e.preventDefault();
-        try{
-            const res = await fetch(`http://localhost:3000/api/addPublication/${id}`, {
-                method: "PUT",
-                headers: {
-                    "Content-type": "application/json",
-                },
-                body: JSON.stringify({newTitle, newAuthor1}),
-            })
+  const router = useRouter();
 
-            if(!res.ok){
-                throw new Error("Failed to update the paper");
-            }
-
-            router.refresh();
-            router.push("/");
-
-        }catch(error){
-            console.log(error);
+  const onHandleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch(
+        `http://localhost:3000/api/addPublication/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            newTitle,
+            newAuthor1,
+            newAuthor2,
+            newAuthor3,
+            newAuthor4,
+            newAuthor5,
+            newDept,
+            newJournal,
+            newDoi,
+            newIssn,
+            newIssue,
+            newPubYear,
+            newPageno,
+            newMonth
+          }),
         }
+      );
+
+      if (!res.ok) {
+        throw new Error("Failed to update the paper");
+      }
+
+      router.refresh();
+      router.push("/");
+    } catch (error) {
+      console.log(error);
     }
+  };
 
   return (
     <div className="box-border flex flex-col justify-center items-center py-10">
@@ -41,9 +89,14 @@ function EditJournalForm({ id, title, author1 }) {
           <p className="text-3xl dark:text-neutral-50 font-semibold">
             Publication Form
           </p>
-          <p className="text-lg dark:text-neutral-400">Update your paper here</p>
+          <p className="text-lg dark:text-neutral-400">
+            Update your paper here
+          </p>
         </div>
-        <form onSubmit={onHandleSubmit} className="w-10/12 md:w-4/12 lg:w-3/4 flex flex-col gap-6 relative">
+        <form
+          onSubmit={onHandleSubmit}
+          className="w-10/12 md:w-4/12 lg:w-3/4 flex flex-col gap-6 relative"
+        >
           {/* title */}
           <div>
             <label htmlFor="title" className="inputLabel">
@@ -80,7 +133,8 @@ function EditJournalForm({ id, title, author1 }) {
                 Author 2
               </label>
               <input
-                // onChange={(e) => setAuthor2(e.target.value)}
+                onChange={(e) => setNewAuthor2(e.target.value)}
+                value={newAuthor2}
                 type="text"
                 id="author2"
                 placeholder="Name of Author 2"
@@ -96,7 +150,8 @@ function EditJournalForm({ id, title, author1 }) {
                 Author 3
               </label>
               <input
-                // onChange={(e) => setAuthor3(e.target.value)}
+                onChange={(e) => setNewAuthor3(e.target.value)}
+                value={newAuthor3}
                 type="text"
                 id="author3"
                 placeholder="Name of Author 3"
@@ -108,7 +163,8 @@ function EditJournalForm({ id, title, author1 }) {
                 Author 4
               </label>
               <input
-                // onChange={(e) => setAuthor4(e.target.value)}
+                onChange={(e) => setNewAuthor4(e.target.value)}
+                value={newAuthor4}
                 type="text"
                 id="author4"
                 placeholder="Name of Author 4"
@@ -124,7 +180,8 @@ function EditJournalForm({ id, title, author1 }) {
                 Author 5
               </label>
               <input
-                // onChange={(e) => setAuthor5(e.target.value)}
+                onChange={(e) => setNewAuthor5(e.target.value)}
+                value={newAuthor5}
                 type="text"
                 id="author5"
                 placeholder="Name of Author 5"
@@ -141,7 +198,8 @@ function EditJournalForm({ id, title, author1 }) {
               </label>
               <select
                 required
-                // onChange={(e) => setDept(e.target.value)}
+                onChange={(e) => setNewDept(e.target.value)}
+                value={newDept}
                 name="dept"
                 id="dept"
                 className="inputFields"
@@ -158,7 +216,8 @@ function EditJournalForm({ id, title, author1 }) {
               </label>
               <input
                 required
-                // onChange={(e) => setJournal(e.target.value)}
+                onChange={(e) => setNewJournal(e.target.value)}
+                value={newJournal}
                 type="text"
                 id="journal"
                 placeholder="Name of Journal"
@@ -175,7 +234,8 @@ function EditJournalForm({ id, title, author1 }) {
               </label>
               <select
                 required
-                // onChange={(e) => setMonth(e.target.value)}
+                onChange={(e) => setNewMonth(e.target.value)}
+                value={newMonth}
                 name="month"
                 id="month"
                 className="inputFields"
@@ -192,7 +252,8 @@ function EditJournalForm({ id, title, author1 }) {
               </label>
               <input
                 required
-                // onChange={(e) => setPubyear(e.target.value)}
+                onChange={(e) => setNewPubyear(e.target.value)}
+                value={newPubYear}
                 type="number"
                 id="pubYear"
                 placeholder="Year of Publication"
@@ -209,7 +270,8 @@ function EditJournalForm({ id, title, author1 }) {
               </label>
               <input
                 required
-                // onChange={(e) => setIssn(e.target.value)}
+                onChange={(e) => setNewIssn(e.target.value)}
+                value={newIssn}
                 type="text"
                 id="issn"
                 pattern="\d{4}-\d{4}"
@@ -222,7 +284,8 @@ function EditJournalForm({ id, title, author1 }) {
                 Volume
               </label>
               <input
-                // onChange={(e) => setVol(e.target.value)}
+                onChange={(e) => setNewVol(e.target.value)}
+                value={newVol}
                 type="number"
                 id="vol"
                 placeholder="Volume Number"
@@ -238,7 +301,8 @@ function EditJournalForm({ id, title, author1 }) {
                 Issue
               </label>
               <input
-                // onChange={(e) => setIssue(e.target.value)}
+                onChange={(e) => setNewIssue(e.target.value)}
+                value={newIssue}
                 type="number"
                 id="issue"
                 placeholder="Issue Number"
@@ -250,7 +314,8 @@ function EditJournalForm({ id, title, author1 }) {
                 Page No.
               </label>
               <input
-                // onChange={(e) => setPageno(e.target.value)}
+                onChange={(e) => setNewPageno(e.target.value)}
+                value={newPageno}
                 type="text"
                 id="pageno"
                 placeholder="Page Numbers (eg: 34-99)"
@@ -267,7 +332,8 @@ function EditJournalForm({ id, title, author1 }) {
               </label>
               <input
                 required
-                // onChange={(e) => setDoi(e.target.value)}
+                onChange={(e) => setNewDoi(e.target.value)}
+                value={newDoi}
                 type="text"
                 id="doi"
                 placeholder="DOI Website Link"
