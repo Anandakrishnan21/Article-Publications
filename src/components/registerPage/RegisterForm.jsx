@@ -6,15 +6,14 @@ import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import GoogleButton from "./GoogleButton";
 import { Button } from "../ui/button";
 import Separator from "../auths/Separator";
-// import PhoneInput from "react-phone-number-input";
-// import 'react-phone-number-input/style.css'
+import { useToast } from "../ui/use-toast";
 
 export default function RegisterForm() {
+  const { toast } = useToast();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [value, setValue] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [affiliation, setAffiliation] = useState("");
   const [scholar, setScholar] = useState("");
@@ -27,7 +26,11 @@ export default function RegisterForm() {
     e.preventDefault();
 
     if (!name || !email || !password || !affiliation) {
-      setError("All fields are necessary.");
+      toast({
+        variant: "destructive",
+        title: "All Fields are neccessary.",
+        description: "Fill in all required details and try again.",
+      });
       return;
     }
 
@@ -43,7 +46,12 @@ export default function RegisterForm() {
       const { user } = await resUserExists.json();
 
       if (user) {
-        setError("user already exists");
+        toast({
+          variant: "destructive",
+          title: "User already exists!",
+          description:
+            "An user with the same email already exist. Try using another email id.",
+        });
         return;
       }
 
@@ -65,13 +73,26 @@ export default function RegisterForm() {
 
       if (res.ok) {
         const form = e.target;
+        toast({
+          variant: "success",
+          title: "User registered successfully!",
+          description: "Login to continue.",
+        });
         form.reset();
         router.push("/");
       } else {
-        console.log("User registration failed.");
+        toast({
+          variant: "destructive",
+          title: "User registration failed!",
+          description: "Login to continue.",
+        });
       }
     } catch (error) {
-      console.log("Error during registration: ", error);
+      toast({
+        variant: "destructive",
+        title: "Error during registration:",
+        description: error,
+      });
     }
   };
 
@@ -81,10 +102,7 @@ export default function RegisterForm() {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="AuthForm"
-    >
+    <form onSubmit={handleSubmit} className="AuthForm">
       <div>
         <input
           onChange={(e) => setName(e.target.value)}
@@ -160,11 +178,6 @@ export default function RegisterForm() {
       </div>
       <Button>Register</Button>
 
-      {error && (
-        <div className="bg-red-200 text-red-700 w-fit text-sm py-1 px-3 rounded mt-2">
-          {error}
-        </div>
-      )}
       <Separator url="/" linkName="Login" />
       <GoogleButton />
     </form>

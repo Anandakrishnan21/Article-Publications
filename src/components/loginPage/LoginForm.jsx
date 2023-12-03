@@ -26,12 +26,14 @@ export default function LoginForm() {
         password,
         redirect: false,
       });
-
+      if (res) {
+        console.log(res);
+      }
       if (res.error) {
         toast({
           variant: "destructive",
           title: "Uh oh! Invalid Credentials.",
-          description: "There was a problem with your request.",
+          description: "Email or password given is wrong.",
         });
         return;
       }
