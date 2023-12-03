@@ -12,8 +12,8 @@ const Pagination = ({ itemsPerPage, totalItems, paginate, currentPage }) => {
       {pageNumbers.map((number) => (
         <li
           key={number}
-          className={`h-6 w-6 mt-2 text-neutral-50 text-center font-bold rounded ${
-            currentPage === number ? "bg-neutral-900" : "bg-neutral-800"
+          className={`h-6 w-6 mt-2 text-center border-[1px] border-neutral-900 font-bold rounded-full ${
+            currentPage === number ? " bg-neutral-300" : "bg-neutral-200"
           }`}
         >
           <button onClick={() => paginate(number)}>{number}</button>

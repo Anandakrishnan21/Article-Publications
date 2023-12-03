@@ -41,7 +41,7 @@ function EditJournalForm({ id, title, author1 }) {
           <p className="text-3xl dark:text-neutral-50 font-semibold">
             Publication Form
           </p>
-          <p className="text-lg dark:text-neutral-400">Add your paper here</p>
+          <p className="text-lg dark:text-neutral-400">Update your paper here</p>
         </div>
         <form onSubmit={onHandleSubmit} className="w-10/12 md:w-4/12 lg:w-3/4 flex flex-col gap-6 relative">
           {/* title */}

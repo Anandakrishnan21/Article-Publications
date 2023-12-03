@@ -1,9 +1,9 @@
 "use client";
 import { useState, useEffect } from "react";
 import PaperNumber from "../comp/PaperNumber";
-import Form from "../comp/Table";
 import Pagination from "../comp/Pagination";
 import { IoFilterCircleOutline } from "react-icons/io5";
+import Table from "../comp/Table";
 
 const DisplayUserJournal = () => {
   const [papers, setPapers] = useState([]);
@@ -11,7 +11,7 @@ const DisplayUserJournal = () => {
   const [filterTitle, setFilterTitle] = useState("");
   const [filterAuthor, setFilterAuthor] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
+  const itemsPerPage = 10;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -68,7 +68,7 @@ const DisplayUserJournal = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="p-5">
+    <div className="box-border lg:h-screen p-5">
       <PaperNumber
         journal="Journal"
         conferences="conference"
@@ -98,7 +98,7 @@ const DisplayUserJournal = () => {
             className="inputFields"
           />
         </div>
-        <Form currentItems={currentItems} setPapers={setPapers} />
+        <Table currentItems={currentItems} setPapers={setPapers} />
         <Pagination
           itemsPerPage={itemsPerPage}
           totalItems={papers.length}
