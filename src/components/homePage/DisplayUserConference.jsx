@@ -2,9 +2,9 @@
 import { useState, useEffect } from "react";
 import Pagination from "../comp/Pagination";
 import { IoFilterCircleOutline } from "react-icons/io5";
-import Table from "../comp/Table";
+import ConferenceTable from "../comp/ConferenceTable";
 
-const DisplayAllPapers = () => {
+const DisplayUserConference = () => {
   const [papers, setPapers] = useState([]);
   const [error, setError] = useState(null);
   const [filterTitle, setFilterTitle] = useState("");
@@ -15,7 +15,7 @@ const DisplayAllPapers = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("/api/addPublication", {
+        const res = await fetch("/api/userConference", {
           cache: "no-store",
         });
 
@@ -67,13 +67,13 @@ const DisplayAllPapers = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="p-5 box-border lg:h-screen">
-      <div className="flex flex-col items-center pt-6">
-        <p className="text-base md:text-3xl dark:text-neutral-50 font-semibold pb-6">
-          Latest Uploaded Journals
+    <div className="box-border lg:h-screen p-5">
+      <div className="flex flex-col items-center justify-center pt-6">
+        <p className="text-base md:text-3xl font-semibold pb-6">
+          Your Uploaded Journals
         </p>
         <div className="flex items-start p-2 gap-2">
-          <p className="bg-neutral-50 dark:bg-neutral-900 p-2 rounded-full">
+          <p className="p-2 rounded-full">
             <IoFilterCircleOutline className="h-6 w-6" />
           </p>
           <input
@@ -91,7 +91,7 @@ const DisplayAllPapers = () => {
             className="inputFields"
           />
         </div>
-        <Table currentItems={currentItems} setPapers={setPapers} />
+        <ConferenceTable currentItems={currentItems} setPapers={setPapers} />
         <Pagination
           itemsPerPage={itemsPerPage}
           totalItems={papers.length}
@@ -103,4 +103,4 @@ const DisplayAllPapers = () => {
   );
 };
 
-export default DisplayAllPapers;
+export default DisplayUserConference;

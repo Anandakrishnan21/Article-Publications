@@ -2,9 +2,9 @@
 import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
-import { depts, months } from "@/utils/constants";
+import { months } from "@/utils/constants";
 
-function EditJournalForm({
+function EditConferenceForm({
   id,
   title,
   author1,
@@ -16,10 +16,7 @@ function EditJournalForm({
   journal,
   pubYear,
   month,
-  issn,
-  issue,
-  vol,
-  pageno,
+  isbn,
   doi,
 }) {
   const [newTitle, setNewTitle] = useState(title);
@@ -29,13 +26,10 @@ function EditJournalForm({
   const [newAuthor4, setNewAuthor4] = useState(author4);
   const [newAuthor5, setNewAuthor5] = useState(author5);
   const [newDept, setNewDept] = useState(dept);
-  const [newJournal, setNewJournal] = useState(journal);
+  const [newConference, setNewConference] = useState(journal);
   const [newPubYear, setNewPubYear] = useState(pubYear);
-  const [newIssn, setNewIssn] = useState(issn);
-  const [newIssue, setNewIssue] = useState(issue);
+  const [newIsbn, setNewIsbn] = useState(isbn);
   const [newMonth, setNewMonth] = useState(month);
-  const [newVol, setNewVol] = useState(vol);
-  const [newPageno, setNewPageno] = useState(pageno);
   const [newDoi, setNewDoi] = useState(doi);
 
   const router = useRouter();
@@ -44,7 +38,7 @@ function EditJournalForm({
     e.preventDefault();
     try {
       const res = await fetch(
-        `http://localhost:3000/api/addPublication/${id}`,
+        `http://localhost:3000/api/addConference/${id}`,
         {
           method: "PUT",
           headers: {
@@ -58,13 +52,10 @@ function EditJournalForm({
             newAuthor4,
             newAuthor5,
             newDept,
-            newJournal,
+            newConference,
             newDoi,
-            newIssn,
-            newIssue,
-            newPubYear,
-            newPageno,
-            newMonth,
+            newIsbn,
+            newMonth
           }),
         }
       );
@@ -200,16 +191,15 @@ function EditJournalForm({
               <select
                 required
                 onChange={(e) => setNewDept(e.target.value)}
+                value={newDept}
                 name="dept"
                 id="dept"
                 className="inputFields"
               >
-                <option value="">Choose department</option>
-                {depts.map((dept, index) => (
-                  <option key={index} value={dept}>
-                    {dept}
-                  </option>
-                ))}
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="mercedes">Mercedes</option>
+                <option value="audi">Audi</option>
               </select>
             </div>
             <div className="w-full">
@@ -218,8 +208,8 @@ function EditJournalForm({
               </label>
               <input
                 required
-                onChange={(e) => setNewJournal(e.target.value)}
-                value={newJournal}
+                onChange={(e) => setNewConference(e.target.value)}
+                value={newConference}
                 type="text"
                 id="journal"
                 placeholder="Name of Journal"
@@ -268,60 +258,17 @@ function EditJournalForm({
           {/* issn num & volume*/}
           <div className="flex gap-5 justify-between">
             <div className="w-full">
-              <label htmlFor="issn" className="inputLabel">
-                ISSN Number
+              <label htmlFor="isbn" className="inputLabel">
+                ISBN Number
               </label>
               <input
                 required
-                onChange={(e) => setNewIssn(e.target.value)}
-                value={newIssn}
+                onChange={(e) => setNewIsbn(e.target.value)}
+                value={newIsbn}
                 type="text"
-                id="issn"
-                pattern="\d{4}-\d{4}"
-                placeholder="ISSN Number (eg:1234-7890)"
-                className="inputFields"
-              />
-            </div>
-            <div className="w-full">
-              <label htmlFor="vol" className="inputLabel">
-                Volume
-              </label>
-              <input
-                onChange={(e) => setNewVol(e.target.value)}
-                value={newVol}
-                type="number"
-                id="vol"
-                placeholder="Volume Number"
-                className="inputFields"
-              />
-            </div>
-          </div>
-
-          {/* issue num & page*/}
-          <div className="flex gap-5 justify-between">
-            <div className="w-full">
-              <label htmlFor="issue" className="inputLabel">
-                Issue
-              </label>
-              <input
-                onChange={(e) => setNewIssue(e.target.value)}
-                value={newIssue}
-                type="number"
-                id="issue"
-                placeholder="Issue Number"
-                className="inputFields"
-              />
-            </div>
-            <div className="w-full">
-              <label htmlFor="pageno" className="inputLabel">
-                Page No.
-              </label>
-              <input
-                onChange={(e) => setNewPageno(e.target.value)}
-                value={newPageno}
-                type="text"
-                id="pageno"
-                placeholder="Page Numbers (eg: 34-99)"
+                id="isbn"
+                // pattern="\d{4}-\d{4}"
+                placeholder="ISBN Number"
                 className="inputFields"
               />
             </div>
@@ -352,4 +299,4 @@ function EditJournalForm({
   );
 }
 
-export default EditJournalForm;
+export default EditConferenceForm;

@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-import PaperNumber from "../comp/PaperNumber";
 import Pagination from "../comp/Pagination";
 import { IoFilterCircleOutline } from "react-icons/io5";
 import Table from "../comp/Table";
@@ -69,12 +68,6 @@ const DisplayUserJournal = () => {
 
   return (
     <div className="box-border lg:h-screen p-5">
-      <PaperNumber
-        journal="Journal"
-        conferences="conference"
-        journalLength={papers.length}
-        conferenceLength="0"
-      />
       <div className="flex flex-col items-center justify-center pt-6">
         <p className="text-base md:text-3xl font-semibold pb-6">
           Your Uploaded Journals
