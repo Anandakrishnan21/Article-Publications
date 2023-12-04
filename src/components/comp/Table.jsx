@@ -73,16 +73,21 @@ function Table({ currentItems, setPapers }) {
     const worksheet = XLSX.utils.json_to_sheet(data);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Journals");
-  
-    const excelBuffer = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
-    const dataBlob = new Blob([excelBuffer], { type: "application/octet-stream" });
-  
+
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array",
+    });
+    const dataBlob = new Blob([excelBuffer], {
+      type: "application/octet-stream",
+    });
+
     saveAs(dataBlob, "Journals.xlsx");
   };
 
   return (
     <div className="w-full flex flex-col gap-2 p-4 rounded">
-      <div className="flex flex-col md:flex-row gap-2">
+      <div className="flex flex-col justify-end md:flex-row gap-2">
         <Button onClick={generatePDF} className="flex-start">
           Convert to pdf
         </Button>
@@ -90,89 +95,100 @@ function Table({ currentItems, setPapers }) {
           Download Excel
         </Button>
       </div>
-      {currentItems.map((paper) => (
-        <div
-          className="w-full flex flex-col md:flex-row border-2 bg-neutral-50 dark:bg-neutral-900 border-neutral-950 dark:border-neutral-700 hover:dark:border-neutral-700 duration-500"
-          key={paper._id}
-        >
-          <div className="w-full md:w-10/12 flex flex-col bg-neutral-100 dark:bg-neutral-900 capitalize p-2">
-            <h1 className="text-2xl font-semibold">{paper.title}</h1>
-            <div className="dark:text-neutral-400">
-              <p className="text-sm md:text-base font-semibold">
-                Authors:{" "}
-                <span className="text-xs md:text-sm font-medium">
-                  {paper.author1} {paper.author2} {paper.author3}{" "}
-                  {paper.author4}
-                </span>
-              </p>
-              <div className="w-full flex justify-between">
+      <div className="mt-5 flex flex-col gap-2">
+        {currentItems.map((paper) => (
+          <div className="cardStyle" key={paper._id}>
+            <div className="w-full md:w-10/12 flex flex-col capitalize p-2">
+              <h1 className="text-2xl font-semibold">{paper.title}</h1>
+              <div className="dark:text-neutral-400">
                 <p className="text-sm md:text-base font-semibold">
-                  Department:{" "}
+                  Authors:{" "}
                   <span className="text-xs md:text-sm font-medium">
-                    {paper.dept}
+                    {paper.author1} {paper.author2} {paper.author3}{" "}
+                    {paper.author4}
                   </span>
                 </p>
-                <p className="text-sm md:text-base font-semibold">
-                  Journal:{" "}
-                  <span className="text-xs md:text-sm font-medium">
-                    {paper.journal}
-                  </span>
-                </p>
-              </div>
-              <div className="w-full flex flex-col md:flex-row justify-between">
-                <p className="text-sm md:text-base font-semibold">
-                  Issn no:{" "}
-                  <span className="text-xs md:text-sm font-medium">
-                    {paper.issn}
-                  </span>
-                </p>
-                <div className="flex gap-1">
+                {/* dept & journal */}
+                <div className="w-full flex justify-between">
                   <p className="text-sm md:text-base font-semibold">
-                    Vol:{" "}
+                    Department:{" "}
                     <span className="text-xs md:text-sm font-medium">
-                      {paper.vol}
+                      {paper.dept}
                     </span>
                   </p>
                   <p className="text-sm md:text-base font-semibold">
-                    page no:{" "}
+                    Journal:{" "}
                     <span className="text-xs md:text-sm font-medium">
-                      {paper.pageno}
-                    </span>
-                  </p>
-                  <p className="text-sm md:text-base font-semibold">
-                    Year:{" "}
-                    <span className="text-xs md:text-sm font-medium">
-                      {paper.pubYear}
-                    </span>
-                  </p>
-                  <p className="text-sm md:text-base font-semibold">
-                    Month:{" "}
-                    <span className="text-xs md:text-sm font-medium">
-                      {paper.month}
+                      {paper.journal}
                     </span>
                   </p>
                 </div>
+                {/* issn & vol page year month */}
+                <div className="w-full flex flex-col md:flex-row justify-between">
+                  <p className="text-sm md:text-base font-semibold">
+                    Issn no:{" "}
+                    <span className="text-xs md:text-sm font-medium">
+                      {paper.issn}
+                    </span>
+                  </p>
+                  <div className="flex gap-1">
+                    <p className="text-sm md:text-base font-semibold">
+                      Vol:{" "}
+                      <span className="text-xs md:text-sm font-medium">
+                        {paper.vol}
+                      </span>
+                    </p>
+                    <p className="text-sm md:text-base font-semibold">
+                      page no:{" "}
+                      <span className="text-xs md:text-sm font-medium">
+                        {paper.pageno}
+                      </span>
+                    </p>
+                    <p className="text-sm md:text-base font-semibold">
+                      Year:{" "}
+                      <span className="text-xs md:text-sm font-medium">
+                        {paper.pubYear}
+                      </span>
+                    </p>
+                    <p className="text-sm md:text-base font-semibold">
+                      Month:{" "}
+                      <span className="text-xs md:text-sm font-medium">
+                        {paper.month}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+                {/* doi */}
+                <p className="text-sm md:text-base font-semibold">
+                  DOI:{" "}
+                  <span className="text-xs md:text-sm font-medium">
+                    <Link
+                      href={paper.doi}
+                      target="_blank"
+                      className="text-blue-700 dark:text-blue-400 hover:underline"
+                    >
+                      click here
+                    </Link>
+                  </span>
+                </p>
               </div>
-              <p className="text-sm md:text-base font-semibold">
-                Doi:{" "}
-                <span className="text-xs md:text-sm font-medium">
-                  {paper.doi}
-                </span>
-              </p>
             </div>
+            {session?.user?.email === paper.email ? (
+              <div className="w-full md:w-2/12 flex flex-row md:flex-col justify-center gap-1 p-2">
+                <DeleteBtn id={paper._id} setPapers={setPapers} />
+                <Link
+                  href={`/home/editJournal/${paper._id}`}
+                  className="w-full"
+                >
+                  <EditBtn />
+                </Link>
+              </div>
+            ) : (
+              <div></div>
+            )}
           </div>
-          {session?.user?.email === paper.email ? (
-            <div className="w-full md:w-2/12 bg-neutral-200 dark:bg-neutral-950 flex flex-row md:flex-col justify-center gap-1 p-2">
-              <DeleteBtn id={paper._id} setPapers={setPapers} />
-              <Link href={`/home/editJournal/${paper._id}`} className="w-full">
-                <EditBtn />
-              </Link>
-            </div>
-          ) : (
-            <div></div>
-          )}
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
