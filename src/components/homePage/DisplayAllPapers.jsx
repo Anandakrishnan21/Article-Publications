@@ -16,7 +16,7 @@ const DisplayAllPapers = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:3000/api/addPublication", {
+        const res = await fetch("/api/addPublication", {
           cache: "no-store",
         });
 

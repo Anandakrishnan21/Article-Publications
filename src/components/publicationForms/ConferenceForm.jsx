@@ -26,7 +26,7 @@ const ConferenceForm = () => {
     e.preventDefault();
 
     try {
-      const resPubExists = await fetch("/api/publicationExists", {
+      const resConExists = await fetch("/api/conferenceExists", {
         method: "POST",
         headers: {
           "content-Type": "application/json",
@@ -34,14 +34,14 @@ const ConferenceForm = () => {
         body: JSON.stringify({ title, isbn }),
       });
 
-      const { paper } = await resPubExists.json();
+      const { conPaper } = await resConExists.json();
 
-      if (paper) {
-        setError("Paper with same title and ISSN number already exists.");
+      if (conPaper) {
+        setError("Paper with same title and ISBN number already exists.");
         return;
       }
 
-      const res = await fetch("/api/addPublication", {
+      const res = await fetch("/api/addConference", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -275,9 +275,9 @@ const ConferenceForm = () => {
               <input
                 required
                 onChange={(e) => setIsbn(e.target.value)}
-                type="text"
+                type="text"  
                 id="isbn"
-                pattern="^[\d*\-]{10}|[\d*\-]{13}$"
+                // pattern="^[\d*\-]{10}|[\d*\-]{13}$"
                 placeholder="ISBN Number (eg:1-23456-78)"
                 className="inputFields"
               />

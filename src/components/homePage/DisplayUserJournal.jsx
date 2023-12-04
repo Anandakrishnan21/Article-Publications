@@ -16,7 +16,7 @@ const DisplayUserJournal = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:3000/api/userJournal", {
+        const res = await fetch("/api/userJournal", {
           cache: "no-store",
         });
 

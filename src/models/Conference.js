@@ -46,9 +46,6 @@ const conferenceSchema = new Schema(
       type: String,
       required: true,
     },
-    vol: {
-      type: Number,
-    },
     doi: {
       type: String,
       required: true,

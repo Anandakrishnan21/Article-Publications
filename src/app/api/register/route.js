@@ -5,7 +5,7 @@ import { connection } from "@/utils/db";
 
 export async function POST(req) {
   try {
-    const { name, email, password, phone, scholar, affiliation, orcid, scopus } = await req.json();
+    const { name, email, password, scholar, affiliation, orcid, scopus } = await req.json();
     const hashedPassword = await bcrypt.hash(password, 10);
     await connection();
     await User.create({ name, email, password: hashedPassword,affiliation, orcid, scopus, scholar  });
