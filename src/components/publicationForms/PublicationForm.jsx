@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "../ui/button";
+import { depts, months } from "@/utils/constants";
 
 const PublicationForm = () => {
   const [title, setTitle] = useState("");
@@ -71,7 +72,7 @@ const PublicationForm = () => {
       if (res.ok) {
         const form = e.target;
         form.reset();
-        router.push("/home")
+        router.push("/home");
         setSuccess("Form submitted successfully!");
       } else {
         console.log("Paper submission failed.");
@@ -85,10 +86,14 @@ const PublicationForm = () => {
 
   return (
     <div className="box-border flex flex-col justify-center items-center py-10">
-      <div className="w-5/6 md:w-7/12 flex flex-col justify-center items-center
-       bg-neutral-50 dark:bg-neutral-950 border-[1px] border-neutral-200 dark:border-neutral-800 p-5 rounded-lg">
+      <div
+        className="w-5/6 md:w-7/12 flex flex-col justify-center items-center
+       bg-neutral-50 dark:bg-neutral-950 border-[1px] border-neutral-200 dark:border-neutral-800 p-5 rounded-lg"
+      >
         <div className="my-5 text-center">
-          <p className="text-3xl dark:text-neutral-50 font-semibold">Publication Form</p>
+          <p className="text-3xl dark:text-neutral-50 font-semibold">
+            Publication Form
+          </p>
           <p className="text-lg dark:text-neutral-400">Add your paper here</p>
         </div>
         {success && (
@@ -207,10 +212,12 @@ const PublicationForm = () => {
                 id="dept"
                 className="inputFields"
               >
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="mercedes">Mercedes</option>
-                <option value="audi">Audi</option>
+                <option value="">Choose department</option>
+                {depts.map((dept, index) => (
+                  <option key={index} value={dept}>
+                    {dept}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="w-full">
@@ -241,10 +248,12 @@ const PublicationForm = () => {
                 id="month"
                 className="inputFields"
               >
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="mercedes">Mercedes</option>
-                <option value="audi">Audi</option>
+                <option value="">Choose month</option>
+                {months.map((month, index) => (
+                  <option key={index} value={month}>
+                    {month}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="w-full">

@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "../ui/button";
+import { depts, months } from "@/utils/constants";
 
 const ConferenceForm = () => {
   const [title, setTitle] = useState("");
@@ -65,7 +66,7 @@ const ConferenceForm = () => {
       if (res.ok) {
         const form = e.target;
         form.reset();
-        router.push("/home")
+        router.push("/home");
         setSuccess("Form submitted successfully!");
       } else {
         console.log("Paper submission failed.");
@@ -79,11 +80,17 @@ const ConferenceForm = () => {
 
   return (
     <div className="box-border flex flex-col justify-center items-center py-10">
-      <div className="w-5/6 md:w-7/12 flex flex-col justify-center items-center
-       bg-neutral-50 dark:bg-neutral-950 border-[1px] border-neutral-200 dark:border-neutral-800 p-5 rounded-lg">
+      <div
+        className="w-5/6 md:w-7/12 flex flex-col justify-center items-center
+       bg-neutral-50 dark:bg-neutral-950 border-[1px] border-neutral-200 dark:border-neutral-800 p-5 rounded-lg"
+      >
         <div className="my-5 text-center">
-          <p className="text-3xl dark:text-neutral-50 font-semibold">Publication Form</p>
-          <p className="text-lg dark:text-neutral-400">Add your conference here</p>
+          <p className="text-3xl dark:text-neutral-50 font-semibold">
+            Publication Form
+          </p>
+          <p className="text-lg dark:text-neutral-400">
+            Add your conference here
+          </p>
         </div>
         {success && (
           <div className="mb-10">
@@ -201,12 +208,13 @@ const ConferenceForm = () => {
                 id="dept"
                 className="inputFields"
               >
-                <option value="computerEng">Computer Science Engineering</option>
-                <option value="mechanicalEng">Mechanical Engineering</option>
-                <option value="civilEng">Civil Engineering</option>
-                <option value="electricalEng">Electrical and Electronics Engineering</option>
-                <option value="automobileEng">Auto-Mobile Engineering</option>
-                <option value="dataScience">Data Science</option>
+                <option value="">Choose department</option>
+
+                {depts.map((dept, index) => (
+                  <option key={index} value={dept}>
+                    {dept}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="w-full">
@@ -237,18 +245,12 @@ const ConferenceForm = () => {
                 id="month"
                 className="inputFields"
               >
-                <option value="january">January</option>
-                <option value="february">February</option>
-                <option value="march">March</option>
-                <option value="april">April</option>
-                <option value="may">May</option>
-                <option value="june">June</option>
-                <option value="july">July</option>
-                <option value="august">August</option>
-                <option value="september">September</option>
-                <option value="october">October</option>
-                <option value="november">November</option>
-                <option value="december">December</option>
+                <option value="">Choose month</option>
+                {months.map((month, index) => (
+                  <option key={index} value={month}>
+                    {month}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="w-full">

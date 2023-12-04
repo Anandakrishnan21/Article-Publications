@@ -76,11 +76,11 @@ const DisplayUserJournal = () => {
         conferenceLength="0"
       />
       <div className="flex flex-col items-center justify-center pt-6">
-        <p className="text-base md:text-3xl dark:text-neutral-50 font-semibold pb-6">
+        <p className="text-base md:text-3xl font-semibold pb-6">
           Your Uploaded Journals
         </p>
         <div className="flex items-start p-2 gap-2">
-          <p className="bg-neutral-50 dark:bg-neutral-900 p-2 rounded-full">
+          <p className="p-2 rounded-full">
             <IoFilterCircleOutline className="h-6 w-6" />
           </p>
           <input
