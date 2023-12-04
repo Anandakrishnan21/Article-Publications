@@ -7,6 +7,7 @@ import GoogleButton from "./GoogleButton";
 import { Button } from "../ui/button";
 import Separator from "../auths/Separator";
 import { useToast } from "../ui/use-toast";
+import { depts } from "@/utils/constants";
 
 export default function RegisterForm() {
   const { toast } = useToast();
@@ -15,7 +16,7 @@ export default function RegisterForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [affiliation, setAffiliation] = useState("");
+  const [dept, setDept] = useState("");
   const [scholar, setScholar] = useState("");
   const [scopus, setScopus] = useState("");
   const [orcid, setOrcid] = useState("");
@@ -25,7 +26,7 @@ export default function RegisterForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!name || !email || !password || !affiliation) {
+    if (!name || !email || !password || !dept) {
       toast({
         variant: "destructive",
         title: "All Fields are neccessary.",
@@ -64,7 +65,7 @@ export default function RegisterForm() {
           name,
           email,
           password,
-          affiliation,
+          dept,
           scholar,
           scopus,
           orcid,
@@ -152,13 +153,21 @@ export default function RegisterForm() {
         />
       </div>
       <div>
-        <input
-          onChange={(e) => setAffiliation(e.target.value)}
-          type="text"
-          placeholder="Affiliation"
-          className="inputFields"
+        <select
           required
-        />
+          onChange={(e) => setDept(e.target.value)}
+          name="dept"
+          id="dept"
+          className="inputFields"
+        >
+          <option value="">Choose department</option>
+
+          {depts.map((dept, index) => (
+            <option key={index} value={dept}>
+              {dept}
+            </option>
+          ))}
+        </select>
       </div>
       <div>
         <input

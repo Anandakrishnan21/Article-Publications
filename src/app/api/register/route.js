@@ -5,10 +5,10 @@ import { connection } from "@/utils/db";
 
 export async function POST(req) {
   try {
-    const { name, email, password, scholar, affiliation, orcid, scopus } = await req.json();
+    const { name, email, password, scholar, dept, orcid, scopus } = await req.json();
     const hashedPassword = await bcrypt.hash(password, 10);
     await connection();
-    await User.create({ name, email, password: hashedPassword,affiliation, orcid, scopus, scholar  });
+    await User.create({ name, email, password: hashedPassword, dept, orcid, scopus, scholar  });
 
     return NextResponse.json({ message: "User registered." }, { status: 201 });
   } catch (error) {

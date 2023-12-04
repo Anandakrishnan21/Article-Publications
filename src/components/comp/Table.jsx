@@ -40,12 +40,16 @@ function Table({ currentItems, setPapers }) {
         110,
         yOffset + 33
       );
-      doc.textWithLink(
-        `Doi: ${paper.doi}`.toUpperCase(),
-        15,
-        yOffset + 39,
-        (url = `${paper.doi}`)
-      );
+      if (paper.doi) {
+        doc.textWithLink(
+          `Doi: ${paper.doi}`.toUpperCase(),
+          15,
+          yOffset + 39,
+          { url: paper.doi }
+        );
+      } else {
+        doc.text("DOI Not Available", 15, yOffset + 39);
+      }
 
       yOffset += 55;
     });
@@ -174,7 +178,7 @@ function Table({ currentItems, setPapers }) {
               </div>
             </div>
             {session?.user?.email === paper.email ? (
-              <div className="w-full md:w-2/12 flex flex-row md:flex-col justify-center gap-1 p-2">
+              <div className="w-full md:w-2/12 flex flex-row md:flex-col justify-center gap-2 p-2">
                 <DeleteBtn id={paper._id} setPapers={setPapers} />
                 <Link
                   href={`/home/editJournal/${paper._id}`}

@@ -64,7 +64,7 @@ export const GET = async (req) => {
     await connection();
     const user = await User.findOne({ email });
 
-    const papers = await Paper.find({ dept: user.affiliation });
+    const papers = await Paper.find({ dept: user.dept });
 
     return new NextResponse(JSON.stringify(papers), { status: 200 });
   } catch (error) {
