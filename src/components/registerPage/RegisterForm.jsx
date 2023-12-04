@@ -103,92 +103,94 @@ export default function RegisterForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="AuthForm">
-      <div>
-        <input
-          onChange={(e) => setName(e.target.value)}
-          type="text"
-          placeholder="Full Name"
-          className="inputFields"
-        />
-      </div>
-      <div>
-        <input
-          onChange={(e) => setEmail(e.target.value)}
-          type="email"
-          placeholder="Email"
-          className="inputFields"
-        />
-      </div>
-      <div>
-        <input
-          onChange={(e) => setPassword(e.target.value)}
-          type={showPassword ? "text" : "password"}
-          placeholder="Password"
-          className="relative inputFields"
-        />
-        <button
-          className="absolute right-2 top-[140px] cursor-pointer"
-          onClick={toggleVisibility}
-        >
-          {showPassword ? (
-            <FontAwesomeIcon
-              icon={faEye}
-              className="text-gray-500 hover:text-gray-700 duration-500"
-            />
-          ) : (
-            <FontAwesomeIcon
-              icon={faEyeSlash}
-              className="text-gray-500 hover:text-gray-700 duration-500"
-            />
-          )}
-        </button>
-      </div>
-      <div>
-        <input
-          onChange={(e) => setScholar(e.target.value)}
-          type="text"
-          placeholder="Google Scholar ID"
-          className="inputFields"
-        />
-      </div>
-      <div>
-        <select
-          required
-          onChange={(e) => setDept(e.target.value)}
-          name="dept"
-          id="dept"
-          className="inputFields"
-        >
-          <option value="">Choose department</option>
+    <>
+      <form onSubmit={handleSubmit} className="AuthForm">
+        <div>
+          <input
+            onChange={(e) => setName(e.target.value)}
+            type="text"
+            placeholder="Full Name"
+            className="inputFields"
+          />
+        </div>
+        <div>
+          <input
+            onChange={(e) => setEmail(e.target.value)}
+            type="email"
+            placeholder="Email"
+            className="inputFields"
+          />
+        </div>
+        <div>
+          <input
+            onChange={(e) => setPassword(e.target.value)}
+            type={showPassword ? "text" : "password"}
+            placeholder="Password"
+            className="relative inputFields"
+          />
+          <button
+            className="absolute right-2 top-[140px] cursor-pointer"
+            onClick={toggleVisibility}
+          >
+            {showPassword ? (
+              <FontAwesomeIcon
+                icon={faEye}
+                className="text-gray-500 hover:text-gray-700 duration-500"
+              />
+            ) : (
+              <FontAwesomeIcon
+                icon={faEyeSlash}
+                className="text-gray-500 hover:text-gray-700 duration-500"
+              />
+            )}
+          </button>
+        </div>
+        <div>
+          <input
+            onChange={(e) => setScholar(e.target.value)}
+            type="text"
+            placeholder="Google Scholar ID"
+            className="inputFields"
+          />
+        </div>
+        <div>
+          <select
+            required
+            onChange={(e) => setDept(e.target.value)}
+            name="dept"
+            id="dept"
+            className="inputFields"
+          >
+            <option value="">Choose department</option>
 
-          {depts.map((dept, index) => (
-            <option key={index} value={dept}>
-              {dept}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div>
-        <input
-          onChange={(e) => setScopus(e.target.value)}
-          type="number"
-          placeholder="Scopus ID"
-          className="inputFields"
-        />
-      </div>
-      <div>
-        <input
-          onChange={(e) => setOrcid(e.target.value)}
-          type="number"
-          placeholder="ORCid ID"
-          className="inputFields"
-        />
-      </div>
-      <Button>Register</Button>
+            {depts.map((dept, index) => (
+              <option key={index} value={dept}>
+                {dept}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <input
+            onChange={(e) => setScopus(e.target.value)}
+            type="number"
+            placeholder="Scopus ID"
+            className="inputFields"
+          />
+        </div>
+        <div>
+          <input
+            onChange={(e) => setOrcid(e.target.value)}
+            type="number"
+            placeholder="ORCid ID"
+            className="inputFields"
+          />
+        </div>
+        <Button>Register</Button>
 
-      <Separator url="/" linkName="Login" />
+        <Separator url="/" linkName="Login" />
+      </form>
       <GoogleButton />
-    </form>
+    </>
   );
 }

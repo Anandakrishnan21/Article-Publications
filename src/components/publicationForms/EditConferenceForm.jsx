@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
-import { months } from "@/utils/constants";
+import { depts, months } from "@/utils/constants";
 
 function EditConferenceForm({
   id,
@@ -191,15 +191,16 @@ function EditConferenceForm({
               <select
                 required
                 onChange={(e) => setNewDept(e.target.value)}
-                value={newDept}
                 name="dept"
                 id="dept"
                 className="inputFields"
               >
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="mercedes">Mercedes</option>
-                <option value="audi">Audi</option>
+                <option value="">Choose department</option>
+                {depts.map((dept, index) => (
+                  <option key={index} value={dept}>
+                    {dept}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="w-full">
