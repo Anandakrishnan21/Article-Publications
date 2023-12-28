@@ -3,10 +3,12 @@ import { useState, useEffect } from "react";
 import Pagination from "../comp/Pagination";
 import { IoFilterCircleOutline } from "react-icons/io5";
 import Table from "../comp/Table";
+import Loading from "@/app/home/loading";
 
 const DisplayAllPapers = () => {
   const [papers, setPapers] = useState([]);
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [filterTitle, setFilterTitle] = useState("");
   const [filterAuthor, setFilterAuthor] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -15,6 +17,8 @@ const DisplayAllPapers = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+
         const res = await fetch("/api/addPublication", {
           cache: "no-store",
         });
@@ -26,6 +30,7 @@ const DisplayAllPapers = () => {
 
         const data = await res.json();
         setPapers(data);
+        setIsLoading(false);
       } catch (error) {
         setError("Error fetching papers: " + error.message);
       }
@@ -34,6 +39,9 @@ const DisplayAllPapers = () => {
     fetchData();
   }, []);
 
+  if (isLoading) {
+    return <Loading />;
+  }
   if (error) {
     return <div>Error: {error}</div>;
   }
@@ -67,7 +75,7 @@ const DisplayAllPapers = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="p-5 box-border lg:h-screen">
+    <div className="p-5 pt-20 box-border lg:h-screen">
       <div className="flex flex-col items-center pt-6">
         <p className="text-base md:text-3xl dark:text-neutral-50 font-semibold pb-6">
           Latest Uploaded Journals

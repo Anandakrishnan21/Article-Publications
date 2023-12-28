@@ -1,9 +1,7 @@
 "use client";
 import React from "react";
 import { useSidebarContext } from "@/context/SidebarContext";
-import {
-  HiOutlineLogout,
-} from "react-icons/hi";
+import { HiOutlineLogout } from "react-icons/hi";
 import {
   IoAddCircleOutline,
   IoGridOutline,
@@ -25,7 +23,7 @@ function classNames(...classes) {
 }
 export function SideBar() {
   const { data: session } = useSession();
-  const { isLargeOpen, isSmallOpen, close } = useSidebarContext();
+  const { isLargeOpen, isSmallOpen,close } = useSidebarContext();
   const segment = useSelectedLayoutSegment();
 
   const sidebarOptions = [
@@ -63,9 +61,9 @@ export function SideBar() {
   const commonClasses =
     "flex flex-col overflow-y-auto scrollbar-hidden bg-neutral-50 dark:bg-neutral-950 dark:border-r-neutral-800 dark:border-[1px] p-4";
   const commonClasses1 =
-    " bg-neutral-200 dark:bg-neutral-900 border-[1px] dark:border-neutral-700 hover:dark:border-neutral-700 duration-500 dark:text-white font-bold text-sm";
+    "bg-neutral-200 dark:bg-neutral-900 border-[1px] border-neutral-900 dark:border-neutral-700 hover:dark:border-neutral-700 duration-500 dark:text-white font-bold text-sm";
   const commonClasses2 =
-    "hover:bg-neutral-100 hover:dark:bg-neutral-900 dark:text-neutral-400 duration-200 font-normal";
+    "border-[1px] border-neutral-50 dark:border-neutral-950 hover:bg-neutral-200 hover:dark:bg-neutral-900 dark:text-neutral-400 duration-200 font-normal";
 
   return (
     <>
@@ -110,7 +108,7 @@ export function SideBar() {
           isLargeOpen ? "lg:flex" : "lg:hidden"
         } ${
           isSmallOpen
-            ? "flex z-[999] bg-neutral-50 dark:bg-slate-950 max-h-screen"
+            ? "flex h-full bg-neutral-50 dark:bg-slate-950 max-h-screen pt-20"
             : "hidden"
         }`}
       >
@@ -139,7 +137,7 @@ export function SideBar() {
             </p>
           </li>
           <li>
-            <p className="flex items-center justify-center text-sm bg-neutral-200 dark:bg-neutral-900 dark:border-[1px] border-neutral-700 duration-200 font-bold capitalize py-2 px-2 gap-2 rounded">
+            <p className="flex items-center justify-center text-sm bg-neutral-200 border-neutral-900 dark:bg-neutral-900 border-[1px] duration-200 font-bold capitalize py-2 px-2 gap-2 rounded">
               {session?.user?.name}
               <Pung />
             </p>

@@ -33,6 +33,8 @@
     --ring: 0 0% 3.9%;
 
     --radius: 0.5rem;
+
+    box-sizing: border-box;
   }
 
   .dark {
@@ -70,6 +72,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -78,9 +81,9 @@
 /* External Styles */
 
 .inputFields {
-  @apply w-full border-[1px] bg-neutral-50 dark:bg-neutral-900
-   border-neutral-200 hover:border-neutral-800 dark:border-neutral-800 hover:dark:border-neutral-700 duration-500 p-2 rounded;
+  @apply w-full border-[1px] bg-neutral-50 dark:bg-neutral-900 border-neutral-200 hover:border-neutral-800 dark:border-neutral-800 hover:dark:border-neutral-700 duration-500 p-2 rounded;
 }
+
 .blueLink {
   @apply text-blue-600 hover:text-blue-800 duration-500 text-sm md:text-base leading-normal;
 }
@@ -95,4 +98,41 @@
 
 .cardStyle {
   @apply w-full flex flex-col md:flex-row border bg-neutral-50 dark:bg-neutral-900 border-neutral-500 dark:border-neutral-700 hover:dark:border-neutral-600 hover:dark:bg-neutral-800/60 hover:bg-neutral-100 duration-500 p-2 rounded;
+}
+
+.loader {
+  @apply h-20 aspect-square grid 
+}
+
+.loader:before,
+.loader:after {
+  content: "";
+  background-image: linear-gradient(black, black), linear-gradient(rgb(74,222,128), rgb(74,222,128));
+  background-repeat: no-repeat;
+  background-size: 25% 50%;
+  animation: l4 1.5s infinite linear;
+}
+
+.loader:after {
+  transform: scale(-1);
+}
+
+@keyframes l4 {
+
+  0%,
+  10% {
+    background-position: 33.4% 100%, 66.6% 100%
+  }
+
+  40% {
+    background-position: 33.4% 0, 100% 100%
+  }
+
+  70% {
+    background-position: 0 100%, 66.6% 0
+  }
+
+  100% {
+    background-position: 33.4% 100%, 66.6% 100%
+  }
 }

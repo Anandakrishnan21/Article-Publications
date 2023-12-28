@@ -3,10 +3,12 @@ import { useState, useEffect } from "react";
 import Pagination from "../comp/Pagination";
 import { IoFilterCircleOutline } from "react-icons/io5";
 import ConferenceTable from "../comp/ConferenceTable";
+import Loading from "@/app/home/loading";
 
 const DisplayUserConference = () => {
   const [papers, setPapers] = useState([]);
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [filterTitle, setFilterTitle] = useState("");
   const [filterAuthor, setFilterAuthor] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -15,6 +17,7 @@ const DisplayUserConference = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        await new Promise((resolve) => setTimeout(resolve, 2000));
         const res = await fetch("/api/userConference", {
           cache: "no-store",
         });
@@ -26,6 +29,7 @@ const DisplayUserConference = () => {
 
         const data = await res.json();
         setPapers(data);
+        setIsLoading(false);
       } catch (error) {
         setError("Error fetching papers: " + error.message);
       }
@@ -33,6 +37,10 @@ const DisplayUserConference = () => {
 
     fetchData();
   }, []);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -67,10 +75,10 @@ const DisplayUserConference = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="box-border lg:h-screen p-5">
+    <div className="box-border lg:h-screen p-5 pt-20">
       <div className="flex flex-col items-center justify-center pt-6">
         <p className="text-base md:text-3xl font-semibold pb-6">
-          Your Uploaded Journals
+          Your Uploaded Conferences
         </p>
         <div className="flex items-start p-2 gap-2">
           <p className="p-2 rounded-full">

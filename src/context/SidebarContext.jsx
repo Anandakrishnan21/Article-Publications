@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 const SidebarContext = createContext(null);
@@ -30,11 +30,29 @@ export function SidebarProvider({ children }) {
     return window.innerWidth < 1024;
   }
 
+  function toggleSidebar() {
+    if (!isScreenSmall()) {
+      setIsLargeOpen((l) => !l);
+    }else{
+      setIsSmallOpen((s) => !s);
+    }
+  }
+
+  function close() {
+    if (isScreenSmall()) {
+      setIsSmallOpen(false);
+    } else {
+      setIsLargeOpen(false);
+    }
+  }
+
   return (
     <SidebarContext.Provider
       value={{
         isLargeOpen,
         isSmallOpen,
+        toggleSidebar,
+        close
       }}
     >
       {children}
