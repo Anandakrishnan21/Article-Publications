@@ -4,6 +4,7 @@ import { useSelectedLayoutSegment } from "next/navigation";
 import React from "react";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { Button } from "../ui/button";
+import { BadgeCheck } from "lucide-react";
 
 function UploadCard() {
   const segment = useSelectedLayoutSegment();
@@ -27,39 +28,27 @@ function UploadCard() {
     },
   ];
   return (
-    <div className="md:h-screen box-content flex flex-col md:flex-row justify-center items-center md:items-start gap-2 md:p-4 py-10">
+    <div className="md:h-screen box-border flex flex-col md:flex-row justify-center items-center md:items-start gap-2 md:p-4 py-10">
       {CardContent.map((card) => (
         <div
           key={card.id}
-          className="w-3/4 md:w-1/4 h-96 flex flex-col bg-neutral-50 dark:bg-neutral-950 border-[1px]
+          className="w-4/5 md:w-1/4 flex flex-col bg-neutral-50 dark:bg-neutral-950 border-[1px]
            border-neutral-800 text-justify dark:border-neutral-800 p-5 gap-4 rounded-lg"
         >
           <p className="text-2xl font-semibold">Free</p>
           <p className="text-4xl font-bold">
             ₹0/<span className="text-2xl">mon</span>
           </p>
-          <div className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              checked
-              className="w-4 h-4 bg-gray-100 border-gray-300 rounded-full dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-            />
+          <div className="flex items-center gap-2 text-sm">
+            <BadgeCheck color="#3c9f48" strokeWidth={2.25} />
             <label>Unlimited uploading</label>
           </div>
-          <div className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              checked
-              className="w-4 h-4 bg-gray-100 border-gray-300 rounded-full dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-            />
+          <div className="flex items-center gap-2 text-sm">
+            <BadgeCheck color="#3c9f48" strokeWidth={2.25} />
             <label>Unlimited view access</label>
           </div>
-          <div className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              checked
-              className="w-4 h-4 bg-gray-100 border-gray-300 rounded-full dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-            />
+          <div className="flex items-center gap-2 text-sm">
+            <BadgeCheck color="#3c9f48" strokeWidth={2.25} />
             <label>Core platform features</label>
           </div>
           <Link href={card.href}>

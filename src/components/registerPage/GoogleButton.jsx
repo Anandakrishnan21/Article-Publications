@@ -1,12 +1,12 @@
 import React from "react";
 import { Button } from "../ui/button";
-import { FcGoogle } from "react-icons/fc";
 import { signIn } from "next-auth/react";
+import { IoLogoGoogle } from "react-icons/io5";
 
 const GoogleButton = () => {
   return (
     <Button variant="iconBtn" onClick={() => signIn("google")}>
-      <FcGoogle className="text-2xl" />
+      <IoLogoGoogle className="text-2xl" />
       Continue with Google
     </Button>
   );

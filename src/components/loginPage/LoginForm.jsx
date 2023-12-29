@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { Button } from "../ui/button";
-import GoogleButton from "../registerPage/GoogleButton";
 import Separator from "../auths/Separator";
 import { useToast } from "../ui/use-toast";
 
@@ -68,7 +67,7 @@ export default function LoginForm() {
             className="relative inputFields"
           />
           <button
-            className="absolute right-2 top-[72px] cursor-pointer"
+            className="absolute right-2 top-[60px] cursor-pointer"
             onClick={toggleVisibility}
           >
             {showPassword ? (
@@ -87,7 +86,6 @@ export default function LoginForm() {
         <Button>Login</Button>
         <Separator url="/register" linkName="Register" />
       </form>
-      <GoogleButton />
     </>
   );
 }

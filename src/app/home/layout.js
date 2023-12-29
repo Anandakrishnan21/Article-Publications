@@ -16,7 +16,7 @@ export default async function HomeLayout({ children }) {
           <Header />
           <div className="bg-stone-100 h-screen grid grid-cols-[auto,1fr] flex-grow-1 overflow-auto">
             <SideBar />
-            <div className=" overflow-x-hidden">
+            <div className="overflow-x-hidden">
               <div className="box-border dark:bg-neutral-950">{children}</div>
             </div>
           </div>

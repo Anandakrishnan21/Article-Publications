@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
-import GoogleButton from "./GoogleButton";
 import { Button } from "../ui/button";
 import Separator from "../auths/Separator";
 import { useToast } from "../ui/use-toast";
@@ -18,8 +17,8 @@ export default function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [dept, setDept] = useState("");
   const [scholar, setScholar] = useState("");
-  const [scopus, setScopus] = useState("");
-  const [orcid, setOrcid] = useState("");
+  // const [scopus, setScopus] = useState("");
+  // const [orcid, setOrcid] = useState("");
 
   const router = useRouter();
 
@@ -67,8 +66,8 @@ export default function RegisterForm() {
           password,
           dept,
           scholar,
-          scopus,
-          orcid,
+          // scopus,
+          // orcid,
         }),
       });
 
@@ -129,7 +128,7 @@ export default function RegisterForm() {
             className="relative inputFields"
           />
           <button
-            className="absolute right-2 top-[140px] cursor-pointer"
+            className="absolute right-2 top-[110px] cursor-pointer"
             onClick={toggleVisibility}
           >
             {showPassword ? (
@@ -145,15 +144,7 @@ export default function RegisterForm() {
             )}
           </button>
         </div>
-        <div>
-          <input
-            onChange={(e) => setScholar(e.target.value)}
-            type="text"
-            placeholder="Google Scholar ID"
-            className="inputFields"
-          />
-        </div>
-        <div>
+        <div className="flex gap-2">
           <select
             required
             onChange={(e) => setDept(e.target.value)}
@@ -169,28 +160,30 @@ export default function RegisterForm() {
               </option>
             ))}
           </select>
+          <input
+            onChange={(e) => setScholar(e.target.value)}
+            type="text"
+            placeholder="Google Scholar ID"
+            className="inputFields"
+          />
         </div>
-        <div>
+        {/* <div className="flex gap-2">
           <input
             onChange={(e) => setScopus(e.target.value)}
             type="number"
             placeholder="Scopus ID"
             className="inputFields"
           />
-        </div>
-        <div>
           <input
             onChange={(e) => setOrcid(e.target.value)}
             type="number"
             placeholder="ORCid ID"
             className="inputFields"
           />
-        </div>
+        </div> */}
         <Button>Register</Button>
-
         <Separator url="/" linkName="Login" />
       </form>
-      <GoogleButton />
     </>
   );
 }

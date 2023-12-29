@@ -3,12 +3,12 @@ import React from "react";
 import { useSidebarContext } from "@/context/SidebarContext";
 import { HiOutlineLogout } from "react-icons/hi";
 import {
-  IoAddCircleOutline,
-  IoGridOutline,
-  IoHomeOutline,
+  IoCloudUpload,
+  IoGrid,
+  IoHome,
   IoLogOutOutline,
-  IoPersonOutline,
-  IoSettingsOutline,
+  IoPerson,
+  IoSettings,
 } from "react-icons/io5";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
@@ -30,31 +30,31 @@ export function SideBar() {
     {
       name: "Home",
       href: "/home",
-      icon: IoHomeOutline,
+      icon: IoHome,
       current: !segment ? true : false,
     },
     {
       name: "Dashboard",
       href: "/home/dashboard",
-      icon: IoGridOutline,
+      icon: IoGrid,
       current: `/${segment}` === "/dashboard" ? true : false,
     },
     {
       name: "Profile",
       href: "/home/profile",
-      icon: IoPersonOutline,
+      icon: IoPerson,
       current: `/${segment}` === "/profile" ? true : false,
     },
     {
       name: "Settings",
       href: "/home/settings",
-      icon: IoSettingsOutline,
+      icon: IoSettings,
       current: `/${segment}` === "/settings" ? true : false,
     },
     {
       name: "Upload",
       href: "/home/upload",
-      icon: IoAddCircleOutline,
+      icon: IoCloudUpload,
       current: `/${segment}` === "/upload" ? true : false,
     },
   ];
@@ -68,7 +68,7 @@ export function SideBar() {
   return (
     <>
       <aside
-        className={`${commonClasses} sticky top-0 justify-between ${
+        className={`${commonClasses} sticky top-0 justify-between shadow-lg shadow-fuchsia-300 ${
           isLargeOpen ? "lg:hidden" : "lg:flex"
         }`}
       >
@@ -104,7 +104,7 @@ export function SideBar() {
         </ul>
       </aside>
       <aside
-        className={`${commonClasses} flex flex-col justify-between w-56 lg:sticky absolute top-0 p-2 gap-2 ${
+        className={`${commonClasses} flex flex-col justify-between w-56 shadow-lg shadow-fuchsia-300 lg:sticky absolute top-0 p-2 gap-2 ${
           isLargeOpen ? "lg:flex" : "lg:hidden"
         } ${
           isSmallOpen

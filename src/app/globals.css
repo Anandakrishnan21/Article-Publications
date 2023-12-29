@@ -33,8 +33,6 @@
     --ring: 0 0% 3.9%;
 
     --radius: 0.5rem;
-
-    box-sizing: border-box;
   }
 
   .dark {
@@ -81,7 +79,7 @@
 /* External Styles */
 
 .inputFields {
-  @apply w-full border-[1px] bg-neutral-50 dark:bg-neutral-900 border-neutral-200 hover:border-neutral-800 dark:border-neutral-800 hover:dark:border-neutral-700 duration-500 p-2 rounded;
+  @apply w-full border-[1px] bg-neutral-50 dark:bg-neutral-900 border-neutral-500 hover:border-neutral-800 dark:border-neutral-900 hover:dark:border-neutral-700 duration-500 p-1 rounded pl-2;
 }
 
 .blueLink {
@@ -89,7 +87,19 @@
 }
 
 .AuthForm {
-  @apply w-10/12 md:w-4/12 lg:w-3/12 flex flex-col gap-6 relative;
+  @apply w-3/4 flex flex-col gap-5 relative;
+}
+
+.authPage{
+  @apply flex h-screen box-border justify-center items-center bg-gradient-to-r from-green-200 via-violet-300 to-fuchsia-300;
+}
+
+.cardRight{
+  @apply w-1/2 bg-gradient-to-r flex justify-center items-center from-violet-200 to-pink-200 rounded-r-xl text-2xl font-extrabold;
+}
+
+.innerCard {
+  @apply w-2/3 h-2/3 flex items-center text-center bg-gradient-to-r from-green-200 via-violet-300 to-fuchsia-300 rounded-xl;
 }
 
 .inputLabel {

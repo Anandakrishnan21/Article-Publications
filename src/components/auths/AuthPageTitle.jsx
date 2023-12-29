@@ -1,17 +1,17 @@
 import React from "react";
-import LogoImage from "./LogoImage";
+// import LogoImage from "./LogoImage";
 
-const AuthPageTitle = ({ title }) => {
+const AuthPageTitle = () => {
   return (
-    <div className="w-10/12 md:w-4/12 lg:w-4/12">
-      <div className="flex w-full justify-center">
+    <div className="w-3/4">
+      {/* <div className="flex w-full justify-center">
         <LogoImage />
-      </div>
+      </div> */}
       <h1 className="text-xl md:text-2xl font-bold leading-normal md:leading-relaxed">
         Welcome to Particles
       </h1>
       <span className="text-sm md:text-base leading-normal">
-        {title} to continue
+        Enter your information to continue
       </span>
     </div>
   );
