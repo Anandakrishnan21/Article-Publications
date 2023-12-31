@@ -23,8 +23,8 @@ function DeleteBtn({ id, setPapers }) {
     }
   };
   return (
-    <Button
-      onClick={deletePaper} className="flex gap-2"
+    <Button variant="iconBtn"
+      onClick={deletePaper} className="flex gap-2 font-semibold"
     >
      Delete <IoTrashOutline className="w-4 h-6" />
     </Button>

@@ -15,7 +15,7 @@ function Header({hidden= false}) {
   const { toggleSidebar} = useSidebarContext();
 
   return (
-    <div className="bg-neutral-50 dark:bg-neutral-950 border-[1px] border-b-neutral-200 dark:border-b-neutral-800 w-full font-custom sticky top-0 z-[10] p-1.5">
+    <div className="bg-neutral-50 dark:bg-neutral-950 border-[1px] z-20 border-b-neutral-200 dark:border-b-neutral-800 w-full font-custom sticky top-0 p-1.5">
       <header className="mx-4 flex justify-between items-center p-1">
         <div className={`gap-4 items-center flex-shrink-0 ${
         hidden ? "hidden" : "flex"
@@ -28,8 +28,8 @@ function Header({hidden= false}) {
             ) : (
               <Image src={Logo} alt="" className="h-10 w-10" />
             )} */}
-            <h1 className="hidden lg:flex items-center text-2xl font-bold bg-gradient-to-r from-green-200 via-violet-300 to-fuchsia-300 border-[1px] border-neutral-800 rounded p-1 px-4">
-              P<span className="text-base font-medium">articles</span>
+            <h1 className="hidden lg:flex items-center text-xl font-bold bg-gradient-to-r from-green-200 via-violet-300 to-fuchsia-300 border-[1px] border-neutral-800 rounded p-1 px-4">
+              P<span className="text-sm font-medium">articles</span>
             </h1>
           </Link>
         </div>

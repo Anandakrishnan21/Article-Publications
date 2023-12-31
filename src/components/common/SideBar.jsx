@@ -68,7 +68,7 @@ export function SideBar() {
   return (
     <>
       <aside
-        className={`${commonClasses} sticky top-0 justify-between shadow-lg shadow-fuchsia-300 ${
+        className={`${commonClasses} sticky top-0 justify-between z-10 shadow-lg shadow-fuchsia-300 ${
           isLargeOpen ? "lg:hidden" : "lg:flex"
         }`}
       >
@@ -79,10 +79,10 @@ export function SideBar() {
                 href={option.href}
                 className={classNames(
                   option.current ? `${commonClasses1}` : `${commonClasses2}`,
-                  "group flex gap-x-3 rounded-md p-2 text-sm tracking-wide leading-6"
+                  "group flex items-center justify-center gap-x-3 rounded-md p-2 text-sm tracking-wide leading-6"
                 )}
               >
-                <option.icon className="h-6 w-6 shrink-0" />
+                <option.icon className={option.current ? "text-fuchsia-600 h-5 w-5 shrink-0" : "text-neutral-800 dark:text-neutral-600 h-5 w-5 shrink-0"}  />
               </Link>
             </li>
           ))}
@@ -104,7 +104,7 @@ export function SideBar() {
         </ul>
       </aside>
       <aside
-        className={`${commonClasses} flex flex-col justify-between w-56 shadow-lg shadow-fuchsia-300 lg:sticky absolute top-0 p-2 gap-2 ${
+        className={`${commonClasses} flex flex-col justify-between z-10 w-56 shadow-lg shadow-fuchsia-300 lg:sticky absolute top-0 p-2 gap-2 ${
           isLargeOpen ? "lg:flex" : "lg:hidden"
         } ${
           isSmallOpen
@@ -119,10 +119,10 @@ export function SideBar() {
                 href={option.href}
                 className={classNames(
                   option.current ? `${commonClasses1}` : `${commonClasses2}`,
-                  "group flex gap-x-3 rounded-md p-2 text-sm tracking-wide leading-6"
+                  "group flex items-center gap-x-3 rounded-md p-2 text-sm tracking-wide leading-6"
                 )}
               >
-                <option.icon className="h-6 w-6 shrink-0" />
+                <option.icon className={option.current ? "text-fuchsia-600 h-5 w-5 shrink-0" : "text-neutral-800 dark:text-neutral-600 h-5 w-5 shrink-0"} />
                 {option.name}
               </Link>
             </li>

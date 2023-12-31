@@ -8,7 +8,7 @@ function HomePage() {
   const [selectedTab, setSelectedTab] = useState("journal");
 
   return (
-    <div className="p-4">
+    <div>
       <Tab selectedTab = {selectedTab} setSelectedTab={setSelectedTab} journal="journal" conference="conference" />
       {selectedTab === "journal" ? (
         <DisplayAllPapers />
