@@ -13,7 +13,7 @@ export default async function HomeLayout({ children }) {
   return (
       <SidebarProvider>
         <div className="max-h-screen flex flex-col">
-          <Header />
+          <Header session={session}/>
           <div className="bg-stone-100 h-screen grid grid-cols-[auto,1fr] flex-grow-1 overflow-auto">
             <SideBar />
             <div className="overflow-x-hidden">

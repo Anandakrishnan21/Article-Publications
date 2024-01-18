@@ -103,7 +103,7 @@
 }
 
 .inputLabel {
-  @apply dark:text-neutral-400 duration-200 font-medium text-sm;
+  @apply dark:text-neutral-400 duration-200 text-sm;
 }
 
 .cardStyle {

@@ -6,7 +6,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    email: { 
+    email: {
       type: String,
       required: true,
     },
@@ -18,15 +18,19 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    imgUrl: {
+      type: String,
+    },
+    authImageUrl: String,
     scholar: {
       type: String,
     },
-    scopus:{
+    scopus: {
       type: Number,
     },
     orcid: {
       type: Number,
-    }
+    },
   },
   { timestamps: true }
 );

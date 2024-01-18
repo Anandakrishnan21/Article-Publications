@@ -39,12 +39,12 @@ function Tab({ selectedTab, setSelectedTab, journal, conference }) {
               ? "text-neutral-50"
               : "text-neutral-800 dark:text-neutral-100"
           } flex flex-col justify-center text-lg md:text-2xl dark:border-neutral-700
-          hover:dark:border-neutral-700 duration-500 px-4 text-neutral-800 dark:text-neutral-100 rounded-sm cursor-pointer p-1`}
+          hover:dark:border-neutral-700 duration-500 px-4 rounded-sm text-neutral-800 dark:text-neutral-100 cursor-pointer p-1`}
           onClick={() => handleTabClick(conference)}
           whileHover={{ scale: 1 }}
           transition={{ duration: 1 }}
         >
-          <p className="font-bold">Conferences</p>
+          <p className="font-extrabold">Conferences</p>
           <motion.span
             className={`${
               selectedTab === conference

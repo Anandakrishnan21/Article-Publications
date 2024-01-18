@@ -52,8 +52,8 @@ function UploadCard() {
             <label>Core platform features</label>
           </div>
           <Link href={card.href}>
-            <Button className="w-full">
-              <card.icon className="h-6 w-6 mr-2" />
+            <Button variant="downBtn" className="w-full">
+              <card.icon className="h-6 w-6" />
               {card.upload}
             </Button>
           </Link>
