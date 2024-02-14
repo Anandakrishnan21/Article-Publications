@@ -1,9 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
-import Pagination from "../comp/Pagination";
+import Pagination, { PaginationElement } from "../comp/Pagination";
 import ConferenceTable from "../comp/ConferenceTable";
 import Loading from "@/app/home/loading";
 import { Button } from "../ui/button";
+import PageNotFound from "../common/PageNotFound";
 
 const DisplayUserConference = () => {
   const [papers, setPapers] = useState([]);
@@ -19,7 +20,7 @@ const DisplayUserConference = () => {
   });
   const [currentPage, setCurrentPage] = useState(1);
   const [isSearchClicked, setIsSearchClicked] = useState(false);
-  const itemsPerPage = 10;
+  const itemsPerPage = 5;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -141,13 +142,17 @@ const DisplayUserConference = () => {
             />
           </div>
           <div className="w-1/4 flex items-end">
-            <Button variant="downBtn" className="w-full" onClick={handleSearch}>
+            <Button className="w-full h-[35px]" onClick={handleSearch}>
               Search
             </Button>
           </div>
         </div>
-        <ConferenceTable currentItems={currentItems} setPapers={setPapers} />
-        <Pagination
+        {filteredPapers.length == 0 ? (
+          <PageNotFound paper="Conferences" />
+        ) : (
+          <ConferenceTable currentItems={currentItems} setPapers={setPapers} />
+        )}
+        <PaginationElement
           itemsPerPage={itemsPerPage}
           totalItems={papers.length}
           paginate={paginate}

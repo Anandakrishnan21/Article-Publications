@@ -107,7 +107,7 @@
 }
 
 .cardStyle {
-  @apply w-full flex flex-col md:flex-row border bg-neutral-50 dark:bg-neutral-900 border-fuchsia-400 hover:dark:border-fuchsia-600 hover:dark:bg-neutral-800/60 hover:bg-neutral-100 duration-500 p-2 rounded;
+  @apply w-full flex flex-col md:flex-row border bg-neutral-50 dark:bg-neutral-900 border-neutral-500 hover:border-neutral-800 dark:border-neutral-500 hover:dark:border-neutral-600 hover:bg-neutral-100 duration-500 p-2 rounded;
 }
 
 .loader {

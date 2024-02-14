@@ -1,9 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
-import Pagination from "../comp/Pagination";
+import Pagination, { PaginationElement } from "../comp/Pagination";
 import Table from "../comp/Table";
 import Loading from "@/app/home/loading";
 import { Button } from "../ui/button";
+import PageNotFound from "../common/PageNotFound";
 
 const DisplayUserJournal = () => {
   const [papers, setPapers] = useState([]);
@@ -19,7 +20,7 @@ const DisplayUserJournal = () => {
     pubYear: "",
   });
   const [isSearchClicked, setIsSearchClicked] = useState(false);
-  const itemsPerPage = 10;
+  const itemsPerPage = 5;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -141,13 +142,17 @@ const DisplayUserJournal = () => {
             />
           </div>
           <div className="w-1/4 flex items-end">
-            <Button variant="downBtn" className="w-full" onClick={handleSearch}>
+            <Button className="w-full h-[35px]" onClick={handleSearch}>
               Search
             </Button>
           </div>
         </div>
-        <Table currentItems={currentItems} setPapers={setPapers} />
-        <Pagination
+        {filteredPapers.length == 0 ? (
+          <PageNotFound paper="Journals" />
+        ) : (
+          <Table currentItems={currentItems} setPapers={setPapers} />
+        )}
+        <PaginationElement
           itemsPerPage={itemsPerPage}
           totalItems={papers.length}
           paginate={paginate}

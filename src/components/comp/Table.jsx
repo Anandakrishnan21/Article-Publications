@@ -90,7 +90,7 @@ function Table({ currentItems, setPapers }) {
               </div>
             </div>
             {session?.user?.email === paper.email ? (
-              <div className="w-full md:w-2/12 flex flex-row md:flex-col justify-center gap-2 p-2">
+              <div className="w-full bg-neutral-200 md:w-2/12 flex flex-row md:flex-col justify-center gap-2 p-2 rounded-md">
                 <DeleteBtn id={paper._id} setPapers={setPapers} />
                 <Link
                   href={`/home/editJournal/${paper._id}`}
@@ -100,7 +100,9 @@ function Table({ currentItems, setPapers }) {
                 </Link>
               </div>
             ) : (
-              <div></div>
+              <div className="w-full md:w-2/12 bg-neutral-200 rounded-md flex justify-center items-center p-2">
+                <p className="w-3/4 text-xl md:text-2xl text-bold text-center">View Access Only</p>
+              </div>
             )}
           </div>
         ))}

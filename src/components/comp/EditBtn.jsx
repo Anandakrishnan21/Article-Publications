@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 
 function EditBtn() {
   return (
-    <Button variant="iconBtn" className="w-full flex gap-2 font-semibold">
+    <Button variant="editBtn" className="w-full flex gap-2 font-semibold">
      Update <IoPencilOutline className="h-6 w-4" />
     </Button>
   );

@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import Pagination from "../comp/Pagination";
+import {  PaginationElement } from "../comp/Pagination";
 import Table from "../comp/Table";
 import Loading from "@/app/home/loading";
 import { Button } from "../ui/button";
@@ -19,7 +19,7 @@ const DisplayAllPapers = () => {
     pubYear: "",
   });
   const [isSearchClicked, setIsSearchClicked] = useState(false);
-  const itemsPerPage = 10;
+  const itemsPerPage = 5;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -104,11 +104,11 @@ const DisplayAllPapers = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="p-5 pt-24 box-border lg:h-screen">
+    <div className="p-5 pt-24 box-border ">
       <div className="w-full flex flex-col items-center pt-6 gap-4">
         <div className="w-full justify-center flex gap-2">
           <div className="w-1/4">
-            <label for="titFilter" className="inputLabel">
+            <label htmlFor="titFilter" className="inputLabel">
               Title
             </label>
             <input
@@ -119,7 +119,7 @@ const DisplayAllPapers = () => {
             />
           </div>
           <div className="w-1/4">
-            <label for="authFilter" className="inputLabel">
+            <label htmlFor="authFilter" className="inputLabel">
               Author
             </label>
             <input
@@ -141,13 +141,17 @@ const DisplayAllPapers = () => {
             />
           </div>
           <div className="w-1/4 flex items-end">
-            <Button variant="downBtn" className="w-full" onClick={handleSearch}>
+            <Button className="w-full h-[35px]" onClick={handleSearch}>
               Search
             </Button>
           </div>
         </div>
-        <Table currentItems={currentItems} setPapers={setPapers} />
-        <Pagination
+        {filteredPapers.length == 0 ? (
+          <PageNotFound paper="Journals" />
+        ) : (
+          <Table currentItems={currentItems} setPapers={setPapers} />
+        )}
+        <PaginationElement
           itemsPerPage={itemsPerPage}
           totalItems={papers.length}
           paginate={paginate}

@@ -1,9 +1,9 @@
-"use client";
 import { useState, useEffect } from "react";
-import Pagination from "../comp/Pagination";
+import { PaginationElement } from "../comp/Pagination";
 import ConferenceTable from "../comp/ConferenceTable";
 import Loading from "@/app/home/loading";
 import { Button } from "../ui/button";
+import PageNotFound from "../common/PageNotFound";
 
 const DisplayAllConference = () => {
   const [papers, setPapers] = useState([]);
@@ -19,7 +19,7 @@ const DisplayAllConference = () => {
     pubYear: "",
   });
   const [isSearchClicked, setIsSearchClicked] = useState(false);
-  const itemsPerPage = 10;
+  const itemsPerPage = 5;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -76,13 +76,13 @@ const DisplayAllConference = () => {
       const matchesAuthor = paper.author1
         .toLowerCase()
         .includes(searchFilters.author.toLowerCase());
-        const matchesYear =
+      const matchesYear =
         !searchFilters.pubYear ||
         paper.pubYear === parseInt(searchFilters.pubYear);
-  
+
       return (
-        (searchFilters.title === '' || matchesTitle) &&
-        (searchFilters.author === '' || matchesAuthor) &&
+        (searchFilters.title === "" || matchesTitle) &&
+        (searchFilters.author === "" || matchesAuthor) &&
         matchesYear
       );
     });
@@ -142,13 +142,17 @@ const DisplayAllConference = () => {
             />
           </div>
           <div className="w-1/4 flex items-end">
-            <Button variant="downBtn" className="w-full" onClick={handleSearch}>
+            <Button className="w-full h-[35px]" onClick={handleSearch}>
               Search
             </Button>
           </div>
         </div>
-        <ConferenceTable currentItems={currentItems} setPapers={setPapers} />
-        <Pagination
+        {filteredPapers.length == 0 ? (
+          <PageNotFound paper="Conferences" />
+        ) : (
+          <ConferenceTable currentItems={currentItems} setPapers={setPapers} />
+        )}
+        <PaginationElement
           itemsPerPage={itemsPerPage}
           totalItems={filteredPapers.length}
           paginate={paginate}
