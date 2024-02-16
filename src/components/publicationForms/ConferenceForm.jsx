@@ -3,8 +3,21 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "../ui/button";
 import { depts, months } from "@/utils/constants";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
+import { useToast } from "../ui/use-toast";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const ConferenceForm = () => {
+  const { toast } = useToast();
+
   const [title, setTitle] = useState("");
   const [author1, setAuthor1] = useState("");
   const [author2, setAuthor2] = useState("");
@@ -17,9 +30,6 @@ const ConferenceForm = () => {
   const [isbn, setIsbn] = useState("");
   const [doi, setDoi] = useState("");
   const [month, setMonth] = useState("");
-
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
 
   const router = useRouter();
 
@@ -38,7 +48,10 @@ const ConferenceForm = () => {
       const { conPaper } = await resConExists.json();
 
       if (conPaper) {
-        setError("Paper with same title and ISBN number already exists.");
+        toast({
+          title: "Paper already exists!",
+          description: "Paper with same title and ISBN number already exists.",
+        });
         return;
       }
 
@@ -67,53 +80,37 @@ const ConferenceForm = () => {
         const form = e.target;
         form.reset();
         router.push("/home");
-        setSuccess("Form submitted successfully!");
+        toast({
+          variant: "success",
+          title: "Form submitted successfully!",
+        });
       } else {
-        console.log("Paper submission failed.");
-        setError("Paper submission failed.");
+        toast({
+          variant: "destructive",
+          title: "Paper submission failed!",
+        });
       }
     } catch (error) {
-      console.log("Error during registration: ", error);
-      setError("Error during registration ");
+      toast({
+        variant: "destructive",
+        title: "Error during registration!",
+      });
     }
   };
 
   return (
-    <div className="box-border flex flex-col justify-center items-center py-10">
-      <div
-        className="w-5/6 md:w-7/12 flex flex-col justify-center items-center
-       bg-neutral-50 dark:bg-neutral-950 border-[1px] border-neutral-200 dark:border-neutral-800 p-5 rounded-lg"
-      >
-        <div className="my-5 text-center">
-          <p className="text-3xl dark:text-neutral-50 font-semibold">
-            Publication Form
-          </p>
-          <p className="text-lg dark:text-neutral-400">
-            Add your conference here
-          </p>
+    <div className="FormMainDiv">
+      <div className="FormInnerDiv">
+        <div className="FormTitleDiv">
+          <p className="FormTitle">Conference Form</p>
+          <p className="FormSubtitle">Add your conference here</p>
         </div>
-        {success && (
-          <div className="mb-10">
-            <p className=" text-green-700 bg-green-200 w-fit p-2 rounded">
-              {success}
-            </p>
-          </div>
-        )}
-        {error && (
-          <div className="mb-10">
-            <p className="text-red-700 bg-red-200 w-fit p-2 rounded">{error}</p>
-          </div>
-        )}
-        <form
-          onSubmit={handleSubmit}
-          className="w-10/12 md:w-4/12 lg:w-3/4 flex flex-col gap-6 relative"
-        >
+
+        <form onSubmit={handleSubmit} className="FormStyle">
           {/* title */}
           <div>
-            <label htmlFor="title" className="inputLabel">
-              Title of Paper
-            </label>
-            <input
+            <Label htmlFor="title">Title of Paper</Label>
+            <Input
               required
               onChange={(e) => setTitle(e.target.value)}
               type="text"
@@ -123,12 +120,10 @@ const ConferenceForm = () => {
             />
           </div>
           {/* author 1&2 */}
-          <div className="flex gap-5 justify-between">
+          <div className="inputsDiv">
             <div className="w-full">
-              <label htmlFor="author1" className="inputLabel">
-                Author 1
-              </label>
-              <input
+              <Label htmlFor="author1">Author 1</Label>
+              <Input
                 required
                 onChange={(e) => setAuthor1(e.target.value)}
                 type="text"
@@ -138,10 +133,8 @@ const ConferenceForm = () => {
               />
             </div>
             <div className="w-full">
-              <label htmlFor="author2" className="inputLabel">
-                Author 2
-              </label>
-              <input
+              <Label htmlFor="author2">Author 2</Label>
+              <Input
                 onChange={(e) => setAuthor2(e.target.value)}
                 type="text"
                 id="author2"
@@ -152,12 +145,10 @@ const ConferenceForm = () => {
           </div>
 
           {/* author 3&4 */}
-          <div className="flex gap-5 justify-between">
+          <div className="inputsDiv">
             <div className="w-full">
-              <label htmlFor="author3" className="inputLabel">
-                Author 3
-              </label>
-              <input
+              <Label htmlFor="author3">Author 3</Label>
+              <Input
                 onChange={(e) => setAuthor3(e.target.value)}
                 type="text"
                 id="author3"
@@ -166,10 +157,8 @@ const ConferenceForm = () => {
               />
             </div>
             <div className="w-full">
-              <label htmlFor="author4" className="inputLabel">
-                Author 4
-              </label>
-              <input
+              <Label htmlFor="author4">Author 4</Label>
+              <Input
                 onChange={(e) => setAuthor4(e.target.value)}
                 type="text"
                 id="author4"
@@ -180,12 +169,10 @@ const ConferenceForm = () => {
           </div>
 
           {/* author 5*/}
-          <div className="flex gap-5 justify-between">
+          <div className="inputsDiv">
             <div className="w-full">
-              <label htmlFor="author5" className="inputLabel">
-                Author 5
-              </label>
-              <input
+              <Label htmlFor="author5">Author 5</Label>
+              <Input
                 onChange={(e) => setAuthor5(e.target.value)}
                 type="text"
                 id="author5"
@@ -196,32 +183,31 @@ const ConferenceForm = () => {
           </div>
 
           {/* Department & nameofjournal*/}
-          <div className="flex gap-5 justify-between">
+          <div className="inputsDiv">
             <div className="w-full">
-              <label htmlFor="dept" className="inputLabel">
-                Department
-              </label>
-              <select
+              <Label htmlFor="dept">Department</Label>
+              <Select
                 required
-                onChange={(e) => setDept(e.target.value)}
+                onValueChange={(value) => setDept(value)}
                 name="dept"
                 id="dept"
                 className="inputFields"
               >
-                <option value="">Choose department</option>
-
-                {depts.map((dept, index) => (
-                  <option key={index} value={dept}>
-                    {dept}
-                  </option>
-                ))}
-              </select>
+                <SelectTrigger className="inputLabel dark:bg-neutral-900">
+                  <SelectValue placeholder="Choose department" />
+                </SelectTrigger>
+                <SelectContent>
+                  {depts.map((dept, index) => (
+                    <SelectItem key={index} value={dept}>
+                      {dept}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
             <div className="w-full">
-              <label htmlFor="conference" className="inputLabel">
-                Conference Name
-              </label>
-              <input
+              <Label htmlFor="conference">Conference Name</Label>
+              <Input
                 required
                 onChange={(e) => setConference(e.target.value)}
                 type="text"
@@ -233,31 +219,32 @@ const ConferenceForm = () => {
           </div>
 
           {/* month & year*/}
-          <div className="flex gap-5 justify-between">
+          <div className="inputsDiv">
             <div className="w-full">
-              <label htmlFor="month" className="inputLabel">
-                Month
-              </label>
-              <select
+              <Label htmlFor="month">Month</Label>
+
+              <Select
                 required
-                onChange={(e) => setMonth(e.target.value)}
+                onValueChange={(value) => setMonth(value)}
                 name="month"
                 id="month"
                 className="inputFields"
               >
-                <option value="">Choose month</option>
-                {months.map((month, index) => (
-                  <option key={index} value={month}>
-                    {month}
-                  </option>
-                ))}
-              </select>
+                <SelectTrigger className="inputLabel dark:bg-neutral-900">
+                  <SelectValue placeholder="Choose month" />
+                </SelectTrigger>
+                <SelectContent>
+                  {months.map((month, index) => (
+                    <SelectItem key={index} value={month}>
+                      {month}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
             <div className="w-full">
-              <label htmlFor="pubYear" className="inputLabel">
-                Publication year
-              </label>
-              <input
+              <Label htmlFor="pubYear">Publication year</Label>
+              <Input
                 required
                 onChange={(e) => setPubyear(e.target.value)}
                 type="number"
@@ -269,15 +256,13 @@ const ConferenceForm = () => {
           </div>
 
           {/* issn num & volume*/}
-          <div className="flex gap-5 justify-between">
+          <div className="inputsDiv">
             <div className="w-full">
-              <label htmlFor="isbn" className="inputLabel">
-                ISBN Number
-              </label>
-              <input
+              <Label htmlFor="isbn">ISBN Number</Label>
+              <Input
                 required
                 onChange={(e) => setIsbn(e.target.value)}
-                type="text"  
+                type="text"
                 id="isbn"
                 // pattern="^[\d*\-]{10}|[\d*\-]{13}$"
                 placeholder="ISBN Number (eg:1-23456-78)"
@@ -287,12 +272,10 @@ const ConferenceForm = () => {
           </div>
 
           {/* doi */}
-          <div className="flex gap-5 justify-between">
+          <div className="inputsDiv">
             <div className="w-full">
-              <label htmlFor="doi" className="inputLabel">
-                Digital Object Identifier - DOI
-              </label>
-              <input
+              <Label htmlFor="doi">Digital Object Identifier - DOI</Label>
+              <Input
                 required
                 onChange={(e) => setDoi(e.target.value)}
                 type="text"

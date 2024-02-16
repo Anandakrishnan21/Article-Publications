@@ -3,6 +3,17 @@ import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
 import { depts, months } from "@/utils/constants";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { useToast } from "../ui/use-toast";
 
 function EditConferenceForm({
   id,
@@ -19,6 +30,8 @@ function EditConferenceForm({
   isbn,
   doi,
 }) {
+  const { toast } = useToast();
+
   const [newTitle, setNewTitle] = useState(title);
   const [newAuthor1, setNewAuthor1] = useState(author1);
   const [newAuthor2, setNewAuthor2] = useState(author2);
@@ -37,34 +50,39 @@ function EditConferenceForm({
   const onHandleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(
-        `http://localhost:3000/api/addConference/${id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify({
-            newTitle,
-            newAuthor1,
-            newAuthor2,
-            newAuthor3,
-            newAuthor4,
-            newAuthor5,
-            newDept,
-            newConference,
-            newDoi,
-            newIsbn,
-            newMonth
-          }),
-        }
-      );
+      const res = await fetch(`http://localhost:3000/api/addConference/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          newTitle,
+          newAuthor1,
+          newAuthor2,
+          newAuthor3,
+          newAuthor4,
+          newAuthor5,
+          newDept,
+          newConference,
+          newDoi,
+          newIsbn,
+          newMonth,
+        }),
+      });
 
       if (!res.ok) {
+        toast({
+          variant: "destructive",
+          title: "Failed to update the paper!",
+        });
         throw new Error("Failed to update the paper");
       }
 
       router.refresh();
+      toast({
+        variant: "success",
+        title: "Form updated successfully!",
+      });
       router.push("/");
     } catch (error) {
       console.log(error);
@@ -72,29 +90,17 @@ function EditConferenceForm({
   };
 
   return (
-    <div className="box-border flex flex-col justify-center items-center py-10">
-      <div
-        className="w-5/6 md:w-7/12 flex flex-col justify-center items-center
-       bg-neutral-50 dark:bg-neutral-950 border-[1px] border-neutral-200 dark:border-neutral-800 p-5 rounded-lg"
-      >
-        <div className="my-5 text-center">
-          <p className="text-3xl dark:text-neutral-50 font-semibold">
-            Publication Form
-          </p>
-          <p className="text-lg dark:text-neutral-400">
-            Update your paper here
-          </p>
+    <div className="FormMainDiv">
+      <div className="FormInnerDiv">
+        <div className="FormTitleDiv">
+          <p className="FormTitle">Publication Form</p>
+          <p className="FormSubtitle">Update your paper here</p>
         </div>
-        <form
-          onSubmit={onHandleSubmit}
-          className="w-10/12 md:w-4/12 lg:w-3/4 flex flex-col gap-6 relative"
-        >
+        <form onSubmit={onHandleSubmit} className="FormStyle">
           {/* title */}
           <div>
-            <label htmlFor="title" className="inputLabel">
-              Title of Paper
-            </label>
-            <input
+            <Label htmlFor="title">Title of Paper</Label>
+            <Input
               required
               onChange={(e) => setNewTitle(e.target.value)}
               value={newTitle}
@@ -105,12 +111,10 @@ function EditConferenceForm({
             />
           </div>
           {/* author 1&2 */}
-          <div className="flex gap-5 justify-between">
+          <div className="inputsDiv">
             <div className="w-full">
-              <label htmlFor="author1" className="inputLabel">
-                Author 1
-              </label>
-              <input
+              <Label htmlFor="author1">Author 1</Label>
+              <Input
                 required
                 onChange={(e) => setNewAuthor1(e.target.value)}
                 value={newAuthor1}
@@ -121,10 +125,8 @@ function EditConferenceForm({
               />
             </div>
             <div className="w-full">
-              <label htmlFor="author2" className="inputLabel">
-                Author 2
-              </label>
-              <input
+              <Label htmlFor="author2">Author 2</Label>
+              <Input
                 onChange={(e) => setNewAuthor2(e.target.value)}
                 value={newAuthor2}
                 type="text"
@@ -136,12 +138,10 @@ function EditConferenceForm({
           </div>
 
           {/* author 3&4 */}
-          <div className="flex gap-5 justify-between">
+          <div className="inputsDiv">
             <div className="w-full">
-              <label htmlFor="author3" className="inputLabel">
-                Author 3
-              </label>
-              <input
+              <Label htmlFor="author3">Author 3</Label>
+              <Input
                 onChange={(e) => setNewAuthor3(e.target.value)}
                 value={newAuthor3}
                 type="text"
@@ -151,10 +151,8 @@ function EditConferenceForm({
               />
             </div>
             <div className="w-full">
-              <label htmlFor="author4" className="inputLabel">
-                Author 4
-              </label>
-              <input
+              <Label htmlFor="author4">Author 4</Label>
+              <Input
                 onChange={(e) => setNewAuthor4(e.target.value)}
                 value={newAuthor4}
                 type="text"
@@ -166,12 +164,10 @@ function EditConferenceForm({
           </div>
 
           {/* author 5*/}
-          <div className="flex gap-5 justify-between">
+          <div className="inputsDiv">
             <div className="w-full">
-              <label htmlFor="author5" className="inputLabel">
-                Author 5
-              </label>
-              <input
+              <Label htmlFor="author5">Author 5</Label>
+              <Input
                 onChange={(e) => setNewAuthor5(e.target.value)}
                 value={newAuthor5}
                 type="text"
@@ -183,31 +179,31 @@ function EditConferenceForm({
           </div>
 
           {/* Department & nameofjournal*/}
-          <div className="flex gap-5 justify-between">
+          <div className="inputsDiv">
             <div className="w-full">
-              <label htmlFor="dept" className="inputLabel">
-                Department
-              </label>
-              <select
+              <Label htmlFor="dept">Department</Label>
+              <Select
                 required
-                onChange={(e) => setNewDept(e.target.value)}
+                onValueChange={(value) => setNewDept(value)}
                 name="dept"
                 id="dept"
                 className="inputFields"
               >
-                <option value="">Choose department</option>
-                {depts.map((dept, index) => (
-                  <option key={index} value={dept}>
-                    {dept}
-                  </option>
-                ))}
-              </select>
+                <SelectTrigger className="inputLabel dark:bg-neutral-900">
+                  <SelectValue placeholder="Choose department" />
+                </SelectTrigger>
+                <SelectContent>
+                  {depts.map((dept, index) => (
+                    <SelectItem key={index} value={dept}>
+                      {dept}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
             <div className="w-full">
-              <label htmlFor="journal" className="inputLabel">
-                Journal name
-              </label>
-              <input
+              <Label htmlFor="journal">Journal name</Label>
+              <Input
                 required
                 onChange={(e) => setNewConference(e.target.value)}
                 value={newConference}
@@ -220,31 +216,32 @@ function EditConferenceForm({
           </div>
 
           {/* month & year*/}
-          <div className="flex gap-5 justify-between">
+          <div className="inputsDiv">
             <div className="w-full">
-              <label htmlFor="month" className="inputLabel">
-                Month
-              </label>
-              <select
+              <Label htmlFor="month">Month</Label>
+
+              <Select
                 required
-                onChange={(e) => setNewMonth(e.target.value)}
+                onValueChange={(value) => setNewMonth(value)}
                 name="month"
                 id="month"
                 className="inputFields"
               >
-                <option value="">Choose month</option>
-                {months.map((month, index) => (
-                  <option key={index} value={month}>
-                    {month}
-                  </option>
-                ))}
-              </select>
+                <SelectTrigger className="inputLabel dark:bg-neutral-900">
+                  <SelectValue placeholder="Choose month" />
+                </SelectTrigger>
+                <SelectContent>
+                  {months.map((month, index) => (
+                    <SelectItem key={index} value={month}>
+                      {month}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
             <div className="w-full">
-              <label htmlFor="pubYear" className="inputLabel">
-                Publication year
-              </label>
-              <input
+              <Label htmlFor="pubYear">Publication year</Label>
+              <Input
                 required
                 onChange={(e) => setNewPubYear(e.target.value)}
                 value={newPubYear}
@@ -257,12 +254,10 @@ function EditConferenceForm({
           </div>
 
           {/* issn num & volume*/}
-          <div className="flex gap-5 justify-between">
+          <div className="inputsDiv">
             <div className="w-full">
-              <label htmlFor="isbn" className="inputLabel">
-                ISBN Number
-              </label>
-              <input
+              <Label htmlFor="isbn">ISBN Number</Label>
+              <Input
                 required
                 onChange={(e) => setNewIsbn(e.target.value)}
                 value={newIsbn}
@@ -276,12 +271,10 @@ function EditConferenceForm({
           </div>
 
           {/* doi */}
-          <div className="flex gap-5 justify-between">
+          <div className="inputsDiv">
             <div className="w-full">
-              <label htmlFor="doi" className="inputLabel">
-                Digital Object Identifier - DOI
-              </label>
-              <input
+              <Label htmlFor="doi">Digital Object Identifier - DOI</Label>
+              <Input
                 required
                 onChange={(e) => setNewDoi(e.target.value)}
                 value={newDoi}

@@ -61,14 +61,14 @@ export function SideBar() {
   const commonClasses =
     "flex flex-col overflow-y-auto scrollbar-hidden bg-neutral-50 dark:bg-neutral-950 dark:border-r-neutral-800 dark:border-[1px] p-4";
   const commonClasses1 =
-    "bg-neutral-200 dark:bg-neutral-900 border-[1px] border-neutral-900 dark:border-neutral-700 hover:dark:border-neutral-700 duration-500 dark:text-white font-bold text-sm";
+    "bg-neutral-200 dark:bg-neutral-900 border-[1px] border-neutral-200 dark:border-neutral-700 hover:dark:border-neutral-700 duration-500 dark:text-white font-bold text-sm";
   const commonClasses2 =
     "border-[1px] border-neutral-50 dark:border-neutral-950 hover:bg-neutral-200 hover:dark:bg-neutral-900 dark:text-neutral-400 duration-200 font-normal";
 
   return (
     <>
       <aside
-        className={`${commonClasses} sticky top-0 justify-between z-10 shadow-lg shadow-fuchsia-300 ${
+        className={`${commonClasses} sticky top-0 justify-between z-10 shadow-md shadow-fuchsia-300 dark:shadow-neutral-800 ${
           isLargeOpen ? "lg:hidden" : "lg:flex"
         }`}
       >
@@ -104,11 +104,11 @@ export function SideBar() {
         </ul>
       </aside>
       <aside
-        className={`${commonClasses} flex flex-col justify-between z-10 w-56 shadow-lg shadow-fuchsia-300 lg:sticky absolute top-0 p-2 gap-2 ${
+        className={`${commonClasses} flex flex-col justify-between z-10 w-56 shadow-md shadow-fuchsia-300 dark:shadow-neutral-800 lg:sticky absolute top-0 p-2 gap-2 ${
           isLargeOpen ? "lg:flex" : "lg:hidden"
         } ${
           isSmallOpen
-            ? "flex h-full bg-neutral-50 dark:bg-slate-950 max-h-screen pt-20"
+            ? "flex h-full bg-neutral-50 dark:bg-neutral-950 max-h-screen pt-20"
             : "hidden"
         }`}
       >
@@ -137,7 +137,7 @@ export function SideBar() {
             </p>
           </li>
           <li>
-            <p className="flex items-center justify-center text-sm bg-neutral-200 border-neutral-900 dark:bg-neutral-900 border-[1px] duration-200 font-bold capitalize py-2 px-2 gap-2 rounded">
+            <p className="flex items-center justify-center text-sm bg-neutral-200 border-neutral-200 dark:bg-neutral-900 duration-200 font-bold capitalize py-2 px-2 gap-2 rounded">
               {session?.user?.name}
               <Pung />
             </p>

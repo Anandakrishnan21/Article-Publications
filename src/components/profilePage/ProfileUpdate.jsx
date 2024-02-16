@@ -1,4 +1,3 @@
-"use client";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -12,8 +11,18 @@ import {
 import { depts } from "@/utils/constants";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { MdOutlineEdit } from "react-icons/md";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 
-export async function ProfileUpdate({ user ,id}) {
+export async function ProfileUpdate({ user, id }) {
   const [newName, setNewName] = useState(user.name);
   const [newEmail, setNewEmail] = useState(user.email);
   const [newDept, setNewDept] = useState(user.dept);
@@ -56,100 +65,95 @@ export async function ProfileUpdate({ user ,id}) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="iconBtn">Edit Profile</Button>
+        <Button className="flex items-center gap-3 px-4">
+          Edit Profile
+          <MdOutlineEdit className="h-5 w-4" />
+        </Button>
       </DialogTrigger>
-      <DialogContent className="w-10/12 md:w-1/3 rounded-sm">
+      <DialogContent className="w-10/12 md:w-1/2">
         <DialogHeader>
           <DialogTitle>Edit profile</DialogTitle>
           <DialogDescription>
-            Make changes to your profile here. Click save when you're done.
+            Make changes to your profile here. Click save when you&apos;re done.
           </DialogDescription>
         </DialogHeader>
-        <form  onSubmit={onHandleSubmit} className="grid gap-2">
+        <form onSubmit={onHandleSubmit} className="grid gap-4">
           <div>
-            <label htmlFor="name" className="inputLabel">
-              Full Name
-            </label>
-            <input
+            <Label htmlFor="name">Full Name</Label>
+            <Input
               onChange={(e) => setNewName(e.target.value)}
-              value={newName}
+              defaultValue={newName}
               className="inputFields"
             />
           </div>
           <div>
-            <label htmlFor="email" className="inputLabel">
-              Email
-            </label>
-            <input
+            <Label htmlFor="email">Email</Label>
+            <Input
               onChange={(e) => setNewEmail(e.target.value)}
               value={newEmail}
               className="inputFields"
             />
           </div>
           <div>
-            <label htmlFor="img" className="inputLabel">
-              Profile Image
-            </label>
-            <input
+            <Label htmlFor="img">Profile Image</Label>
+            <Input
               type="file"
               onChange={(e) => setNewImgUrl(e.target.value)}
               value={newImgUrl}
               className="inputFields"
             />
           </div>
-          <div className="flex gap-2">
-            <div>
-              <label htmlFor="dept" className="inputLabel">
-                Department
-              </label>
-              {/* <select
+          <div className="flex gap-3">
+            <div className="w-full">
+              <Label htmlFor="dept">Department</Label>
+
+              {/* <Select
                 required
-                onChange={(e) => setNewDept(e.target.value)}
+                onValueChange={(value) => setNewDept(value)}
                 name="dept"
                 id="dept"
                 className="inputFields"
               >
-                <option value="">Choose department</option>
-                {depts.map((dept, index) => (
-                  <option key={index} value={dept}>
-                    {dept}
-                  </option>
-                ))}
-              </select> */}
-              <input
+                <SelectTrigger className="inputLabel dark:bg-neutral-900">
+                  <SelectValue placeholder="Choose department" />
+                </SelectTrigger>
+                <SelectContent>
+                  {depts.map((dept, index) => (
+                    <SelectItem key={index} value={dept}>
+                      {dept}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select> */}
+
+              <Input
                 onChange={(e) => setNewDept(e.target.value)}
                 value={newDept}
                 className="inputFields"
               />
             </div>
-            <div>
-              <label htmlFor="scholar" className="inputLabel">
-                Scholar ID
-              </label>
-              <input
+            <div className="w-full">
+              <Label htmlFor="scholar">Scholar ID</Label>
+              <Input
                 onChange={(e) => setNewScholar(e.target.value)}
                 value={newScholar}
                 className="inputFields"
               />
             </div>
           </div>
-          <div className="flex gap-2">
-            <div>
-              <label htmlFor="scopus" className="inputLabel">
-                Scopus
-              </label>
-              <input
+          <div className="flex gap-3">
+            <div className="w-full">
+              <Label htmlFor="scopus">Scopus</Label>
+              <Input
                 type="number"
                 onChange={(e) => setNewScopus(e.target.value)}
                 value={newScopus}
                 className="inputFields"
               />
             </div>
-            <div>
-              <label htmlFor="orcid" className="inputLabel">
-                Orcid
-              </label>
-              <input
+            <div className="w-full">
+              <Label htmlFor="orcid">Orcid</Label>
+              <Input
                 type="number"
                 onChange={(e) => setNewOrcid(e.target.value)}
                 value={newOrcid}
@@ -157,9 +161,9 @@ export async function ProfileUpdate({ user ,id}) {
               />
             </div>
           </div>
-            <Button type="submit" variant="downBtn">
-              Save changes
-            </Button>
+          <Button type="submit" className="mt-3">
+            Save changes
+          </Button>
         </form>
       </DialogContent>
     </Dialog>

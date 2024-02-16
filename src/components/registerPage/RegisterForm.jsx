@@ -7,6 +7,15 @@ import { Button } from "../ui/button";
 import Separator from "../auths/Separator";
 import { useToast } from "../ui/use-toast";
 import { depts } from "@/utils/constants";
+import { Input } from "../ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export default function RegisterForm() {
   const { toast } = useToast();
@@ -102,10 +111,13 @@ export default function RegisterForm() {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit} className="AuthForm">
+    <div className="w-3/4 flex flex-col gap-4">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-5 mt-7 relative"
+      >
         <div>
-          <input
+          <Input
             onChange={(e) => setName(e.target.value)}
             type="text"
             placeholder="Full Name"
@@ -113,7 +125,7 @@ export default function RegisterForm() {
           />
         </div>
         <div>
-          <input
+          <Input
             onChange={(e) => setEmail(e.target.value)}
             type="email"
             placeholder="Email"
@@ -121,14 +133,15 @@ export default function RegisterForm() {
           />
         </div>
         <div>
-          <input
+          <Input
             onChange={(e) => setPassword(e.target.value)}
             type={showPassword ? "text" : "password"}
             placeholder="Password"
             className="relative inputFields"
           />
-          <button
-            className="absolute right-2 top-[110px] cursor-pointer"
+          <Button
+            variant="ghost"
+            className="absolute right-3 top-[122px] cursor-pointer"
             onClick={toggleVisibility}
           >
             {showPassword ? (
@@ -142,25 +155,28 @@ export default function RegisterForm() {
                 className="text-gray-500 hover:text-gray-700 duration-500"
               />
             )}
-          </button>
+          </Button>
         </div>
         <div className="flex gap-2">
-          <select
+          <Select
             required
-            onChange={(e) => setDept(e.target.value)}
+            onValueChange={(value) => setDept(value)}
             name="dept"
             id="dept"
             className="inputFields"
           >
-            <option value="">Choose department</option>
-
-            {depts.map((dept, index) => (
-              <option key={index} value={dept}>
-                {dept}
-              </option>
-            ))}
-          </select>
-          <input
+            <SelectTrigger className="inputLabel dark:bg-neutral-900">
+              <SelectValue placeholder="Choose month" />
+            </SelectTrigger>
+            <SelectContent>
+              {depts.map((dept, index) => (
+                <SelectItem key={index} value={dept}>
+                  {dept}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <Input
             onChange={(e) => setScholar(e.target.value)}
             type="text"
             placeholder="Google Scholar ID"
@@ -168,13 +184,13 @@ export default function RegisterForm() {
           />
         </div>
         {/* <div className="flex gap-2">
-          <input
+          <Input
             onChange={(e) => setScopus(e.target.value)}
             type="number"
             placeholder="Scopus ID"
             className="inputFields"
           />
-          <input
+          <Input
             onChange={(e) => setOrcid(e.target.value)}
             type="number"
             placeholder="ORCid ID"
@@ -182,8 +198,8 @@ export default function RegisterForm() {
           />
         </div> */}
         <Button>Register</Button>
-        <Separator url="/" linkName="Login" />
       </form>
-    </>
+      <Separator url="/" linkName="Login" />
+    </div>
   );
 }

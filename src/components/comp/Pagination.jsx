@@ -40,12 +40,10 @@ export function PaginationElement({
           />
         </PaginationItem>
         <PaginationItem>
-          <PaginationLink className="h-8 border-[1px] border-neutral-400">{currentPage}</PaginationLink>
+          <PaginationLink className="h-8 border hover:bg-neutral-200 dark:hover:bg-neutral-800 cursor-pointer hover:border-neutral-300">{currentPage}</PaginationLink>
         </PaginationItem>
         <PaginationItem>
-          <PaginationNext
-            onClick={nextBtnHandle}
-          />
+          <PaginationNext onClick={nextBtnHandle} />
         </PaginationItem>
       </PaginationContent>
     </Pagination>

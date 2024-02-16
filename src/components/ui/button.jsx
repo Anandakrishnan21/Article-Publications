@@ -19,12 +19,13 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         iconBtn:
-          "flex gap-4 bg-neutral-800 text-neutral-50 outline dark:text-neutral-800 dark:bg-neutral-800 dark:text-neutral-50 dark:hover:outline-neutral-400",
+          "flex gap-4 bg-neutral-800 dark:bg-neutral-700 text-neutral-50 dark:text-neutral-50",
+        DeleteBtn: "flex gap-4 bg-red-900 hover:bg-red-800 text-neutral-50",
         editBtn:
-          "flex gap-4 bg-neutral-200 outline outline-[1px] outline-neutral-500 hover:outline-fuchsia-800 dark:text-neutral-800 dark:bg-neutral-800 dark:text-neutral-50 dark:hover:outline-neutral-400",
+          "flex gap-4 bg-neutral-800 hover:bg-neutral-900 dark:bg-neutral-800 outline outline-[1px] outline-neutral-400 dark:outline-neutral-600 text-neutral-50 dark:hover:outline-neutral-500",
         noOutline: "outline-none",
         downBtn:
-          "w-1/8 flex gap-4 bg-neutral-300 outline outline-[1px] outline-neutral-500 hover:outline-fuchsia-800 dark:text-neutral-800 dark:bg-neutral-800 dark:text-neutral-50 dark:hover:outline-neutral-400",
+          "flex justify-center item-center gap-3 outline outline-neutral-800 hover:outline-fuchsia-800 bg-neutral-900 text-neutral-50 transition-all duration-500",
       },
       size: {
         default: "h-9 p-1",
