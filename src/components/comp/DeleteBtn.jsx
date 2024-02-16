@@ -6,7 +6,7 @@ import { Button } from "../ui/button";
 
 function DeleteBtn({ id, setPapers }) {
   const router = useRouter();
-  const deletePaper = async () => {
+  const deleteJournalPaper = async () => {
     try {
       const res = await fetch(
         `http://localhost:3000/api/addPublication?id=${id}`,
@@ -16,17 +16,21 @@ function DeleteBtn({ id, setPapers }) {
       );
 
       if (res.ok) {
-        setPapers((prevPapers) => prevPapers.filter((paper) => paper._id !== id));
+        setPapers((prevPapers) =>
+          prevPapers.filter((paper) => paper._id !== id)
+        );
       }
     } catch (error) {
       console.error("Error deleting paper", error);
     }
   };
   return (
-    <Button variant="iconBtn"
-      onClick={deletePaper} className="flex gap-2 font-semibold"
+    <Button
+      variant="DeleteBtn"
+      onClick={deleteJournalPaper}
+      className="flex items-center gap-2 font-semibold w-full"
     >
-     Delete <IoTrashOutline className="w-4 h-6" />
+      Delete <IoTrashOutline className="w-4 h-6" />
     </Button>
   );
 }

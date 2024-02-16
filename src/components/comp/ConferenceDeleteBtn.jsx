@@ -6,7 +6,7 @@ import { Button } from "../ui/button";
 
 function ConferenceDeleteBtn({ id, setPapers }) {
   const router = useRouter();
-  const deletePaper = async () => {
+  const deleteConferencePaper = async () => {
     try {
       const res = await fetch(
         `http://localhost:3000/api/addConference?id=${id}`,
@@ -24,7 +24,7 @@ function ConferenceDeleteBtn({ id, setPapers }) {
   };
   return (
     <Button variant="iconBtn"
-      onClick={deletePaper} className="flex gap-2 font-semibold"
+      onClick={deleteConferencePaper} className="flex gap-2 font-semibold"
     >
      Delete <IoTrashOutline className="w-4 h-6" />
     </Button>

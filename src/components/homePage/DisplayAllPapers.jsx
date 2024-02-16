@@ -1,9 +1,12 @@
 "use client";
 import { useState, useEffect } from "react";
-import {  PaginationElement } from "../comp/Pagination";
+import { PaginationElement } from "../comp/Pagination";
 import Table from "../comp/Table";
 import Loading from "@/app/home/loading";
 import { Button } from "../ui/button";
+import PageNotFound from "../common/PageNotFound";
+import { Input } from "../ui/input";
+import { FaSearch } from "react-icons/fa";
 
 const DisplayAllPapers = () => {
   const [papers, setPapers] = useState([]);
@@ -104,59 +107,56 @@ const DisplayAllPapers = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="p-5 pt-24 box-border ">
-      <div className="w-full flex flex-col items-center pt-6 gap-4">
-        <div className="w-full justify-center flex gap-2">
-          <div className="w-1/4">
-            <label htmlFor="titFilter" className="inputLabel">
-              Title
-            </label>
-            <input
+    <div className="DisplayMainDiv">
+      <div className="DisplayMainInnerDiv">
+        <div className="DisplaySearchDiv">
+          <div className="FilterInputDiv">
+            <Input
               type="text"
               value={filterTitle}
               onChange={handleTitleChange}
               className="inputFields"
+              placeholder="Search by title"
             />
           </div>
-          <div className="w-1/4">
-            <label htmlFor="authFilter" className="inputLabel">
-              Author
-            </label>
-            <input
+          <div className="FilterInputDiv">
+            <Input
               type="text"
               value={filterAuthor}
               onChange={handleAuthorChange}
               className="inputFields"
+              placeholder="Search by author"
             />
           </div>
-          <div className="w-1/4">
-            <label htmlFor="yearFilter" className="inputLabel">
-              Year
-            </label>
-            <input
+          <div className="FilterInputDiv">
+            <Input
               type="text"
               value={filterYear}
               onChange={handleYearChange}
               className="inputFields"
+              placeholder="Search by year"
             />
           </div>
-          <div className="w-1/4 flex items-end">
-            <Button className="w-full h-[35px]" onClick={handleSearch}>
-              Search
+          <div className="FilterSearchBtnDiv">
+            <Button className="FilterSearchBtn" onClick={handleSearch}>
+              <p className="md:hidden">Search</p>
+              <FaSearch className="text-neutral-300 dark:text-neutral-500" />
             </Button>
           </div>
         </div>
         {filteredPapers.length == 0 ? (
           <PageNotFound paper="Journals" />
         ) : (
-          <Table currentItems={currentItems} setPapers={setPapers} />
+          <>
+            <Table currentItems={currentItems} setPapers={setPapers} />
+            <PaginationElement
+              itemsPerPage={itemsPerPage}
+              totalItems={papers.length}
+              paginate={paginate}
+              currentPage={currentPage}
+            />
+          </>
         )}
-        <PaginationElement
-          itemsPerPage={itemsPerPage}
-          totalItems={papers.length}
-          paginate={paginate}
-          currentPage={currentPage}
-        />
       </div>
     </div>
   );
