@@ -6,8 +6,8 @@ import TextAnimation from "../animation/TextAnimation";
 function RegistrationPageContent() {
   return (
     <div className="authPage">
-    <div className="flex w-3/4 h-3/4 rounded-xl bg-neutral-50">
-      <div className="w-1/2 rounded-xl flex flex-col justify-center items-center gap-2">
+    <div className="AuthPageDiv">
+      <div className="AuthFormDiv">
         <AuthPageTitle />
         <RegisterForm />
       </div>

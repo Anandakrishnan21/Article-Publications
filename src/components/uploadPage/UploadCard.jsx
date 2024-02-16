@@ -28,7 +28,7 @@ function UploadCard() {
     },
   ];
   return (
-    <div className="md:h-screen box-border flex flex-col md:flex-row justify-center items-center md:items-start gap-2 md:p-4 py-10">
+    <div className="h-screen box-border flex flex-col md:flex-row md:justify-center items-center md:items-start gap-4 md:p-4 py-10">
       {CardContent.map((card) => (
         <div
           key={card.id}
@@ -52,7 +52,7 @@ function UploadCard() {
             <label>Core platform features</label>
           </div>
           <Link href={card.href}>
-            <Button variant="downBtn" className="w-full">
+            <Button variant="downBtn" className="w-full flex gap-3 items-center">
               <card.icon className="h-6 w-6" />
               {card.upload}
             </Button>

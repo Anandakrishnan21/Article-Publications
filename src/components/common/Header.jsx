@@ -7,8 +7,9 @@ import { SearchIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import { useSidebarContext } from "@/context/SidebarContext";
 import { IoMenu } from "react-icons/io5";
+import AvatarComp from "./AvatarComp";
 
-function Header({ hidden = false, session}) {
+function Header({ hidden = false, session }) {
   const { toggleSidebar } = useSidebarContext();
 
   return (
@@ -26,16 +27,17 @@ function Header({ hidden = false, session}) {
             ) : (
               <Image src={Logo} alt="" className="h-10 w-10" />
             )} */}
-            <h1 className="hidden lg:flex items-center text-xl font-bold bg-gradient-to-r from-green-200 via-violet-300 to-fuchsia-300 border-[1px] border-neutral-800 rounded p-1 px-4">
-              P<span className="text-sm font-medium">articles</span>
+            <h1 className="flex items-center text-xl md:text-2xl font-extrabold bg-gradient-to-r from-green-200 via-violet-300 to-fuchsia-300 dark:from-green-900 dark:via-violet-900 dark:to-fuchsia-900 rounded p-1 px-6">
+              P<span className="md:text-lg font-medium">articles</span>
             </h1>
           </Link>
         </div>
-        <div className="block">
+        {/* <div className="block">
           <ul className="flex items-center space-x-10">
             <li>{session.user.name}</li>
           </ul>
-        </div>
+        </div> */}
+        <AvatarComp />
       </header>
     </div>
   );

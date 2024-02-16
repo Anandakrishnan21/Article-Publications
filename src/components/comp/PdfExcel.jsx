@@ -3,9 +3,9 @@ import jsPDF from "jspdf";
 import { Button } from "../ui/button";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
+import { FaFileExcel, FaFilePdf } from "react-icons/fa";
 
-function PdfExcel({ currentItems}) {
-
+function PdfExcel({ currentItems }) {
   const generatePDF = () => {
     const doc = new jsPDF();
     let yOffset = 10;
@@ -82,12 +82,14 @@ function PdfExcel({ currentItems}) {
     saveAs(dataBlob, "Journals.xlsx");
   };
   return (
-    <div className="flex flex-col justify-end md:flex-row gap-2">
-      <Button variant="downBtn" onClick={generatePDF} className="flex-start">
-        Convert to pdf
+    <div className="ExportBtnDiv">
+      <Button variant="outline" onClick={generatePDF} className="ExportBtn">
+        <p>Export PDF</p>
+        <FaFilePdf />
       </Button>
-      <Button variant="downBtn" onClick={generateExcel}>
-        Download Excel
+      <Button variant="outline" onClick={generateExcel} className="ExportBtn">
+        <p>Export Excel</p>
+        <FaFileExcel />
       </Button>
     </div>
   );

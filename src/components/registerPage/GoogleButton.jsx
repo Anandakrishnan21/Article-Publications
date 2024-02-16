@@ -1,13 +1,13 @@
 import React from "react";
 import { Button } from "../ui/button";
 import { signIn } from "next-auth/react";
-import { IoLogoGoogle } from "react-icons/io5";
+import { FcGoogle } from "react-icons/fc";
 
 const GoogleButton = () => {
   return (
-    <Button variant="iconBtn" onClick={() => signIn("google")}>
-      <IoLogoGoogle className="text-2xl" />
-      Continue with Google
+    <Button variant="outline" onClick={() => signIn("google")} className="flex items-center gap-4 py-4">
+      <FcGoogle className="text-2xl" />
+     <p className="dark:text-neutral-200">Continue with Google</p>
     </Button>
   );
 };

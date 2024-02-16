@@ -79,7 +79,7 @@
 /* External Styles */
 
 .inputFields {
-  @apply w-full border-[1px] bg-neutral-50 dark:bg-neutral-900 border-neutral-500 hover:border-neutral-800 dark:border-neutral-500 hover:dark:border-neutral-600 duration-500 p-1 rounded pl-2;
+  @apply dark:bg-neutral-900 border border-neutral-300 hover:border-neutral-800 dark:border-neutral-800 hover:dark:border-neutral-600 duration-500 focus:border-none;
 }
 
 .blueLink {
@@ -87,37 +87,38 @@
 }
 
 .AuthForm {
-  @apply w-3/4 flex flex-col gap-5 relative;
+  @apply w-3/4 flex flex-col gap-5 mt-7 relative;
 }
 
-.authPage{
-  @apply flex h-screen box-border justify-center items-center bg-gradient-to-r from-green-200 via-violet-300 to-fuchsia-300;
+.authPage {
+  @apply flex h-screen box-border justify-center items-center bg-gradient-to-r from-green-200 via-violet-300 to-fuchsia-300 dark:from-green-900 dark:via-violet-900 dark:to-fuchsia-900;
 }
 
-.cardRight{
-  @apply w-1/2 bg-gradient-to-r flex justify-center items-center from-violet-200 to-pink-200 rounded-r-xl text-2xl font-extrabold;
+.cardRight {
+  @apply w-4/5 md:w-1/2 bg-gradient-to-r flex justify-center items-center from-violet-200 to-pink-200 dark:from-violet-900 dark:to-pink-900 rounded-xl text-xl md:text-2xl font-extrabold mt-10 md:mt-0 py-5 md:py-1;
 }
 
 .innerCard {
-  @apply w-2/3 h-2/3 flex items-center text-center bg-gradient-to-r from-green-200 via-violet-300 to-fuchsia-300 rounded-xl;
+  @apply w-2/3 h-2/3 flex items-center text-center bg-gradient-to-r from-green-200 via-violet-300 to-fuchsia-300 dark:from-green-900 dark:via-violet-900 dark:to-fuchsia-900 rounded-xl p-3 md:p-5;
 }
 
 .inputLabel {
-  @apply dark:text-neutral-400 duration-200 text-sm;
+  @apply pb-2;
 }
 
 .cardStyle {
-  @apply w-full flex flex-col md:flex-row border bg-neutral-50 dark:bg-neutral-900 border-neutral-500 hover:border-neutral-800 dark:border-neutral-500 hover:dark:border-neutral-600 hover:bg-neutral-100 duration-500 p-2 rounded;
+  @apply w-full flex flex-col md:flex-row border bg-neutral-50 dark:bg-neutral-900 border-neutral-300 hover:border-neutral-500 dark:border-neutral-800 hover:dark:border-neutral-600 hover:bg-neutral-100 duration-500 p-2 rounded;
 }
 
 .loader {
-  @apply h-20 aspect-square grid 
+  @apply h-20 aspect-square grid;
 }
 
 .loader:before,
 .loader:after {
   content: "";
-  background-image: linear-gradient(black, black), linear-gradient(rgb(255, 23, 236), rgb(255, 23, 236));
+  background-image: linear-gradient(rgb(13, 133, 213), rgb(13, 133, 213)),
+    linear-gradient(rgb(255, 23, 236), rgb(255, 23, 236));
   background-repeat: no-repeat;
   background-size: 25% 50%;
   animation: l4 1.5s infinite linear;
@@ -128,21 +129,148 @@
 }
 
 @keyframes l4 {
-
   0%,
   10% {
-    background-position: 33.4% 100%, 66.6% 100%
+    background-position: 33.4% 100%, 66.6% 100%;
   }
 
   40% {
-    background-position: 33.4% 0, 100% 100%
+    background-position: 33.4% 0, 100% 100%;
   }
 
   70% {
-    background-position: 0 100%, 66.6% 0
+    background-position: 0 100%, 66.6% 0;
   }
 
   100% {
-    background-position: 33.4% 100%, 66.6% 100%
+    background-position: 33.4% 100%, 66.6% 100%;
   }
+}
+
+.inputsDiv {
+  @apply flex flex-col sm:flex-row gap-5 justify-between;
+}
+
+.FormStyle {
+  @apply w-full px-2 md:px-7 flex flex-col gap-6 relative;
+}
+
+.FormMainDiv {
+  @apply box-border flex flex-col justify-center items-center md:py-10;
+}
+
+.FormInnerDiv {
+  @apply w-full md:w-5/6 lg:w-7/12 flex flex-col justify-center items-center bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-950 p-5 rounded-lg;
+}
+
+.FormTitleDiv {
+  @apply my-5 text-center;
+}
+
+.FormTitle {
+  @apply text-xl md:text-3xl dark:text-neutral-50 font-semibold;
+}
+
+.FormSubtitle {
+  @apply md:text-lg dark:text-neutral-400;
+}
+
+.AuthPageDiv {
+  @apply flex flex-col items-center md:items-stretch md:flex-row md:w-3/4 md:h-3/4 rounded-xl;
+}
+
+.AuthFormDiv {
+  @apply w-full md:w-1/2 rounded-xl flex flex-col justify-center items-center gap-2;
+}
+
+.DisplayMainDiv {
+  @apply flex justify-center p-5 pt-1 box-border;
+}
+
+.DisplayMainInnerDiv {
+  @apply w-full flex flex-col items-center pt-6 gap-4;
+}
+
+.DisplaySearchDiv {
+  @apply w-full justify-center items-center flex flex-col md:flex-row gap-4 px-2 md:px-0;
+}
+
+.FilterInputDiv {
+  @apply w-full md:w-1/4;
+}
+
+.FilterSearchBtnDiv {
+  @apply flex w-full md:w-fit;
+}
+
+.FilterSearchBtn {
+  @apply w-full md:w-[70px] flex items-center gap-3;
+}
+
+.ExportBtnDiv {
+  @apply flex justify-center md:justify-end md:flex-row gap-2 md:gap-4 mt-3;
+}
+
+.ExportBtn {
+  @apply gap-3 px-3 md:px-5;
+}
+
+.TableMainDiv {
+  @apply w-full flex flex-col gap-2 rounded;
+}
+
+.TableDiv {
+  @apply w-full mt-5 flex flex-col gap-3;
+}
+
+.TableItemDetailsDiv {
+  @apply w-full md:w-10/12 flex flex-col capitalize p-2;
+}
+
+.TableItemH1 {
+  @apply text-2xl font-semibold;
+}
+
+.TableItemDetailsInnerDiv {
+  @apply dark:text-neutral-400;
+}
+
+.TableItemDetailsTitle {
+  @apply text-sm md:text-base font-semibold;
+}
+
+.Table-dept-journal {
+  @apply w-full flex justify-between;
+}
+
+.TableDetailsSpan {
+  @apply text-xs md:text-sm font-medium mx-2;
+}
+
+.Table-issn-vol {
+  @apply w-full flex flex-col md:flex-row justify-between;
+}
+
+.TableDetails-vol-page-year-month {
+  @apply flex gap-1;
+}
+
+.DOILink {
+  @apply text-blue-700 dark:text-blue-400 hover:underline;
+}
+
+.TableCrudButtonsDiv {
+  @apply w-full md:w-2/12 flex flex-row md:flex-col justify-center gap-2 p-2 rounded-md;
+}
+
+.TableViewOnlyDiv {
+  @apply w-full md:w-2/12 bg-neutral-100 dark:bg-neutral-800/50 rounded-md flex justify-center items-center p-2;
+}
+
+.TableViewOnlyP {
+  @apply text-sm md:text-base text-center text-neutral-500 font-bold;
+}
+
+.ProfileReadonlyInputDiv{
+  @apply w-full flex gap-2 md:gap-7 md:items-center flex-col md:flex-row mt-2
 }
