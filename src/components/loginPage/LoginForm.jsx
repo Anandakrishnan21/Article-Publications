@@ -51,13 +51,13 @@ export default function LoginForm() {
 
   return (
     <div className="w-3/4 flex flex-col gap-4">
-      <form onSubmit={handleSubmit} className="flex flex-col gap-5 mt-7 relative">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-3 mt-7 relative">
         <div>
           <Input
             onChange={(e) => setEmail(e.target.value)}
             type="text"
             placeholder="Email"
-            className=""
+            className="inputFields"
           />
         </div>
         <div>
@@ -65,11 +65,11 @@ export default function LoginForm() {
             onChange={(e) => setPassword(e.target.value)}
             type={showPassword ? "text" : "password"}
             placeholder="Password"
-            className="relative"
+            className="inputFields relative"
           />
           <Button
             variant="ghost"
-            className="absolute right-2 top-[60px] cursor-pointer"
+            className="absolute right-2 top-[55px] cursor-pointer"
             onClick={toggleVisibility}
           >
             {showPassword ? (

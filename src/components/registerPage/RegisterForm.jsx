@@ -114,7 +114,7 @@ export default function RegisterForm() {
     <div className="w-3/4 flex flex-col gap-4">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-5 mt-7 relative"
+        className="flex flex-col gap-3 mt-7 relative"
       >
         <div>
           <Input
@@ -137,11 +137,11 @@ export default function RegisterForm() {
             onChange={(e) => setPassword(e.target.value)}
             type={showPassword ? "text" : "password"}
             placeholder="Password"
-            className="relative inputFields"
+            className="inputFields relative"
           />
           <Button
             variant="ghost"
-            className="absolute right-3 top-[122px] cursor-pointer"
+            className="absolute right-3 top-[105px] cursor-pointer"
             onClick={toggleVisibility}
           >
             {showPassword ? (

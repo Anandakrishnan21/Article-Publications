@@ -31,7 +31,7 @@
     --border: 0 0% 89.8%;
     --input: 0 0% 89.8%;
     --ring: 0 0% 3.9%;
-
+    
     --radius: 0.5rem;
   }
 
@@ -76,6 +76,13 @@
   }
 }
 
+@layer utilities {
+  .custom-box-shadow {
+    --tw-shadow: 0px 1px 2px 0px rgba(60, 64, 67, 0.3), 0px 2px 6px 2px rgba(60, 64, 67, 0.15);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 transparent), var(--tw-ring-shadow, 0 0 transparent), var(--tw-shadow);
+  }
+}
+
 /* External Styles */
 
 .inputFields {
@@ -91,15 +98,15 @@
 }
 
 .authPage {
-  @apply flex h-screen box-border justify-center items-center bg-gradient-to-r from-green-200 via-violet-300 to-fuchsia-300 dark:from-green-900 dark:via-violet-900 dark:to-fuchsia-900;
+  @apply flex md:bg-neutral-100 h-screen justify-center items-center;
 }
 
 .cardRight {
-  @apply w-4/5 md:w-1/2 bg-gradient-to-r flex justify-center items-center from-violet-200 to-pink-200 dark:from-violet-900 dark:to-pink-900 rounded-xl text-xl md:text-2xl font-extrabold mt-10 md:mt-0 py-5 md:py-1;
+  @apply w-4/5 md:w-1/2 bg-gradient-to-r hidden lg:flex justify-center items-center rounded-r-xl text-xl md:text-2xl bg-neutral-200 font-extrabold mt-10 md:mt-0 py-5 md:py-1;
 }
 
 .innerCard {
-  @apply w-2/3 h-2/3 flex items-center text-center bg-gradient-to-r from-green-200 via-violet-300 to-fuchsia-300 dark:from-green-900 dark:via-violet-900 dark:to-fuchsia-900 rounded-xl p-3 md:p-5;
+  @apply w-[70%] h-2/3 flex items-center text-center bg-white/70 backdrop-filter backdrop-blur-lg rounded-xl p-3 md:p-6;
 }
 
 .inputLabel {
@@ -176,7 +183,7 @@
 }
 
 .AuthPageDiv {
-  @apply flex flex-col items-center md:items-stretch md:flex-row md:w-3/4 md:h-3/4 rounded-xl;
+  @apply bg-white flex flex-col items-center md:items-stretch lg:shadow-md md:flex-row w-full lg:w-[70%] md:h-3/4 rounded-xl;
 }
 
 .AuthFormDiv {
@@ -274,3 +281,5 @@
 .ProfileReadonlyInputDiv{
   @apply w-full flex gap-2 md:gap-7 md:items-center flex-col md:flex-row mt-2
 }
+
+/* bg-gradient-to-r from-green-200 via-violet-300 to-fuchsia-300 dark:from-green-900 dark:via-violet-900 dark:to-fuchsia-900 */

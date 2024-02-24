@@ -7,12 +7,12 @@ const AuthPageTitle = () => {
       {/* <div className="flex w-full justify-center">
         <LogoImage />
       </div> */}
-      <h1 className="text-xl md:text-2xl font-bold leading-normal md:leading-relaxed">
+      <h1 className="text-center lg:text-start text-xl md:text-2xl font-bold leading-normal md:leading-relaxed">
         Welcome to Particles
       </h1>
-      <span className="text-sm md:text-base leading-normal">
+      <p className="text-center lg:text-start text-sm md:text-base leading-normal">
         Enter your information to continue
-      </span>
+      </p>
     </div>
   );
 };

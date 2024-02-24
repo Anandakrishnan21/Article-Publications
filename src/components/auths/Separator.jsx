@@ -11,7 +11,7 @@ function Separator({ url, linkName }) {
         </p>
       </div>
       <GoogleButton />
-      <p className="text-neutral-800 dark:text-neutral-500 text-sm leading-normal">
+      <p className="text-center lg:text-start text-neutral-800 dark:text-neutral-500 text-sm leading-normal">
         Don&apos;t have an account ? {""}
         <Link href={url} className="blueLink">
           {linkName}
