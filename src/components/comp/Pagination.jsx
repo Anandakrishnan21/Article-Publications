@@ -1,7 +1,6 @@
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
@@ -9,7 +8,6 @@ import {
 } from "@/components/ui/pagination";
 
 export function PaginationElement({
-  itemsPerPage,
   totalItems,
   paginate,
   currentPage,
@@ -34,13 +32,12 @@ export function PaginationElement({
     <Pagination>
       <PaginationContent className="flex gap-2">
         <PaginationItem>
-          <PaginationPrevious
-            onClick={prevBtnHandle}
-            disabled={currentPage === 1}
-          />
+          <PaginationPrevious onClick={prevBtnHandle} />
         </PaginationItem>
         <PaginationItem>
-          <PaginationLink className="h-8 border hover:bg-neutral-200 dark:hover:bg-neutral-800 cursor-pointer hover:border-neutral-300">{currentPage}</PaginationLink>
+          <PaginationLink className="h-8 border hover:bg-neutral-200 dark:hover:bg-neutral-800 cursor-pointer hover:border-neutral-300">
+            {currentPage}
+          </PaginationLink>
         </PaginationItem>
         <PaginationItem>
           <PaginationNext onClick={nextBtnHandle} />

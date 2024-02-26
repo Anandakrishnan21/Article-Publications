@@ -28,15 +28,11 @@ function UploadCard() {
     },
   ];
   return (
-    <div className="h-screen box-border flex flex-col md:flex-row md:justify-center items-center md:items-start gap-4 md:p-4 py-10">
+    <div className="flex flex-col md:flex-row md:justify-center items-center md:items-start gap-4 md:p-4 py-10">
       {CardContent.map((card) => (
-        <div
-          key={card.id}
-          className="w-4/5 md:w-1/4 flex flex-col bg-neutral-50 dark:bg-neutral-950 border-[1px]
-           border-neutral-800 text-justify dark:border-neutral-800 p-5 gap-4 rounded-lg"
-        >
+        <div key={card.id} className="uploadCard" >
           <p className="text-2xl font-semibold">Free</p>
-          <p className="text-4xl font-bold">
+          <p className="text-3xl font-bold">
             ₹0/<span className="text-2xl">mon</span>
           </p>
           <div className="flex items-center gap-2 text-sm">
