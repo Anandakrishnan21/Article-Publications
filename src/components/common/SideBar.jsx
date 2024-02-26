@@ -3,12 +3,12 @@ import React from "react";
 import { useSidebarContext } from "@/context/SidebarContext";
 import { HiOutlineLogout } from "react-icons/hi";
 import {
+  IoAnalyticsSharp,
   IoCloudUpload,
   IoGrid,
   IoHome,
   IoLogOutOutline,
   IoPerson,
-  IoSettings,
 } from "react-icons/io5";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
@@ -46,10 +46,10 @@ export function SideBar() {
       current: `/${segment}` === "/profile" ? true : false,
     },
     {
-      name: "Settings",
-      href: "/home/settings",
-      icon: IoSettings,
-      current: `/${segment}` === "/settings" ? true : false,
+      name: "Analytics",
+      href: "/home/analytics",
+      icon: IoAnalyticsSharp ,
+      current: `/${segment}` === "/analytics" ? true : false,
     },
     {
       name: "Upload",

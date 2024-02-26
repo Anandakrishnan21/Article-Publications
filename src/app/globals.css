@@ -31,7 +31,7 @@
     --border: 0 0% 89.8%;
     --input: 0 0% 89.8%;
     --ring: 0 0% 3.9%;
-    
+
     --radius: 0.5rem;
   }
 
@@ -136,6 +136,7 @@
 }
 
 @keyframes l4 {
+
   0%,
   10% {
     background-position: 33.4% 100%, 66.6% 100%;
@@ -278,8 +279,20 @@
   @apply text-sm md:text-base text-center text-neutral-500 font-bold;
 }
 
-.ProfileReadonlyInputDiv{
+.ProfileReadonlyInputDiv {
   @apply w-full flex gap-2 md:gap-7 md:items-center flex-col md:flex-row mt-2
+}
+
+.History {
+  @apply w-full lg:w-3/5 flex flex-col gap-2 bg-neutral-50 text-neutral-900 dark:text-neutral-50 border-[1px] rounded-lg border-neutral-300 dark:bg-neutral-900 dark:border-neutral-700 p-2 md:p-4 py-6
+}
+
+.Chart{
+  @apply w-full lg:w-1/2 flex justify-center items-center bg-neutral-50 border-[1px] rounded-lg border-neutral-300 dark:text-neutral-900 dark:bg-neutral-900 dark:border-neutral-700 p-4
+}
+
+.lineChart{
+  @apply w-full lg:w-2/5 flex justify-center items-center h-full bg-neutral-50 border-[1px] rounded-lg border-neutral-300 dark:text-neutral-900 dark:bg-neutral-900 dark:border-neutral-700
 }
 
 /* bg-gradient-to-r from-green-200 via-violet-300 to-fuchsia-300 dark:from-green-900 dark:via-violet-900 dark:to-fuchsia-900 */
