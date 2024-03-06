@@ -102,11 +102,19 @@
 }
 
 .cardRight {
-  @apply w-4/5 md:w-1/2 bg-gradient-to-r hidden lg:flex justify-center items-center rounded-r-xl text-xl md:text-2xl bg-neutral-200 dark:bg-neutral-900 font-extrabold mt-10 md:mt-0 py-5 md:py-1;
+  @apply w-4/5 md:w-1/2 hidden lg:flex bg-gradient-to-r from-violet-200 to-pink-200 dark:from-violet-900 dark:to-pink-900 justify-center items-center rounded-r-xl text-xl md:text-2xl font-extrabold mt-10 md:mt-0 py-5 md:py-1;
+}
+
+.cardDesign {
+  @apply flex flex-col bg-neutral-50 text-neutral-900 dark:text-neutral-50 border-[1px] rounded-lg border-neutral-300 dark:bg-neutral-900 dark:border-neutral-700
+}
+
+.colorDiv {
+  @apply w-full h-1/4 flex justify-center items-center bg-gradient-to-r from-green-200 via-violet-300 to-fuchsia-300 dark:from-green-900 dark:via-violet-900 dark:to-fuchsia-900 rounded-lg p-2 lg:p-0
 }
 
 .innerCard {
-  @apply w-[70%] h-2/3 flex items-center text-center bg-white/70 dark:bg-neutral-950 backdrop-filter backdrop-blur-lg rounded-xl p-3 md:p-6;
+  @apply w-[70%] h-2/3 flex items-center text-center bg-gradient-to-r from-green-200 via-violet-300 to-fuchsia-300 dark:from-green-900 dark:via-violet-900 dark:to-fuchsia-900 backdrop-blur-lg rounded-xl p-3 md:p-6;
 }
 
 .inputLabel {
@@ -223,6 +231,10 @@
   @apply gap-3 px-3 md:px-5;
 }
 
+.summaryDiv{
+  @apply flex flex-wrap h-2/3 text-neutral-900 justify-between lg:justify-around gap-2
+}
+
 .TableMainDiv {
   @apply w-full flex flex-col gap-2 rounded;
 }
@@ -287,15 +299,16 @@
   @apply w-full lg:w-3/5 flex flex-col gap-2 bg-neutral-50 text-neutral-900 dark:text-neutral-50 border-[1px] rounded-lg border-neutral-300 dark:bg-neutral-900 dark:border-neutral-700 p-2 md:p-4 py-6
 }
 
-.Chart{
+.Chart {
   @apply w-full lg:w-1/2 flex justify-center items-center bg-neutral-50 border-[1px] rounded-lg border-neutral-300 dark:text-neutral-900 dark:bg-neutral-900 dark:border-neutral-700 p-4
 }
 
-.lineChart{
+.lineChart {
   @apply w-full lg:w-2/5 flex justify-center items-center h-full bg-neutral-50 border-[1px] rounded-lg border-neutral-300 dark:text-neutral-900 dark:bg-neutral-900 dark:border-neutral-700
 }
 
-.uploadCard{
+.uploadCard {
   @apply w-4/5 md:w-1/4 flex flex-col bg-neutral-50 dark:bg-neutral-950 border-[1px] border-neutral-800 text-justify dark:border-neutral-800 p-5 gap-4 rounded-lg
 }
+
 /* bg-gradient-to-r from-green-200 via-violet-300 to-fuchsia-300 dark:from-green-900 dark:via-violet-900 dark:to-fuchsia-900 */

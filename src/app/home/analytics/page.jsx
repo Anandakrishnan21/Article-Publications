@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import History from "@/components/analytics/History";
 import JournalChart from "@/components/analytics/JournalChart";
 import ConferenceChart from "@/components/analytics/ConferenceChart";
@@ -10,12 +10,12 @@ function AnalyticsPage() {
   const [chartData, setChartData] = useState(null);
   const [conferenceChart, setConferenceChart] = useState(null);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await new Promise((resolve) => setTimeout(resolve, 2000));
+        await new Promise((resolve) => setTimeout(resolve, 2000))
         const res = await fetch("/api/addPublication", {
           cache: "no-store",
         });
@@ -27,7 +27,7 @@ function AnalyticsPage() {
 
         const data = await res.json();
         setChartData(data);
-        setLoading(false);
+        setIsLoading(false);
       } catch (error) {
         setError("Error fetching data: " + error.message);
       }
@@ -52,7 +52,7 @@ function AnalyticsPage() {
     fetchData();
   }, []);
 
-  if (loading) {
+  if (isLoading) {
     return <Loading />;
   }
 
@@ -61,16 +61,18 @@ function AnalyticsPage() {
   }
 
   return (
-    <div className="h-full flex flex-col justify-center gap-4 box-border p-4">
-      <div className="w-full h-2/5 flex flex-col lg:flex-row gap-4">
-        <History chartData={chartData} conferenceChart={conferenceChart} />
-        <LineChart chartData={chartData} conferenceChart={conferenceChart} />
+    <Suspense fallback={<Loading />}>
+      <div className="h-full flex flex-col justify-center gap-4 box-border p-4">
+        <div className="w-full h-2/5 flex flex-col lg:flex-row gap-4">
+          <History chartData={chartData} conferenceChart={conferenceChart} />
+          <LineChart chartData={chartData} conferenceChart={conferenceChart} />
+        </div>
+        <div className="h-1/2 flex flex-col lg:flex-row gap-4">
+          <JournalChart chartData={chartData} />
+          <ConferenceChart conferenceChart={conferenceChart} />
+        </div>
       </div>
-      <div className="h-1/2 flex flex-col lg:flex-row gap-4">
-        <JournalChart chartData={chartData} />
-        <ConferenceChart conferenceChart={conferenceChart} />
-      </div>
-    </div>
+    </Suspense>
   );
 }
 

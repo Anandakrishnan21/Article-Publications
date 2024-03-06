@@ -37,7 +37,7 @@ function TextAnimation({ text }) {
     },
   };
   return (
-    <motion.div variants={container} initial="hidden" animate="visible" className="text-purple-600">
+    <motion.div variants={container} initial="hidden" animate="visible">
       {words.map((word, index) => (
         <motion.span variants={child} key={index}>
           {word}{" "}

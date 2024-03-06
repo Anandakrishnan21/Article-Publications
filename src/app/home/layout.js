@@ -11,16 +11,16 @@ export default async function HomeLayout({ children }) {
     redirect("/");
   }
   return (
-    <SidebarProvider>
-      <div className="max-h-screen flex flex-col">
-        <Header session={session} />
-        <div className="bg-stone-100 h-screen grid grid-cols-[auto,1fr] flex-grow-1 overflow-auto">
-          <SideBar />
-          <div className="overflow-x-hidden dark:bg-neutral-950">
-            <div className="box-border dark:bg-neutral-950">{children}</div>
+      <SidebarProvider>
+        <div className="max-h-screen flex flex-col">
+          <Header session={session} />
+          <div className="bg-stone-100 h-screen grid grid-cols-[auto,1fr] flex-grow-1 overflow-auto">
+            <SideBar />
+            <div className="overflow-x-hidden dark:bg-neutral-950">
+              <div className="box-border dark:bg-neutral-950">{children}</div>
+            </div>
           </div>
         </div>
-      </div>
-    </SidebarProvider>
+      </SidebarProvider>
   );
 }

@@ -61,7 +61,7 @@ function History({ chartData, conferenceChart }) {
           Papers and Users Summary
         </p>
       </div>
-      <div className="flex flex-wrap h-2/3 text-neutral-900 justify-around gap-2">
+      <div className="summaryDiv">
         {data.map((item) => (
           <div
             className={`w-[45%] md:w-1/5 ${item.bg} dark:${item.dark} rounded-xl p-4`}
