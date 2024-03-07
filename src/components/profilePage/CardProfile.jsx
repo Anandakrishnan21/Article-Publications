@@ -30,6 +30,7 @@ function CardProfile({ data, user }) {
           src={data?.imgUrl ? data.imgUrl : "/img/avatar.png"}
           width={100}
           height={100}
+          alt="profile picture"
         />
       </div>
       <div className="w-11/12 lg:h-3/4 flex flex-col gap-4">

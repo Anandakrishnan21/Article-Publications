@@ -14,7 +14,6 @@ import {
   SelectValue,
 } from "../ui/select";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
@@ -22,7 +21,6 @@ import ImageUpload from "./ImageUpload";
 import { depts } from "@/utils/constants";
 
 export function ProfileUpdate({ user, id }) {
-  const router = useRouter();
   const [newName, setNewName] = useState(user.name);
   const [newEmail, setNewEmail] = useState(user.email);
   const [newDept, setNewDept] = useState(user.dept);
@@ -51,9 +49,7 @@ export function ProfileUpdate({ user, id }) {
       if (!res.ok) {
         throw new Error("Failed to update the paper");
       }
-
-      router.refresh();
-      router.push("/home/profile");
+      location.reload();
     } catch (error) {
       console.log(error);
     }

@@ -18,9 +18,9 @@ function History({ chartData, conferenceChart }) {
     {
       id: 1,
       icon: PiScroll,
-      bg: "bg-purple-200",
-      dark: "bg-purple-300",
-      iconColor: "bg-purple-400",
+      bg: "bg-green-200",
+      dark: "dark:bg-green-900",
+      iconColor: "bg-green-400",
       length: chartData?.length + conferenceChart?.length,
       text: "Total Papers",
     },
@@ -28,7 +28,7 @@ function History({ chartData, conferenceChart }) {
       id: 2,
       icon: PiUsers,
       bg: "bg-yellow-200",
-      dark: "bg-yellow-300",
+      dark: "dark:bg-yellow-700",
       iconColor: "bg-yellow-400",
       length: email,
       text: "Total Publishers",
@@ -36,18 +36,18 @@ function History({ chartData, conferenceChart }) {
     {
       id: 3,
       icon: PiNote,
-      bg: "bg-green-200",
-      dark: "bg-green-300",
-      iconColor: "bg-green-400",
+      bg: "bg-violet-200",
+      dark: "dark:bg-violet-900",
+      iconColor: "bg-violet-400",
       length: chartData?.length,
       text: "Total Journals",
     },
     {
       id: 4,
       icon: PiNotepad,
-      bg: "bg-red-200",
-      dark: "bg-red-300",
-      iconColor: "bg-red-400",
+      bg: "bg-fuchsia-300",
+      dark: "dark:bg-fuchsia-900",
+      iconColor: "bg-fuchsia-400",
       length: conferenceChart?.length,
       text: "Total Conferences",
     },
@@ -64,12 +64,12 @@ function History({ chartData, conferenceChart }) {
       <div className="summaryDiv">
         {data.map((item) => (
           <div
-            className={`w-[45%] md:w-1/5 ${item.bg} dark:${item.dark} rounded-xl p-4`}
+            className={`w-[45%] md:w-1/5 ${item.bg} ${item.dark} dark:text-neutral-50 rounded-xl p-4`}
           >
             <div className="w-full flex justify-end">
               <item.icon
                 size={24}
-                className={`p-1 ${item.iconColor} rounded-full`}
+                className={`p-1 ${item.iconColor} text-black rounded-full`}
               />
             </div>
             <div className="text-sm font-semibold py-2">

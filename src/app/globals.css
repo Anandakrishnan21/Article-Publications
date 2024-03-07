@@ -231,7 +231,7 @@
   @apply gap-3 px-3 md:px-5;
 }
 
-.summaryDiv{
+.summaryDiv {
   @apply flex flex-wrap h-2/3 text-neutral-900 justify-between lg:justify-around gap-2
 }
 
@@ -308,7 +308,7 @@
 }
 
 .uploadCard {
-  @apply w-4/5 md:w-1/4 flex flex-col bg-neutral-50 dark:bg-neutral-950 border-[1px] border-neutral-800 text-justify dark:border-neutral-800 p-5 gap-4 rounded-lg
+  @apply flex border dark:border-neutral-800 bg-neutral-200/80 bg-neutral-200 dark:bg-[#222222]
 }
 
 /* bg-gradient-to-r from-green-200 via-violet-300 to-fuchsia-300 dark:from-green-900 dark:via-violet-900 dark:to-fuchsia-900 */

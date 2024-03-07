@@ -11,7 +11,6 @@ import { useSession } from "next-auth/react";
 
 const AvatarComp = () => {
   const { data: session } = useSession();
-
   return (
     <TooltipProvider>
       <Tooltip>
@@ -22,7 +21,7 @@ const AvatarComp = () => {
             }}
             className="border-4 dark:border-2 border-fuchsia-700"
           >
-            {session && <AvatarImage src={session?.user?.image} />}
+            {session && <AvatarImage src={session?.user?.imgUrl || session?.user?.image} />}
             {session && (
               <AvatarFallback>{session?.user?.name.charAt(0)}</AvatarFallback>
             )}

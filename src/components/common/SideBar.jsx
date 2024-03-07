@@ -3,7 +3,7 @@ import React from "react";
 import { useSidebarContext } from "@/context/SidebarContext";
 import { HiOutlineLogout } from "react-icons/hi";
 import {
-  IoAnalyticsSharp,
+  IoBarChart,
   IoCloudUpload,
   IoGrid,
   IoHome,
@@ -48,7 +48,7 @@ export function SideBar() {
     {
       name: "Analytics",
       href: "/home/analytics",
-      icon: IoAnalyticsSharp ,
+      icon: IoBarChart ,
       current: `/${segment}` === "/analytics" ? true : false,
     },
     {
