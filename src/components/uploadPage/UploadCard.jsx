@@ -1,13 +1,13 @@
 "use client";
-import Link from "next/link";
-import { useSelectedLayoutSegment } from "next/navigation";
-import React from "react";
-import { Button } from "../ui/button";
+import React, { useEffect, useState } from "react";
 import { BadgeCheck } from "lucide-react";
 import { Label } from "../ui/label";
+import { offers } from "@/utils/constants";
+import UploadBtn from "./UploadBtn";
 
 function UploadCard() {
-  const segment = useSelectedLayoutSegment();
+  const [price, setPrice] = useState([]);
+  const [error, setError] = useState(null);
 
   const CardContent = [
     {
@@ -15,43 +15,50 @@ function UploadCard() {
       name: "Journal",
       href: "/home/upload/journal",
       upload: "Upload Journal",
-      current: `/${segment}` === "/journal" ? true : false,
     },
     {
       id: "2",
       name: "Conference",
       href: "/home/upload/conference",
       upload: "Upload Conference",
-      current: `/${segment}` === "/conference" ? true : false,
     },
   ];
 
-  const offers = [
-    {
-      id: 1,
-      label: "Unlimited Publishing",
-    },
-    {
-      id: 2,
-      label: "Unlimited View Access",
-    },
-    {
-      id: 3,
-      label: "Unlimited Data Access",
-    },
-    {
-      id: 4,
-      label: "Access to data in PDF format",
-    },
-    {
-      id: 5,
-      label: "Access to data in Excel format",
-    },
-    {
-      id: 6,
-      label: "Core Platform Features",
-    },
-  ];
+  useEffect(() => {
+    const fetchPrice = async () => {
+      const res = await fetch("/api/getPricing", {
+        cache: "no-store",
+      });
+      const data = await res.json();
+      setPrice(data);
+    };
+    fetchPrice();
+  }, []);
+
+  const handleSubscription = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch("/api/payment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          priceId: price[0].id,
+        }),
+      });
+
+      if (!res.ok) {
+        throw new error("Network response was not ok");
+      }
+
+      const data = await res.json();
+      window.location.assign(data);
+    } catch (error) {
+      setError("Error:", error.message);
+    }
+  };
+
   return (
     <div className="flex flex-col md:flex-row md:justify-center items-center md:items-start gap-4 md:p-4 py-10">
       {CardContent.map((card) => (
@@ -73,19 +80,19 @@ function UploadCard() {
           <div className="flex flex-col gap-2">
             <p>Available Features</p>
             <div className="uploadCard flex-col gap-4 p-4 rounded-lg">
-              {offers.map((offer) => (
-                <div className="flex items-center gap-2" key={offer.id}>
+              {offers.map((offer, index) => (
+                <div className="flex items-center gap-2" key={index}>
                   <BadgeCheck size={20} />
-                  <Label>{offer.label}</Label>
+                  <Label>{offer}</Label>
                 </div>
               ))}
             </div>
           </div>
-          <Link href={card.href}>
-            <Button className="w-full flex gap-3 items-center">
-              {card.upload}
-            </Button>
-          </Link>
+          <UploadBtn
+            href={card.href}
+            upload={card.upload}
+            handleSubscription={handleSubscription}
+          />
         </div>
       ))}
     </div>

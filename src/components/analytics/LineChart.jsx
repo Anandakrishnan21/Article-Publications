@@ -3,96 +3,60 @@ import React, { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
 
 function LineChart({ chartData, conferenceChart }) {
-  const lineRef = useRef(null);
+  const doughnutRef = useRef(null);
 
   useEffect(() => {
     if (chartData && conferenceChart) {
-      if (lineRef.current) {
-        lineRef.current.destroy();
+      if (doughnutRef.current) {
+        doughnutRef.current.destroy();
       }
 
-      const journalYearCountMap = {};
+      const totalYearCountMap = {};
+
       chartData.forEach((paper) => {
         const year = paper.pubYear;
-        journalYearCountMap[year] = (journalYearCountMap[year] || 0) + 1;
+        totalYearCountMap[year] = (totalYearCountMap[year] || 0) + 1;
       });
 
-      const conferenceYearCountMap = {};
       conferenceChart.forEach((paper) => {
         const year = paper.pubYear;
-        conferenceYearCountMap[year] = (conferenceYearCountMap[year] || 0) + 1;
+        totalYearCountMap[year] = (totalYearCountMap[year] || 0) + 1;
       });
 
-      const allYears = Array.from(
-        new Set([
-          ...Object.keys(journalYearCountMap),
-          ...Object.keys(conferenceYearCountMap),
-        ])
-      );
-      const journalData = allYears.map(
-        (year) => journalYearCountMap[year] || 0
-      );
-      const conferenceData = allYears.map(
-        (year) => conferenceYearCountMap[year] || 0
-      );
+      const allYears = Object.keys(totalYearCountMap);
+      const totalData = allYears.map((year) => totalYearCountMap[year] || 0);
 
-      const ctx = document.getElementById("line");
-      const lineChartInstance = new Chart(ctx, {
-        type: "line",
+      const ctx = document.getElementById("doughnut");
+      const doughnutChartInstance = new Chart(ctx, {
+        type: "doughnut",
         data: {
           labels: allYears,
           datasets: [
             {
-              label: "Number of Journals",
-              data: journalData,
-              backgroundColor: "#9746D2",
-              borderColor: "#9746D2",
-              fill: false,
-            },
-            {
-              label: "Number of Conferences",
-              data: conferenceData,
-              backgroundColor: "#33F4F9",
-              borderColor: "#33F4F9",
-              fill: false,
+              label: "Publications",
+              data: totalData,
+              backgroundColor: [
+                "rgb(255, 99, 132)",
+                "rgb(54, 162, 235)",
+                "rgb(255, 205, 86)",
+                "#FF6B6B",
+                "#4CAF50",
+                "#FF5733",
+                "#9B59B6",
+              ].slice(0, allYears.length),
+              borderColor: "#fff",
+              borderWidth: 2,
             },
           ],
         },
         options: {
-          scales: {
-            x: {
-              title: {
-                display: true,
-                text: "Year",
-              },
-              ticks: {
-                font: {
-                  weight: "600",
-                },
-              },
-              grid: {
-                display: false,
-              },
-            },
-            y: {
-              title: {
-                display: true,
-                text: "Number of Publications",
-              },
-              ticks: {
-                font: {
-                  weight: "600",
-                },
-              },
-              grid:{
-                display: false,
-              }
-            },
-          },
           plugins: {
             title: {
               display: true,
               text: "Publications over the Years",
+              font: {
+                size: "20"
+              }
             },
             legend: {
               position: "top",
@@ -101,13 +65,13 @@ function LineChart({ chartData, conferenceChart }) {
         },
       });
 
-      lineRef.current = lineChartInstance;
+      doughnutRef.current = doughnutChartInstance;
     }
   }, [chartData, conferenceChart]);
 
   return (
     <div className="lineChart">
-      <canvas id="line"></canvas>
+     <canvas id="doughnut"></canvas>
     </div>
   );
 }

@@ -12,7 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Label } from "@/components/ui/Label";
+import { Label } from "@/components/ui/label";
 import { useToast } from "../ui/use-toast";
 
 const PublicationForm = () => {

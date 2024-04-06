@@ -73,8 +73,8 @@ function History({ chartData, conferenceChart }) {
               />
             </div>
             <div className="text-sm font-semibold py-2">
-              <p>{item.length}</p>
-              <p>{item.text}</p>
+              <p className="font-bold text-2xl">{item.length}</p>
+              <p className="font-light">{item.text}</p>
             </div>
           </div>
         ))}

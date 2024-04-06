@@ -300,11 +300,11 @@
 }
 
 .Chart {
-  @apply w-full lg:w-1/2 flex justify-center items-center bg-neutral-50 border-[1px] rounded-lg border-neutral-300 dark:text-neutral-900 dark:bg-neutral-900 dark:border-neutral-700 p-4
+  @apply w-full lg:w-1/2 flex flex-col gap-2 justify-center items-center bg-neutral-50 border-[1px] rounded-lg border-neutral-300 dark:text-neutral-900 dark:bg-neutral-900 dark:border-neutral-700 p-2
 }
 
 .lineChart {
-  @apply w-full lg:w-2/5 flex justify-center items-center h-full bg-neutral-50 border-[1px] rounded-lg border-neutral-300 dark:text-neutral-900 dark:bg-neutral-900 dark:border-neutral-700
+  @apply w-full lg:w-2/5 flex justify-center items-center h-full bg-neutral-50 border-[1px] rounded-lg border-neutral-300 dark:text-neutral-900 dark:bg-neutral-900 dark:border-neutral-700 p-2
 }
 
 .uploadCard {

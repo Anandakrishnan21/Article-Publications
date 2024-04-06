@@ -62,12 +62,12 @@ function AnalyticsPage() {
 
   return (
     <Suspense fallback={<Loading />}>
-      <div className="h-full flex flex-col justify-center gap-4 box-border p-4">
-        <div className="w-full h-2/5 flex flex-col lg:flex-row gap-4">
+      <div className="h-full flex flex-col justify-center gap-2 box-border p-4">
+        <div className="w-full lg:h-72 flex flex-col lg:flex-row gap-2">
           <History chartData={chartData} conferenceChart={conferenceChart} />
           <LineChart chartData={chartData} conferenceChart={conferenceChart} />
         </div>
-        <div className="h-1/2 flex flex-col lg:flex-row gap-4">
+        <div className="h-96 flex flex-col lg:flex-row gap-2">
           <JournalChart chartData={chartData} />
           <ConferenceChart conferenceChart={conferenceChart} />
         </div>

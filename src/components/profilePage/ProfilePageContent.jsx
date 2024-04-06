@@ -56,9 +56,9 @@ function ProfilePageContent() {
           key={index}
           className="w-full box-border flex justify-center h-full"
         >
-          <div className="w-full h-full flex flex-col lg:flex-row gap-4 p-6">
+          <div className="w-full h-full flex flex-col lg:flex-row gap-2 p-4">
             <CardProfile data={data} user={userData} />
-            <div className="w-full lg:w-2/3 h-[90%] flex flex-col gap-4">
+            <div className="w-full lg:w-2/3 h-[90%] flex flex-col gap-2">
               <UserSummary />
               <ScholarID data={data} />
             </div>

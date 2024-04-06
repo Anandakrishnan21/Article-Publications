@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import { Input } from "../ui/Input";
+import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { ProfileUpdate } from "./ProfileUpdate";
 

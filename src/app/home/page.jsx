@@ -1,5 +1,4 @@
 "use client";
-// HomePage.jsx
 import React, { useState } from "react";
 import DisplayAllPapers from "@/components/homePage/DisplayAllPapers";
 import DisplayAllConference from "@/components/homePage/DisplayAllConference";

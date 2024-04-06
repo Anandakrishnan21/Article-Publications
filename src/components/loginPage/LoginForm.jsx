@@ -7,7 +7,7 @@ import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { Button } from "../ui/button";
 import Separator from "../auths/Separator";
 import { useToast } from "../ui/use-toast";
-import { Input } from "../ui/Input";
+import { Input } from "../ui/input";
 
 export default function LoginForm() {
   const { toast } = useToast();
