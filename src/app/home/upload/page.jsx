@@ -1,10 +1,13 @@
 import UploadCard from "@/components/uploadPage/UploadCard";
-import React from "react";
+import React, { Suspense } from "react";
+import Loading from "../loading";
 
 function page() {
   return (
     <>
-     <UploadCard />
+      <Suspense fallback={<Loading />}>
+        <UploadCard />
+      </Suspense>
     </>
   );
 }

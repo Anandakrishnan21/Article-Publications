@@ -224,7 +224,6 @@ const ConferenceForm = () => {
               <Label htmlFor="month">Month</Label>
 
               <Select
-                required
                 onValueChange={(value) => setMonth(value)}
                 name="month"
                 id="month"
@@ -260,7 +259,6 @@ const ConferenceForm = () => {
             <div className="w-full">
               <Label htmlFor="isbn">ISBN Number</Label>
               <Input
-                required
                 onChange={(e) => setIsbn(e.target.value)}
                 type="text"
                 id="isbn"

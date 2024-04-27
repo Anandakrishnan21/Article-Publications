@@ -232,7 +232,6 @@ function EditJournalForm({
             <div className="w-full">
               <Label htmlFor="month">Month</Label>
               <Select
-                required
                 onValueChange={(value) => setNewMonth(value)}
                 name="month"
                 id="month"
@@ -269,12 +268,10 @@ function EditJournalForm({
             <div className="w-full">
               <Label htmlFor="issn">ISSN Number</Label>
               <Input
-                required
                 onChange={(e) => setNewIssn(e.target.value)}
                 value={newIssn}
                 type="text"
                 id="issn"
-                pattern="\d{4}-\d{4}"
                 placeholder="ISSN Number (eg:1234-7890)"
                 className="inputFields"
               />

@@ -8,13 +8,13 @@ import ScholarID from "./ScholarID";
 function ProfilePageContent() {
   const [profile, setProfile] = useState([]);
   const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
   const [userData, setUserData] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await new Promise((resolve) => setTimeout(resolve, 2000));
+        // await new Promise((resolve) => setTimeout(resolve, 2000));
         const res = await fetch("http://localhost:3000/api/register", {
           cache: "no-store",
         });
@@ -25,7 +25,7 @@ function ProfilePageContent() {
         }
 
         const data = await res.json();
-        setIsLoading(false);
+        // setIsLoading(false);
 
         if (Array.isArray(data)) {
           setProfile(data);
@@ -42,9 +42,9 @@ function ProfilePageContent() {
     fetchData();
   }, []);
 
-  if (isLoading) {
-    return <Loading />;
-  }
+  // if (isLoading) {
+  //   return <Loading />;
+  // }
   if (error) {
     return <div>Error: {error}</div>;
   }

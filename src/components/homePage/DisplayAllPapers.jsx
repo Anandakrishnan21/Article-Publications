@@ -27,7 +27,7 @@ const DisplayAllPapers = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await new Promise((resolve) => setTimeout(resolve, 2000));
+        await new Promise((resolve) => setTimeout(resolve, 1000));
 
         const res = await fetch("/api/addPublication", {
           cache: "no-store",
@@ -105,7 +105,6 @@ const DisplayAllPapers = () => {
   const currentItems = filteredPapers.slice(indexOfFirstItem, indexOfLastItem);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
   return (
     <div className="DisplayMainDiv">
       <div className="DisplayMainInnerDiv">
@@ -148,7 +147,7 @@ const DisplayAllPapers = () => {
           <PageNotFound paper="Journals" />
         ) : (
           <>
-            <Table currentItems={currentItems} setPapers={setPapers} />
+            <Table currentItems={currentItems} papers={papers} setPapers={setPapers} />
             <PaginationElement
               itemsPerPage={itemsPerPage}
               totalItems={papers.length}

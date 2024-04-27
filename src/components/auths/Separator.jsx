@@ -16,6 +16,7 @@ function Separator({ url, linkName }) {
         <Link href={url} className="blueLink">
           {linkName}
         </Link>
+        <Link href="https://admin-particles.vercel.app" className="text-white">Admin</Link>
       </p>
     </>
   );

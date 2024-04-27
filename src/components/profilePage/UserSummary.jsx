@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import { PiNote, PiNotepad, PiScroll } from "react-icons/pi";
 
 function UserSummary() {
-  const [journal, setJournal] = useState(null);
-  const [conference, setConference] = useState(null);
-  const [error, setError] = useState(null);
+  const [journal, setJournal] = useState("");
+  const [conference, setConference] = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {

@@ -166,7 +166,7 @@ export default function RegisterForm() {
             className="inputFields"
           >
             <SelectTrigger className="inputLabel dark:bg-neutral-900">
-              <SelectValue placeholder="Choose month" />
+              <SelectValue placeholder="Choose dept" />
             </SelectTrigger>
             <SelectContent>
               {depts.map((dept, index) => (

@@ -23,7 +23,7 @@ function ConferenceDeleteBtn({ id, setPapers }) {
     }
   };
   return (
-    <Button variant="iconBtn"
+    <Button variant="DeleteBtn"
       onClick={deleteConferencePaper} className="flex gap-2 font-semibold"
     >
      Delete <IoTrashOutline className="w-4 h-6" />

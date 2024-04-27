@@ -32,6 +32,7 @@
     "framer-motion": "^10.16.16",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.8.2",
     "lucide-react": "^0.292.0",
     "mongoose": "^8.0.1",
     "multer": "^1.4.5-lts.1",

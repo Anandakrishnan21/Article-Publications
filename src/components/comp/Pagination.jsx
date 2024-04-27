@@ -7,11 +7,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
-export function PaginationElement({
-  totalItems,
-  paginate,
-  currentPage,
-}) {
+export function PaginationElement({ totalItems, paginate, currentPage }) {
   const prevBtnHandle = () => {
     if (currentPage > 1) {
       paginate(currentPage - 1);
@@ -19,9 +15,10 @@ export function PaginationElement({
       paginate(currentPage);
     }
   };
-
+  
   const nextBtnHandle = () => {
-    if (totalItems > 5) {
+    const totalPages = Math.ceil(totalItems / 5);
+    if (currentPage < totalPages) {
       paginate(currentPage + 1);
     } else {
       paginate(currentPage);

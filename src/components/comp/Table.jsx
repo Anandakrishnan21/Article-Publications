@@ -2,10 +2,10 @@ import React from "react";
 import PdfExcel from "./PdfExcel";
 import JournalTableItem from "./JournalTableItem";
 
-function Table({ currentItems, setPapers }) {
+function Table({ currentItems, setPapers, papers }) {
   return (
     <div className="TableMainDiv">
-      <PdfExcel currentItems={currentItems} />
+      <PdfExcel papers={papers} />
       <div className="TableDiv">
         {currentItems.map((paper, index) => (
           <JournalTableItem key={index} paper={paper} setPapers={setPapers} />

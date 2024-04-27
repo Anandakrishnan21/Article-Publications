@@ -7,15 +7,15 @@ import LineChart from "@/components/analytics/LineChart";
 import Loading from "../loading";
 
 function AnalyticsPage() {
-  const [chartData, setChartData] = useState(null);
-  const [conferenceChart, setConferenceChart] = useState(null);
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [chartData, setChartData] = useState("");
+  const [conferenceChart, setConferenceChart] = useState("");
+  const [error, setError] = useState("");
+  // const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await new Promise((resolve) => setTimeout(resolve, 2000))
+        // await new Promise((resolve) => setTimeout(resolve, 2000))
         const res = await fetch("/api/addPublication", {
           cache: "no-store",
         });
@@ -27,7 +27,7 @@ function AnalyticsPage() {
 
         const data = await res.json();
         setChartData(data);
-        setIsLoading(false);
+        // setIsLoading(false);
       } catch (error) {
         setError("Error fetching data: " + error.message);
       }
@@ -52,9 +52,9 @@ function AnalyticsPage() {
     fetchData();
   }, []);
 
-  if (isLoading) {
-    return <Loading />;
-  }
+  // if (isLoading) {
+  //   return <Loading />;
+  // }
 
   if (error) {
     return <div>{error}</div>;
@@ -67,7 +67,7 @@ function AnalyticsPage() {
           <History chartData={chartData} conferenceChart={conferenceChart} />
           <LineChart chartData={chartData} conferenceChart={conferenceChart} />
         </div>
-        <div className="h-96 flex flex-col lg:flex-row gap-2">
+        <div className="flex flex-col lg:flex-row gap-2">
           <JournalChart chartData={chartData} />
           <ConferenceChart conferenceChart={conferenceChart} />
         </div>

@@ -36,7 +36,6 @@ const paperSchema = new Schema(
     },
     month: {
       type: String,
-      required: true,
     },
     pubYear: {
       type: Number,
@@ -44,7 +43,6 @@ const paperSchema = new Schema(
     },
     issn: {
       type: String,
-      required: true,
     },
     vol: {
       type: Number,

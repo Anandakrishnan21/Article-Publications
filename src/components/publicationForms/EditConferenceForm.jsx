@@ -221,7 +221,6 @@ function EditConferenceForm({
               <Label htmlFor="month">Month</Label>
 
               <Select
-                required
                 onValueChange={(value) => setNewMonth(value)}
                 name="month"
                 id="month"
@@ -258,7 +257,6 @@ function EditConferenceForm({
             <div className="w-full">
               <Label htmlFor="isbn">ISBN Number</Label>
               <Input
-                required
                 onChange={(e) => setNewIsbn(e.target.value)}
                 value={newIsbn}
                 type="text"

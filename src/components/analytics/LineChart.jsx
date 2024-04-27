@@ -42,7 +42,6 @@ function LineChart({ chartData, conferenceChart }) {
                 "#FF6B6B",
                 "#4CAF50",
                 "#FF5733",
-                "#9B59B6",
               ].slice(0, allYears.length),
               borderColor: "#fff",
               borderWidth: 2,

@@ -36,7 +36,6 @@ const conferenceSchema = new Schema(
     },
     month: {
       type: String,
-      required: true,
     },
     pubYear: {
       type: Number,
@@ -44,7 +43,6 @@ const conferenceSchema = new Schema(
     },
     isbn: {
       type: String,
-      required: true,
     },
     doi: {
       type: String,

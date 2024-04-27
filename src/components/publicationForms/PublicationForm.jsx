@@ -243,7 +243,6 @@ const PublicationForm = () => {
             <div className="w-full">
               <Label htmlFor="month">Month</Label>
               <Select
-                required
                 onValueChange={(value) => setMonth(value)}
                 name="month"
                 id="month"
@@ -279,11 +278,9 @@ const PublicationForm = () => {
             <div className="w-full">
               <Label htmlFor="issn">ISSN Number</Label>
               <Input
-                required
                 onChange={(e) => setIssn(e.target.value)}
                 type="text"
                 id="issn"
-                pattern="\d{4}-\d{4}"
                 placeholder="ISSN Number (eg:1234-7890)"
                 className="inputFields"
               />

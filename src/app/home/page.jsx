@@ -1,10 +1,11 @@
 "use client";
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import DisplayAllPapers from "@/components/homePage/DisplayAllPapers";
 import DisplayAllConference from "@/components/homePage/DisplayAllConference";
 import Tab from "@/components/comp/Tab";
 import { useSession } from "next-auth/react";
 import { SpecialForm } from "@/components/comp/SpecialForm";
+import Loading from "./loading";
 
 function HomePage() {
   const [selectedTab, setSelectedTab] = useState("journal");
@@ -12,8 +13,8 @@ function HomePage() {
 
   return (
     <div>
-      {session?.user?.scholar ? (
-        <>
+      <>
+        <Suspense fallback={<Loading />}>
           <Tab
             selectedTab={selectedTab}
             setSelectedTab={setSelectedTab}
@@ -25,12 +26,8 @@ function HomePage() {
           ) : (
             <DisplayAllConference />
           )}
-        </>
-      ) : (
-        <div>
-          <SpecialForm />
-        </div>
-      )}
+        </Suspense>
+      </>
     </div>
   );
 }
