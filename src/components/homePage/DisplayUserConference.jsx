@@ -150,6 +150,7 @@ const DisplayUserConference = () => {
           <>
             <ConferenceTable
               currentItems={currentItems}
+              papers={papers}
               setPapers={setPapers}
             />
             <PaginationElement

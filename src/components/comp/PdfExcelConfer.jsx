@@ -4,58 +4,49 @@ import jsPDF from "jspdf";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 import { FaFileExcel, FaFilePdf } from "react-icons/fa";
+import "jspdf-autotable";
 
-function PdfExcelConfer({ currentItems }) {
+function PdfExcelConfer({ papers }) {
   const generatePDF = () => {
     const doc = new jsPDF();
     let yOffset = 10;
 
-    doc.setFontSize(20);
-    doc.text("Conference Published".toUpperCase(), 75, yOffset);
+    doc.setFontSize(16);
+    doc.text("Conference Published".toUpperCase(), 70, yOffset);
 
-    currentItems.forEach((paper, index) => {
-      if (yOffset + 50 >= doc.internal.pageSize.height - 10) {
-        doc.addPage();
-        yOffset = 45;
-      }
+    const columns = [
+      { header: "Title", dataKey: "title" },
+      { header: "Authors", dataKey: "authors" },
+      { header: "Department", dataKey: "dept" },
+      { header: "Conference", dataKey: "conference" },
+      { header: "Vol", dataKey: "vol" },
+      { header: "Page No", dataKey: "pageno" },
+      { header: "Year", dataKey: "pubYear" },
+      { header: "Isbn No", dataKey: "isbn" },
+    ];
 
-      doc.rect(10, yOffset + 10, doc.internal.pageSize.width - 20, 40);
+    const rows = papers.map((paper) => ({
+      title: paper.title,
+      authors: `${paper.author1} ${paper.author2}`,
+      dept: paper.dept,
+      conference: paper.conference.toLowerCase(),
+      isbn: paper.isbn,
+      vol: paper.vol,
+      pubYear: paper.pubYear,
+    }));
 
-      doc.setFontSize(10);
-      doc.text(`Title: ${paper.title}`.toUpperCase(), 15, yOffset + 15);
-      doc.text(
-        `Authors: ${paper.author1} ${paper.author2} ${paper.author3} ${paper.author4}`.toUpperCase(),
-        15,
-        yOffset + 21
-      );
-      doc.text(`Department: ${paper.dept}`.toUpperCase(), 15, yOffset + 27);
-      doc.text(
-        `Conference: ${paper.conference}`.toUpperCase(),
-        15,
-        yOffset + 33
-      );
-      doc.text(`Isbn No: ${paper.isbn}`.toUpperCase(), 15, yOffset + 39);
-      doc.text(
-        `Year: ${paper.pubYear} Month: ${paper.month}`.toUpperCase(),
-        140,
-        yOffset + 39
-      );
-      if (paper.doi) {
-        doc.textWithLink(`Doi: ${paper.doi}`.toUpperCase(), 15, yOffset + 45, {
-          url: paper.doi,
-        });
-      } else {
-        doc.text("DOI Not Available", 15, yOffset + 39);
-      }
-
-      yOffset += 55;
+    doc.autoTable({
+      startY: 20,
+      startX: 0,
+      head: [columns.map((col) => col.header)],
+      body: rows.map((row) => columns.map((col) => row[col.dataKey])),
     });
 
     doc.save("Conference.pdf");
   };
 
   const generateExcel = () => {
-    const data = currentItems.map((paper) => ({
+    const data = papers.map((paper) => ({
       Title: paper.title,
       Author1: paper.author1,
       Author2: paper.author2,

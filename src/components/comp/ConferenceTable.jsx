@@ -2,10 +2,10 @@ import React from "react";
 import PdfExcelConfer from "./PdfExcelConfer";
 import ConferenceTableItem from "./ConferenceTableItem";
 
-function ConferenceTable({ currentItems, setPapers }) {
+function ConferenceTable({ currentItems, setPapers, papers }) {
   return (
     <div className="TableMainDiv">
-      <PdfExcelConfer currentItems={currentItems} />
+      <PdfExcelConfer papers={papers} />
       <div className="TableDiv">
         {currentItems.map((paper, index) => (
           <ConferenceTableItem

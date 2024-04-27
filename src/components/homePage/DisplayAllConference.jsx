@@ -151,6 +151,7 @@ const DisplayAllConference = () => {
             <ConferenceTable
               currentItems={currentItems}
               setPapers={setPapers}
+              papers={papers}
             />
             <PaginationElement
               itemsPerPage={itemsPerPage}

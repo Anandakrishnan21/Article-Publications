@@ -148,7 +148,7 @@ const DisplayUserJournal = () => {
           <PageNotFound paper="Journals" />
         ) : (
           <>
-            <Table currentItems={currentItems} setPapers={setPapers} />
+            <Table currentItems={currentItems} setPapers={setPapers} papers={papers} />
             <PaginationElement
               itemsPerPage={itemsPerPage}
               totalItems={papers.length}

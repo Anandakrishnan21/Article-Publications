@@ -1,57 +1,52 @@
 import React from "react";
 import jsPDF from "jspdf";
 import { Button } from "../ui/button";
-import * as XLSX from "xlsx";
-import { saveAs } from "file-saver";
 import { FaFileExcel, FaFilePdf } from "react-icons/fa";
+import { saveAs } from "file-saver";
+import * as XLSX from "xlsx";
+import "jspdf-autotable";
 
-function PdfExcel({ currentItems }) {
+function PdfExcel({ papers }) {
   const generatePDF = () => {
     const doc = new jsPDF();
     let yOffset = 10;
 
-    doc.setFontSize(20);
-    doc.text("Journals Published".toUpperCase(), 75, yOffset);
+    doc.setFontSize(16);
+    doc.text("Journals Published".toUpperCase(), 70, yOffset);
 
-    currentItems.forEach((paper, index) => {
-      if (yOffset + 50 >= doc.internal.pageSize.height - 10) {
-        doc.addPage();
-        yOffset = 45;
-      }
+    const columns = [
+      { header: "Title", dataKey: "title" },
+      { header: "Authors", dataKey: "authors" },
+      { header: "Department", dataKey: "dept" },
+      { header: "Journal", dataKey: "journal" },
+      { header: "Vol", dataKey: "vol" },
+      { header: "Page No", dataKey: "pageno" },
+      { header: "Year", dataKey: "pubYear" },
+      { header: "Issn No", dataKey: "issn" },
+    ];
 
-      doc.rect(10, yOffset + 5, doc.internal.pageSize.width - 20, 40);
+    const rows = papers.map((paper) => ({
+      title: paper.title,
+      authors: `${paper.author1} ${paper.author2}`,
+      dept: paper.dept,
+      journal: paper.journal,
+      issn: paper.issn,
+      vol: paper.vol,
+      pageno: paper.pageno,
+      pubYear: paper.pubYear,
+    }));
 
-      doc.setFontSize(10);
-      doc.text(`Title: ${paper.title}`.toUpperCase(), 15, yOffset + 15);
-      doc.text(
-        `Authors: ${paper.author1} ${paper.author2} ${paper.author3} ${paper.author4}`.toUpperCase(),
-        15,
-        yOffset + 21
-      );
-      doc.text(`Department: ${paper.dept}`.toUpperCase(), 15, yOffset + 27);
-      doc.text(`Journal: ${paper.journal}`.toUpperCase(), 165, yOffset + 27);
-      doc.text(`Issn No: ${paper.issn}`.toUpperCase(), 15, yOffset + 33);
-      doc.text(
-        `Vol: ${paper.vol} Page No: ${paper.pageno} Year: ${paper.pubYear} Month: ${paper.month}`.toUpperCase(),
-        110,
-        yOffset + 33
-      );
-      if (paper.doi) {
-        doc.textWithLink(`Doi: ${paper.doi}`.toUpperCase(), 15, yOffset + 39, {
-          url: paper.doi,
-        });
-      } else {
-        doc.text("DOI Not Available", 15, yOffset + 39);
-      }
-
-      yOffset += 55;
+    doc.autoTable({
+      startY: 20,
+      head: [columns.map((col) => col.header)],
+      body: rows.map((row) => columns.map((col) => row[col.dataKey])),
     });
 
     doc.save("Journal.pdf");
   };
 
   const generateExcel = () => {
-    const data = currentItems.map((paper) => ({
+    const data = papers.map((paper) => ({
       Title: paper.title,
       Author1: paper.author1,
       Author2: paper.author2,
@@ -81,6 +76,7 @@ function PdfExcel({ currentItems }) {
 
     saveAs(dataBlob, "Journals.xlsx");
   };
+
   return (
     <div className="ExportBtnDiv">
       <Button variant="outline" onClick={generatePDF} className="ExportBtn">
