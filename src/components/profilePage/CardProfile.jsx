@@ -23,7 +23,7 @@ function CardProfile({ data, user }) {
     },
   ];
   return (
-    <div className="cardDesign w-full items-center lg:w-1/3 h-[90%] p-2 gap-4">
+    <div className="cardDesign w-full items-center lg:w-1/3 p-2 gap-4">
       <div className="colorDiv">
         <Image
           className="w-20 h-20 lg:w-24 lg:h-24 rounded-full p-1 bg-white"
@@ -36,7 +36,7 @@ function CardProfile({ data, user }) {
       <div className="w-11/12 lg:h-3/4 flex flex-col gap-4">
         <div className="lg:h-1/5">
           <h1 className="text-xl font-semibold">Personal Information</h1>
-          <p className="text-sm font-light dark:text-neutral-400">
+          <p className="text-sm dark:text-neutral-400">
             Information you provided are listed here
           </p>
         </div>

@@ -55,16 +55,17 @@ function History({ chartData, conferenceChart }) {
 
   return (
     <div className="History">
-      <div className="px-5">
+      <div>
         <h1 className="text-xl font-semibold">Particles History</h1>
-        <p className="text-sm font-light dark:text-neutral-400">
+        <p className="text-sm dark:text-neutral-400">
           Papers and Users Summary
         </p>
       </div>
-      <div className="summaryDiv">
+      <div className="analySummary">
         {data.map((item) => (
           <div
-            className={`w-[45%] md:w-1/5 ${item.bg} ${item.dark} dark:text-neutral-50 rounded-xl p-4`}
+            key={item.id}
+            className={`${item.bg} ${item.dark} dark:text-neutral-50 rounded-xl p-4`}
           >
             <div className="w-full flex justify-end">
               <item.icon
@@ -72,9 +73,9 @@ function History({ chartData, conferenceChart }) {
                 className={`p-1 ${item.iconColor} text-black rounded-full`}
               />
             </div>
-            <div className="text-sm font-semibold py-2">
+            <div className="text-base font-semibold py-2">
               <p className="font-bold text-2xl">{item.length}</p>
-              <p className="font-light">{item.text}</p>
+              <p className="md:text-lg">{item.text}</p>
             </div>
           </div>
         ))}

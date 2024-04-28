@@ -4,15 +4,8 @@ import Chart from "chart.js/auto";
 import { saveAs } from "file-saver";
 import Papa from "papaparse";
 import { Button } from "../ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../ui/select";
-import { IoFilter } from "react-icons/io5";
 import { FaFileExcel } from "react-icons/fa";
+import YearlyFilter from "./YearlyFilter";
 
 function JournalChart({ chartData }) {
   const journalRef = useRef(null);
@@ -20,6 +13,11 @@ function JournalChart({ chartData }) {
   const [selectedStartYear, setSelectedStartYear] = useState("");
   const [selectedEndYear, setSelectedEndYear] = useState("");
   const [yearlyDifferences, setYearlyDifferences] = useState([]);
+  const currentYear = new Date().getFullYear();
+  const availableYears = [];
+  for (let i = 0; i < 5; i++) {
+    availableYears.push(currentYear - i);
+  }
 
   useEffect(() => {
     if (chartData) {
@@ -27,7 +25,9 @@ function JournalChart({ chartData }) {
 
       chartData.forEach((paper) => {
         const year = paper.pubYear;
-        counts[year] = (counts[year] || 0) + 1;
+        if (year >= currentYear - 4 && year <= currentYear) {
+          counts[year] = (counts[year] || 0) + 1;
+        }
       });
 
       setYearCountMap(counts);
@@ -115,6 +115,7 @@ function JournalChart({ chartData }) {
   const handleFilterByYearRange = () => {
     const start = parseInt(selectedStartYear);
     const end = parseInt(selectedEndYear);
+    console.log(start, end);
 
     const filteredCounts = {};
 
@@ -210,59 +211,15 @@ function JournalChart({ chartData }) {
         <FaFileExcel />
       </Button>
       <canvas id="journal"></canvas>
-      <div className="w-full flex justify-between items-center">
-        {yearlyDifferences.length > 0 && (
-          <div className="w-1/2 flex items-center text-sm gap-1">
-            <p className="text-green-600">
-              Progress from {selectedStartYear} to {selectedEndYear} is
-            </p>
-            {yearlyDifferences.map((item) => (
-              <p key={item.year} className="text-2xl">
-                {item.difference}
-              </p>
-            ))}
-          </div>
-        )}
-        <div className="w-1/2 flex justify-end gap-2">
-          <Select
-            onValueChange={(value) => setSelectedStartYear(value)}
-            id="startYear"
-            value={selectedStartYear}
-            className="inputFields"
-          >
-            <SelectTrigger className="inputLabel dark:bg-neutral-900 h-8">
-              <SelectValue placeholder="Start year" />
-            </SelectTrigger>
-            <SelectContent>
-              {[2018, 2019, 2020, 2021, 2022, 2023].map((year) => (
-                <SelectItem key={year} value={year}>
-                  {year}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          <Select
-            onValueChange={(value) => setSelectedEndYear(value)}
-            id="endYear"
-            value={selectedEndYear}
-            className="inputFields"
-          >
-            <SelectTrigger className="inputLabel dark:bg-neutral-900 h-8">
-              <SelectValue placeholder="End year" />
-            </SelectTrigger>
-            <SelectContent>
-              {[2018, 2019, 2020, 2021, 2022, 2023].map((year) => (
-                <SelectItem key={year} value={year}>
-                  {year}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          <Button onClick={handleFilterByYearRange} className="ExportBtn h-8">
-            <IoFilter />
-          </Button>
-        </div>
-      </div>
+      <YearlyFilter
+        yearlyDifferences={yearlyDifferences}
+        selectedStartYear={selectedStartYear}
+        selectedEndYear={selectedEndYear}
+        availableYears={availableYears}
+        handleFilterByYearRange={handleFilterByYearRange}
+        setSelectedStartYear={setSelectedStartYear}
+        setSelectedEndYear={setSelectedEndYear}
+      />
     </div>
   );
 }

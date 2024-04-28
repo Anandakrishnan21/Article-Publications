@@ -24,7 +24,7 @@ function ScholarID({ data }) {
     <div className="cardDesign h-3/5 p-2 md:p-4 py-6 gap-4">
       <div className="px-4 lg:px-6">
         <h1 className="text-xl font-semibold">Scholar Identification</h1>
-        <p className="text-sm font-light dark:text-neutral-400">
+        <p className="text-sm dark:text-neutral-400">
           Your identification information
         </p>
       </div>

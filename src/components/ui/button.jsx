@@ -20,7 +20,7 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         iconBtn:
           "flex gap-4 bg-neutral-800 dark:bg-neutral-700 text-neutral-50 dark:text-neutral-50",
-        DeleteBtn: "flex gap-4 bg-red-900 hover:bg-red-800 text-neutral-50",
+        DeleteBtn: "flex gap-4 bg-red-500 hover:bg-red-400 text-neutral-50",
         editBtn:
           "flex gap-4 bg-neutral-800 hover:bg-neutral-900 dark:bg-neutral-800 outline outline-[1px] outline-neutral-400 dark:outline-neutral-600 text-neutral-50 dark:hover:outline-neutral-500",
         noOutline: "outline-none",

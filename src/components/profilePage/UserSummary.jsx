@@ -88,14 +88,14 @@ function UserSummary() {
     <div className="cardDesign lg:h-2/5 p-2 md:p-4 py-6 gap-4">
       <div className="px-4 lg:px-6">
         <h1 className="text-xl font-semibold">Your History</h1>
-        <p className="text-sm font-light dark:text-neutral-400">
+        <p className="text-sm dark:text-neutral-400">
           Journals and conference you published in particles
         </p>
       </div>
       <div className="summaryDiv px-4 lg:px-6">
         {data.map((item) => (
           <div
-            className={`w-[48%] lg:w-1/4 ${item.bg} ${item.dark} dark:text-neutral-50 rounded-xl p-4`}
+            className={`${item.bg} ${item.dark} dark:text-neutral-50 rounded-xl p-4`}
           >
             <div className="w-full flex justify-end">
               <item.icon
@@ -103,9 +103,9 @@ function UserSummary() {
                 className={`p-1 ${item.iconColor} text-black rounded-full`}
               />
             </div>
-            <div className="text-sm font-semibold py-2">
+            <div className="text-base font-semibold pt-2">
               <p className="font-bold text-2xl">{item.length}</p>
-              <p className="font-light">{item.text}</p>
+              <p className="md:text-lg">{item.text}</p>
             </div>
           </div>
         ))}

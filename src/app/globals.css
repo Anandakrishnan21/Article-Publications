@@ -232,7 +232,11 @@
 }
 
 .summaryDiv {
-  @apply flex flex-wrap h-2/3 text-neutral-900 justify-between lg:justify-around gap-2
+  @apply grid grid-cols-1 md:grid-cols-3 h-2/3 text-neutral-900 justify-between lg:justify-around gap-2
+}
+
+.analySummary {
+  @apply grid grid-cols-2 md:grid-cols-4 h-2/3 text-neutral-900 justify-between lg:justify-around gap-2
 }
 
 .TableMainDiv {
@@ -248,7 +252,7 @@
 }
 
 .TableItemH1 {
-  @apply text-2xl font-semibold;
+  @apply text-lg md:text-2xl font-semibold;
 }
 
 .TableItemDetailsInnerDiv {
@@ -260,7 +264,7 @@
 }
 
 .Table-dept-journal {
-  @apply w-full flex justify-between;
+  @apply w-full flex flex-col md:flex-row justify-between;
 }
 
 .TableDetailsSpan {
@@ -296,7 +300,7 @@
 }
 
 .History {
-  @apply w-full lg:w-3/5 flex flex-col gap-2 bg-neutral-50 text-neutral-900 dark:text-neutral-50 border-[1px] rounded-lg border-neutral-300 dark:bg-neutral-900 dark:border-neutral-700 p-2 md:p-4 py-6
+  @apply w-full lg:w-3/5 flex flex-col justify-around gap-4 bg-neutral-50 text-neutral-900 dark:text-neutral-50 border-[1px] rounded-lg border-neutral-300 dark:bg-neutral-900 dark:border-neutral-700 p-2
 }
 
 .Chart {
@@ -309,6 +313,10 @@
 
 .uploadCard {
   @apply flex border dark:border-neutral-800 bg-neutral-200/80 bg-neutral-200 dark:bg-[#222222]
+}
+
+.filterDiv {
+  @apply w-full flex flex-col md:flex-row gap-2 justify-between;
 }
 
 /* bg-gradient-to-r from-green-200 via-violet-300 to-fuchsia-300 dark:from-green-900 dark:via-violet-900 dark:to-fuchsia-900 */

@@ -64,10 +64,7 @@ export function ProfileUpdate({ user, id }) {
       </DialogTrigger>
       <DialogContent className="w-10/12 md:w-1/2 rounded-lg">
         <DialogHeader>
-          <DialogTitle>Edit profile</DialogTitle>
-          <DialogDescription>
-            Make changes to your profile here. Click save when you&apos;re done.
-          </DialogDescription>
+          <DialogTitle>Update your Profile</DialogTitle>
         </DialogHeader>
         <form onSubmit={onHandleSubmit} className="grid gap-4">
           <div>

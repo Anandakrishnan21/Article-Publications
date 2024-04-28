@@ -3,8 +3,8 @@ import React, { Suspense, useEffect, useState } from "react";
 import History from "@/components/analytics/History";
 import JournalChart from "@/components/analytics/JournalChart";
 import ConferenceChart from "@/components/analytics/ConferenceChart";
-import LineChart from "@/components/analytics/LineChart";
 import Loading from "../loading";
+import Doughnut from "@/components/analytics/Doughnut";
 
 function AnalyticsPage() {
   const [chartData, setChartData] = useState("");
@@ -65,7 +65,7 @@ function AnalyticsPage() {
       <div className="h-full flex flex-col justify-center gap-2 box-border p-4">
         <div className="w-full lg:h-72 flex flex-col lg:flex-row gap-2">
           <History chartData={chartData} conferenceChart={conferenceChart} />
-          <LineChart chartData={chartData} conferenceChart={conferenceChart} />
+          <Doughnut chartData={chartData} conferenceChart={conferenceChart} />
         </div>
         <div className="flex flex-col lg:flex-row gap-2">
           <JournalChart chartData={chartData} />

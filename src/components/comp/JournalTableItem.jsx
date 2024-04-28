@@ -13,7 +13,7 @@ const JournalTableItem = ({ paper, setPapers }) => {
         <h1 className="TableItemH1">{paper.title}</h1>
         <div className="TableItemDetailsInnerDiv">
           <p className="TableItemDetailsTitle">
-            Authors:
+            Authors:&nbsp;
             <span className="TableDetailsSpan">
               {paper.author1} {paper.author2} {paper.author3} {paper.author4}
             </span>
@@ -29,23 +29,32 @@ const JournalTableItem = ({ paper, setPapers }) => {
           </div>
           {/* issn & vol page year month */}
           <div className="Table-issn-vol">
-            <p className="TableItemDetailsTitle">
-              Issn no: <span className="TableDetailsSpan">{paper.issn}</span>
-            </p>
+            {paper.issn ? (
+              <p className="TableItemDetailsTitle">
+                Issn no: <span className="TableDetailsSpan">{paper.issn}</span>
+              </p>
+            ) : null}
             <div className="TableDetails-vol-page-year-month">
-              <p className="TableItemDetailsTitle">
-                Vol: <span className="TableDetailsSpan">{paper.vol}</span>
-              </p>
-              <p className="TableItemDetailsTitle">
-                page no:
-                <span className="TableDetailsSpan">{paper.pageno}</span>
-              </p>
+              {paper.vol ? (
+                <p className="TableItemDetailsTitle">
+                  Vol: <span className="TableDetailsSpan">{paper.vol}</span>
+                </p>
+              ) : null}
+              {paper.pageno ? (
+                <p className="TableItemDetailsTitle">
+                  page no:
+                  <span className="TableDetailsSpan">{paper.pageno}</span>
+                </p>
+              ) : null}
+
               <p className="TableItemDetailsTitle">
                 Year: <span className="TableDetailsSpan">{paper.pubYear}</span>
               </p>
-              <p className="TableItemDetailsTitle">
-                Month: <span className="TableDetailsSpan">{paper.month}</span>
-              </p>
+              {paper.month ? (
+                <p className="TableItemDetailsTitle">
+                  Month: <span className="TableDetailsSpan">{paper.month}</span>
+                </p>
+              ) : null}
             </div>
           </div>
           {/* doi */}

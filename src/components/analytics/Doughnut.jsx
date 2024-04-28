@@ -2,8 +2,9 @@
 import React, { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
 
-function LineChart({ chartData, conferenceChart }) {
+function Doughnut({ chartData, conferenceChart }) {
   const doughnutRef = useRef(null);
+  const currentYear = new Date().getFullYear();
 
   useEffect(() => {
     if (chartData && conferenceChart) {
@@ -15,12 +16,16 @@ function LineChart({ chartData, conferenceChart }) {
 
       chartData.forEach((paper) => {
         const year = paper.pubYear;
-        totalYearCountMap[year] = (totalYearCountMap[year] || 0) + 1;
+        if (year >= currentYear - 4 && year <= currentYear) {
+          totalYearCountMap[year] = (totalYearCountMap[year] || 0) + 1;
+        }
       });
 
       conferenceChart.forEach((paper) => {
         const year = paper.pubYear;
-        totalYearCountMap[year] = (totalYearCountMap[year] || 0) + 1;
+        if (year >= currentYear - 4 && year <= currentYear) {
+          totalYearCountMap[year] = (totalYearCountMap[year] || 0) + 1;
+        }
       });
 
       const allYears = Object.keys(totalYearCountMap);
@@ -39,9 +44,8 @@ function LineChart({ chartData, conferenceChart }) {
                 "rgb(255, 99, 132)",
                 "rgb(54, 162, 235)",
                 "rgb(255, 205, 86)",
-                "#FF6B6B",
+                "rgb(153, 102, 255)",
                 "#4CAF50",
-                "#FF5733",
               ].slice(0, allYears.length),
               borderColor: "#fff",
               borderWidth: 2,
@@ -54,8 +58,8 @@ function LineChart({ chartData, conferenceChart }) {
               display: true,
               text: "Publications over the Years",
               font: {
-                size: "20"
-              }
+                size: "20",
+              },
             },
             legend: {
               position: "top",
@@ -70,9 +74,9 @@ function LineChart({ chartData, conferenceChart }) {
 
   return (
     <div className="lineChart">
-     <canvas id="doughnut"></canvas>
+      <canvas id="doughnut"></canvas>
     </div>
   );
 }
 
-export default LineChart;
+export default Doughnut;
