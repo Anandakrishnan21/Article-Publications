@@ -30,14 +30,14 @@ function CardProfile({ data, user }) {
           src={data?.imgUrl ? data.imgUrl : "/img/avatar.png"}
           width={100}
           height={100}
-          alt="profile picture"
+          alt={`profile pic of ${data.name}`}
         />
       </div>
       <div className="w-11/12 lg:h-3/4 flex flex-col gap-4">
         <div className="lg:h-1/5">
           <h1 className="text-xl font-semibold">Personal Information</h1>
           <p className="text-sm dark:text-neutral-400">
-            Information you provided are listed here
+            Information provided:
           </p>
         </div>
         <div className="lg:h-3/5 flex flex-col justify-center gap-4">

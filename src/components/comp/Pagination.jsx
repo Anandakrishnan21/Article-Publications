@@ -29,15 +29,15 @@ export function PaginationElement({ totalItems, paginate, currentPage }) {
     <Pagination>
       <PaginationContent className="flex gap-2">
         <PaginationItem>
-          <PaginationPrevious onClick={prevBtnHandle} />
+          <PaginationPrevious href="#" onClick={prevBtnHandle} />
         </PaginationItem>
         <PaginationItem>
-          <PaginationLink className="h-8 border hover:bg-neutral-200 dark:hover:bg-neutral-800 cursor-pointer hover:border-neutral-300">
+          <PaginationLink href="#" className="h-8 border hover:bg-neutral-200 dark:hover:bg-neutral-800 cursor-pointer hover:border-neutral-300">
             {currentPage}
           </PaginationLink>
         </PaginationItem>
         <PaginationItem>
-          <PaginationNext onClick={nextBtnHandle} />
+          <PaginationNext href="#" onClick={nextBtnHandle} />
         </PaginationItem>
       </PaginationContent>
     </Pagination>

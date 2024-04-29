@@ -89,7 +89,7 @@ function UserSummary() {
       <div className="px-4 lg:px-6">
         <h1 className="text-xl font-semibold">Your History</h1>
         <p className="text-sm dark:text-neutral-400">
-          Journals and conference you published in particles
+          Journals and conferences you have published in
         </p>
       </div>
       <div className="summaryDiv px-4 lg:px-6">

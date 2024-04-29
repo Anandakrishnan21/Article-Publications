@@ -6,11 +6,23 @@ import { useSession } from "next-auth/react";
 
 const JournalTableItem = ({ paper, setPapers }) => {
   const { data: session } = useSession();
+
+  const truncateTitle = (title) => {
+    const words = title.split(" ");
+    if (words.length > 8) {
+      return words.slice(0, 8).join(" ") + "...";
+    }
+    return title;
+  };
+
   return (
     <div className="cardStyle" key={paper._id}>
       {/* details */}
       <div className="TableItemDetailsDiv">
-        <h1 className="TableItemH1">{paper.title}</h1>
+        <h1 className="TableItemH1 hidden md:flex">{paper.title}</h1>
+        <h1 className="TableItemH1 flex md:hidden">
+          {truncateTitle(paper.title)}
+        </h1>
         <div className="TableItemDetailsInnerDiv">
           <p className="TableItemDetailsTitle">
             Authors:&nbsp;
@@ -62,7 +74,7 @@ const JournalTableItem = ({ paper, setPapers }) => {
             DOI:
             <span className="TableDetailsSpan">
               <Link href={paper.doi} target="_blank" className="DOILink">
-                click here
+                <span className="hidden">{paper.doi}</span>Click Here
               </Link>
             </span>
           </p>

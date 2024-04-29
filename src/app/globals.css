@@ -292,7 +292,7 @@
 }
 
 .TableViewOnlyP {
-  @apply text-sm md:text-base text-center text-neutral-500 font-bold;
+  @apply text-sm md:text-base text-center text-neutral-600 font-bold;
 }
 
 .ProfileReadonlyInputDiv {

@@ -72,7 +72,7 @@ function YearlyFilter({
             ))}
           </SelectContent>
         </Select>
-        <Button onClick={handleFilterByYearRange} className="ExportBtn h-8">
+        <Button onClick={handleFilterByYearRange} aria-label="Filter" className="ExportBtn h-8">
           <IoFilter />
         </Button>
       </div>
