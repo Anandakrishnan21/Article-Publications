@@ -9,7 +9,7 @@ function DeleteBtn({ id, setPapers }) {
   const deleteJournalPaper = async () => {
     try {
       const res = await fetch(
-        `http://localhost:3000/api/addPublication?id=${id}`,
+        `https://particles-omega-two.vercel.app/api/addPublication?id=${id}`,
         {
           method: "DELETE",
         }

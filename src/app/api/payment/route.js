@@ -13,8 +13,8 @@ export async function POST(req) {
       },
     ],
     mode: "payment",
-    success_url: "http://localhost:3000/home/upload",
-    cancel_url: "http://localhost:3000/home/upload",
+    success_url: "https://particles-omega-two.vercel.app/home/upload",
+    cancel_url: "https://particles-omega-two.vercel.app/home/upload",
   });
   return NextResponse.json(session.url);
 }

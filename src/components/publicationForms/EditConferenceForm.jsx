@@ -49,7 +49,7 @@ function EditConferenceForm({
   const onHandleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`http://localhost:3000/api/addConference/${id}`, {
+      const res = await fetch(`https://particles-omega-two.vercel.app/api/addConference/${id}`, {
         method: "PUT",
         headers: {
           "Content-type": "application/json",

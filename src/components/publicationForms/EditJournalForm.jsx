@@ -56,7 +56,7 @@ function EditJournalForm({
     e.preventDefault();
     try {
       const res = await fetch(
-        `http://localhost:3000/api/addPublication/${id}`,
+        `https://particles-omega-two.vercel.app/api/addPublication/${id}`,
         {
           method: "PUT",
           headers: {

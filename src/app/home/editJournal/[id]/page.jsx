@@ -3,7 +3,7 @@ import React from "react";
 
 const getPaperById = async (id) => {
   try {
-    const res = await fetch(`http://localhost:3000/api/addPublication/${id}`, {
+    const res = await fetch(`https://particles-omega-two.vercel.app/api/addPublication/${id}`, {
       catch: "no-store",
     });
     if (!res.ok) {

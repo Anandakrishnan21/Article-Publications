@@ -9,7 +9,7 @@ function ConferenceDeleteBtn({ id, setPapers }) {
   const deleteConferencePaper = async () => {
     try {
       const res = await fetch(
-        `http://localhost:3000/api/addConference?id=${id}`,
+        `https://particles-omega-two.vercel.app/api/addConference?id=${id}`,
         {
           method: "DELETE",
         }
