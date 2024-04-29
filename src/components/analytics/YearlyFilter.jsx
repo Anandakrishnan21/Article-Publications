@@ -5,9 +5,9 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../ui/select";
+} from "@/components/ui/select";
 import { IoFilter } from "react-icons/io5";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 
 function YearlyFilter({
   yearlyDifferences,

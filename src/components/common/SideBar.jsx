@@ -13,8 +13,8 @@ import {
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
-import { Button } from "../ui/button";
-import Pung from "../ui/Pung";
+import { Button } from "@/components/ui/button";
+import Pung from "@/components/ui/Pung";
 import { ModeToggle } from "../mode-toggle";
 import { VscColorMode } from "react-icons/vsc";
 

@@ -1,12 +1,12 @@
 "use client";
 import { useState, useEffect } from "react";
-import Pagination, { PaginationElement } from "../comp/Pagination";
+import { PaginationElement } from "../comp/Pagination";
 import ConferenceTable from "../comp/ConferenceTable";
 import Loading from "@/app/home/loading";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import PageNotFound from "../common/PageNotFound";
 import { FaSearch } from "react-icons/fa";
-import { Input } from "../ui/input";
+import { Input } from "@/components/ui/input";
 
 const DisplayUserConference = () => {
   const [papers, setPapers] = useState([]);

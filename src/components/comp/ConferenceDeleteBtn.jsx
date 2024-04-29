@@ -2,7 +2,7 @@
 import React from "react";
 import { IoTrashOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 
 function ConferenceDeleteBtn({ id, setPapers }) {
   const router = useRouter();

@@ -1,6 +1,6 @@
 import React from "react";
 import jsPDF from "jspdf";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { FaFileExcel, FaFilePdf } from "react-icons/fa";
 import { saveAs } from "file-saver";
 import * as XLSX from "xlsx";

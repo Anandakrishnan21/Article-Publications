@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { BadgeCheck } from "lucide-react";
-import { Label } from "../ui/label";
+import { Label } from "@/components/ui/label";
 import { offers } from "@/utils/constants";
 import UploadBtn from "./UploadBtn";
 

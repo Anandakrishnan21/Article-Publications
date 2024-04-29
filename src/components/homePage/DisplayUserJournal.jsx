@@ -1,11 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
-import Pagination, { PaginationElement } from "../comp/Pagination";
+import { PaginationElement } from "../comp/Pagination";
 import Table from "../comp/Table";
 import Loading from "@/app/home/loading";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import PageNotFound from "../common/PageNotFound";
-import { Input } from "../ui/input";
+import { Input } from "@/components/ui/input";
 import { FaSearch } from "react-icons/fa";
 
 const DisplayUserJournal = () => {

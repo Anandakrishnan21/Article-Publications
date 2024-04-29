@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { IoPencilOutline } from "react-icons/io5";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 
 function EditBtn() {
   return (
