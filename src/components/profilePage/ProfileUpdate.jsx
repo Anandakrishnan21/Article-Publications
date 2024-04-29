@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/label";
 import ImageUpload from "./ImageUpload";
 import { depts } from "@/utils/constants";

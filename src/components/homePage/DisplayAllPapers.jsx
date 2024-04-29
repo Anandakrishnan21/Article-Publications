@@ -5,7 +5,7 @@ import Table from "../comp/Table";
 import Loading from "@/app/home/loading";
 import { Button } from "@/components/ui/button";
 import PageNotFound from "../common/PageNotFound";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/components/ui/Input";
 import { FaSearch } from "react-icons/fa";
 
 const DisplayAllPapers = () => {

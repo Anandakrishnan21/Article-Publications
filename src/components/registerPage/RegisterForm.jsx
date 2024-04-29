@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import Separator from "../auths/Separator";
 import { useToast } from "@/components/ui/use-toast";
 import { depts } from "@/utils/constants";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/components/ui/Input";
 import {
   Select,
   SelectContent,

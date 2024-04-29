@@ -6,7 +6,7 @@ import Loading from "@/app/home/loading";
 import { Button } from "@/components/ui/button";
 import PageNotFound from "../common/PageNotFound";
 import { FaSearch } from "react-icons/fa";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/components/ui/Input";
 
 const DisplayUserConference = () => {
   const [papers, setPapers] = useState([]);

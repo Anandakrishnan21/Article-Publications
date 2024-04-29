@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { depts, months } from "@/utils/constants";
 import { useToast } from "@/components/ui/use-toast";
 import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/components/ui/Input";
 import {
   Select,
   SelectContent,

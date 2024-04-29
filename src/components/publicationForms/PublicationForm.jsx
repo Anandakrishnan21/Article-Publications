@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { depts, months } from "@/utils/constants";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/components/ui/Input";
 import {
   Select,
   SelectContent,

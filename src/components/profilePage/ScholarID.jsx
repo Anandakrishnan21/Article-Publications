@@ -1,6 +1,6 @@
 import React from "react";
 import { Label } from "../ui/label";
-import { Input } from "../ui/input";
+import { Input } from "../ui/Input";
 
 function ScholarID({ data }) {
   const info = [
