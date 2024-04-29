@@ -4,7 +4,7 @@ import Loading from "../loading";
 
 async function ProfilePage() {
   return (
-    <div className="box-border w-screen flex justify-center items-center">
+    <div className="box-border w-screen md:w-full flex justify-center items-center">
       <Suspense fallback={<Loading />}>
         <ProfilePageContent />
       </Suspense>
