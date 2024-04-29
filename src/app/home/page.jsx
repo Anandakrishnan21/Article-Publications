@@ -4,7 +4,6 @@ import DisplayAllPapers from "@/components/homePage/DisplayAllPapers";
 import DisplayAllConference from "@/components/homePage/DisplayAllConference";
 import Tab from "@/components/comp/Tab";
 import { useSession } from "next-auth/react";
-import { SpecialForm } from "@/components/comp/SpecialForm";
 import Loading from "./loading";
 
 function HomePage() {
