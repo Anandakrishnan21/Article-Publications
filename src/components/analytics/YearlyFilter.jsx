@@ -39,8 +39,8 @@ function YearlyFilter({
       )}
       <div className="w-1/2 flex gap-2">
         <Select
-          onValueChange={(value) => setSelectedStartYear(value)}
           id="startYear"
+          onValueChange={(value) => setSelectedStartYear(value)}
           value={selectedStartYear}
           className="inputFields"
         >
@@ -56,8 +56,8 @@ function YearlyFilter({
           </SelectContent>
         </Select>
         <Select
-          onValueChange={(value) => setSelectedEndYear(value)}
           id="endYear"
+          onValueChange={(value) => setSelectedEndYear(value)}
           value={selectedEndYear}
           className="inputFields mr-2"
         >

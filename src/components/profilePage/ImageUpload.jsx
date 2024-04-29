@@ -1,9 +1,9 @@
-"use client"
+"use client";
 import { useState } from "react";
 import { UploadButton } from "@/utils/uploadthing";
 
-const ImageUpload = ({ id}) => {
-  const [imgUrl, setImgUrl] = useState('');
+const ImageUpload = ({ id }) => {
+  const [imgUrl, setImgUrl] = useState("");
 
   const handleUploadComplete = async (res) => {
     try {
@@ -11,19 +11,18 @@ const ImageUpload = ({ id}) => {
       setImgUrl(uploadedUrl);
 
       const response = await fetch(`/api/register/${id}`, {
-        method: 'PUT',
+        method: "PUT",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          imgUrl: uploadedUrl
-        })
+          imgUrl: uploadedUrl,
+        }),
       });
 
       if (!response.ok) {
-        throw new Error('Failed to update image URL');
+        throw new Error("Failed to update image URL");
       }
-
     } catch (error) {
       console.error("Error updating image URL:", error);
     }

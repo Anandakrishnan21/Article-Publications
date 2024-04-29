@@ -26,7 +26,7 @@ const ConferenceForm = () => {
   const [author5, setAuthor5] = useState("");
   const [dept, setDept] = useState("");
   const [conference, setConference] = useState("");
-  const [pubYear, setPubyear] = useState(0);
+  const [pubYear, setPubyear] = useState("");
   const [isbn, setIsbn] = useState("");
   const [doi, setDoi] = useState("");
   const [month, setMonth] = useState("");
@@ -98,6 +98,13 @@ const ConferenceForm = () => {
     }
   };
 
+  const handleYear = (e) => {
+    const value = e.target.value;
+    if (/^\d{4}$/.test(value) || value === "") {
+      setPubyear(value);
+    }
+  };
+
   return (
     <div className="FormMainDiv">
       <div className="FormInnerDiv">
@@ -106,17 +113,17 @@ const ConferenceForm = () => {
           <p className="FormSubtitle">Add your conference here</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="FormStyle">
+        <form onSubmit={handleSubmit} className="FormStyle" autoComplete="off">
           {/* title */}
           <div>
             <Label htmlFor="title">Title of Paper</Label>
             <Input
-              required
+              id="title"
               onChange={(e) => setTitle(e.target.value)}
               type="text"
-              id="title"
               placeholder="Enter Title"
               className="inputFields"
+              required
             />
           </div>
           {/* author 1&2 */}
@@ -124,20 +131,20 @@ const ConferenceForm = () => {
             <div className="w-full">
               <Label htmlFor="author1">Author 1</Label>
               <Input
-                required
+                id="author1"
                 onChange={(e) => setAuthor1(e.target.value)}
                 type="text"
-                id="author1"
                 placeholder="Name of Author 1"
                 className="inputFields"
+                required
               />
             </div>
             <div className="w-full">
               <Label htmlFor="author2">Author 2</Label>
               <Input
+                id="author2"
                 onChange={(e) => setAuthor2(e.target.value)}
                 type="text"
-                id="author2"
                 placeholder="Name of Author 2"
                 className="inputFields"
               />
@@ -149,9 +156,9 @@ const ConferenceForm = () => {
             <div className="w-full">
               <Label htmlFor="author3">Author 3</Label>
               <Input
+                id="author3"
                 onChange={(e) => setAuthor3(e.target.value)}
                 type="text"
-                id="author3"
                 placeholder="Name of Author 3"
                 className="inputFields"
               />
@@ -159,9 +166,9 @@ const ConferenceForm = () => {
             <div className="w-full">
               <Label htmlFor="author4">Author 4</Label>
               <Input
+                id="author4"
                 onChange={(e) => setAuthor4(e.target.value)}
                 type="text"
-                id="author4"
                 placeholder="Name of Author 4"
                 className="inputFields"
               />
@@ -173,9 +180,9 @@ const ConferenceForm = () => {
             <div className="w-full">
               <Label htmlFor="author5">Author 5</Label>
               <Input
+                id="author5"
                 onChange={(e) => setAuthor5(e.target.value)}
                 type="text"
-                id="author5"
                 placeholder="Name of Author 5"
                 className="inputFields"
               />
@@ -187,11 +194,11 @@ const ConferenceForm = () => {
             <div className="w-full">
               <Label htmlFor="dept">Department</Label>
               <Select
-                required
-                onValueChange={(value) => setDept(value)}
-                name="dept"
                 id="dept"
+                name="dept"
+                onValueChange={(value) => setDept(value)}
                 className="inputFields"
+                required
               >
                 <SelectTrigger className="inputLabel dark:bg-neutral-900">
                   <SelectValue placeholder="Choose department" />
@@ -208,12 +215,12 @@ const ConferenceForm = () => {
             <div className="w-full">
               <Label htmlFor="conference">Conference Name</Label>
               <Input
-                required
+                id="conference"
                 onChange={(e) => setConference(e.target.value)}
                 type="text"
-                id="conference"
                 placeholder="Name of the Conference"
                 className="inputFields"
+                required
               />
             </div>
           </div>
@@ -224,9 +231,9 @@ const ConferenceForm = () => {
               <Label htmlFor="month">Month</Label>
 
               <Select
-                onValueChange={(value) => setMonth(value)}
-                name="month"
                 id="month"
+                name="month"
+                onValueChange={(value) => setMonth(value)}
                 className="inputFields"
               >
                 <SelectTrigger className="inputLabel dark:bg-neutral-900">
@@ -244,12 +251,12 @@ const ConferenceForm = () => {
             <div className="w-full">
               <Label htmlFor="pubYear">Publication year</Label>
               <Input
-                required
-                onChange={(e) => setPubyear(e.target.value)}
-                type="number"
                 id="pubYear"
+                onChange={handleYear}
+                type="number"
                 placeholder="Year of Publication"
                 className="inputFields"
+                required
               />
             </div>
           </div>
@@ -259,9 +266,9 @@ const ConferenceForm = () => {
             <div className="w-full">
               <Label htmlFor="isbn">ISBN Number</Label>
               <Input
+                id="isbn"
                 onChange={(e) => setIsbn(e.target.value)}
                 type="text"
-                id="isbn"
                 // pattern="^[\d*\-]{10}|[\d*\-]{13}$"
                 placeholder="ISBN Number (eg:1-23456-78)"
                 className="inputFields"
@@ -274,12 +281,12 @@ const ConferenceForm = () => {
             <div className="w-full">
               <Label htmlFor="doi">Digital Object Identifier - DOI</Label>
               <Input
-                required
+                id="doi"
                 onChange={(e) => setDoi(e.target.value)}
                 type="text"
-                id="doi"
                 placeholder="DOI Website Link"
                 className="inputFields"
+                required
               />
             </div>
           </div>

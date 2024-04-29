@@ -115,7 +115,6 @@ function JournalChart({ chartData }) {
   const handleFilterByYearRange = () => {
     const start = parseInt(selectedStartYear);
     const end = parseInt(selectedEndYear);
-    console.log(start, end);
 
     const filteredCounts = {};
 

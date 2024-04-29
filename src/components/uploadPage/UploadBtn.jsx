@@ -18,7 +18,6 @@ function UploadBtn({ href, handleSubscription, upload }) {
           setError("error");
         }
         const data = await res.json();
-        console.log(data);
         setProfileData(data);
       } catch (e) {
         setError("error in fetching data");

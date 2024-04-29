@@ -112,6 +112,7 @@ const DisplayAllPapers = () => {
           <div className="FilterInputDiv">
             <Input
               type="text"
+              id="title"
               value={filterTitle}
               onChange={handleTitleChange}
               className="inputFields"
@@ -121,6 +122,7 @@ const DisplayAllPapers = () => {
           <div className="FilterInputDiv">
             <Input
               type="text"
+              id="author"
               value={filterAuthor}
               onChange={handleAuthorChange}
               className="inputFields"
@@ -130,6 +132,7 @@ const DisplayAllPapers = () => {
           <div className="FilterInputDiv">
             <Input
               type="text"
+              id="year"
               value={filterYear}
               onChange={handleYearChange}
               className="inputFields"
@@ -147,7 +150,11 @@ const DisplayAllPapers = () => {
           <PageNotFound paper="Journals" />
         ) : (
           <>
-            <Table currentItems={currentItems} papers={papers} setPapers={setPapers} />
+            <Table
+              currentItems={currentItems}
+              papers={papers}
+              setPapers={setPapers}
+            />
             <PaginationElement
               itemsPerPage={itemsPerPage}
               totalItems={papers.length}

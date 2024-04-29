@@ -108,7 +108,7 @@ function EditJournalForm({
           <p className="FormTitle">Publication Form</p>
           <p className="FormSubtitle">Update your paper here</p>
         </div>
-        <form onSubmit={onHandleSubmit} className="FormStyle">
+        <form onSubmit={onHandleSubmit} className="FormStyle" autoComplete="off">
           {/* title */}
           <div>
             <Label htmlFor="title">Title of Paper</Label>

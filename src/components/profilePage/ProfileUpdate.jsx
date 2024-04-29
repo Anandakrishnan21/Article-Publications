@@ -1,7 +1,6 @@
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -66,32 +65,39 @@ export function ProfileUpdate({ user, id }) {
         <DialogHeader>
           <DialogTitle>Update your Profile</DialogTitle>
         </DialogHeader>
-        <form onSubmit={onHandleSubmit} className="grid gap-4">
+        <form
+          onSubmit={onHandleSubmit}
+          className="grid gap-4"
+          autoComplete="on"
+        >
           <div>
             <Label htmlFor="name">Full Name</Label>
             <Input
+              id="name"
               onChange={(e) => setNewName(e.target.value)}
               defaultValue={newName}
               className="inputFields"
               placeholder="Full Name"
+              autoComplete="name"
             />
           </div>
           <div>
             <Label htmlFor="email">Email</Label>
             <Input
+              id="email"
               onChange={(e) => setNewEmail(e.target.value)}
               value={newEmail}
               className="inputFields"
               placeholder="Email"
+              autoComplete="email"
             />
           </div>
           <div className="flex gap-3">
             <div className="w-full">
               <Label htmlFor="dept">Department</Label>
               <Select
-                onValueChange={(value) => setNewDept(value)}
-                name="dept"
                 id="dept"
+                onValueChange={(value) => setNewDept(value)}
                 className="inputFields"
               >
                 <SelectTrigger className="inputLabel dark:bg-neutral-900">
@@ -109,6 +115,7 @@ export function ProfileUpdate({ user, id }) {
             <div className="w-full">
               <Label htmlFor="scholar">Scholar ID</Label>
               <Input
+                id="scholar"
                 onChange={(e) => setNewScholar(e.target.value)}
                 value={newScholar}
                 className="inputFields"
@@ -120,6 +127,7 @@ export function ProfileUpdate({ user, id }) {
             <div className="w-full">
               <Label htmlFor="scopus">Scopus ID</Label>
               <Input
+                id="scopus"
                 type="number"
                 onChange={(e) => setNewScopus(e.target.value)}
                 value={newScopus}
@@ -130,6 +138,7 @@ export function ProfileUpdate({ user, id }) {
             <div className="w-full">
               <Label htmlFor="orcid">Orcid ID</Label>
               <Input
+                id="orcid"
                 type="number"
                 onChange={(e) => setNewOrcid(e.target.value)}
                 value={newOrcid}

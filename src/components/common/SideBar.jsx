@@ -108,7 +108,7 @@ export function SideBar() {
           isLargeOpen ? "lg:flex" : "lg:hidden"
         } ${
           isSmallOpen
-            ? "flex h-full bg-neutral-50 dark:bg-neutral-950 max-h-screen pt-20"
+            ? "flex h-screen bg-neutral-50 dark:bg-neutral-950 max-h-screen pt-[72px]"
             : "hidden"
         }`}
       >

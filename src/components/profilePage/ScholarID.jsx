@@ -30,9 +30,12 @@ function ScholarID({ data }) {
       </div>
       <div className="px-4 lg:px-6 h-2/3 flex flex-col justify-center gap-4">
         {info.map((item) => (
-          <div className="flex flex-col gap-1">
-            <Label className="font-semibold">{item.label}</Label>
+          <div key={item.id} className="flex flex-col gap-1">
+            <Label htmlFor={item.label} className="font-semibold">
+              {item.label}
+            </Label>
             <Input
+              id={item.label}
               className="inputFields cursor-pointer"
               value={item.input}
               readOnly

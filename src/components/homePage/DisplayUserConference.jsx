@@ -113,6 +113,7 @@ const DisplayUserConference = () => {
           <div className="FilterInputDiv">
             <Input
               type="text"
+              id="title"
               value={filterTitle}
               onChange={handleTitleChange}
               className="inputFields"
@@ -122,6 +123,7 @@ const DisplayUserConference = () => {
           <div className="FilterInputDiv">
             <Input
               type="text"
+              id="author"
               value={filterAuthor}
               onChange={handleAuthorChange}
               className="inputFields"
@@ -131,6 +133,7 @@ const DisplayUserConference = () => {
           <div className="FilterInputDiv">
             <Input
               type="text"
+              id="year"
               value={filterYear}
               onChange={handleYearChange}
               className="inputFields"

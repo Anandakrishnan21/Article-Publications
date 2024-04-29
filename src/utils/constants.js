@@ -14,12 +14,14 @@ export const months = [
 ];
 
 export const depts = [
-  "Computer Science Engineering",
-  "Mechanical Engineering",
-  "Civil Engineering",
-  "Electrical and Electronics Engineering",
   "Auto-Mobile Engineering",
+  "Basic Science And Humanities Department",
+  "Computer Science Engineering",
+  "Civil Engineering",
   "Data Science",
+  "Electronics and Communication Engineering",
+  "Electrical and Electronics Engineering",
+  "Mechanical Engineering",
 ];
 
 export const offers = [

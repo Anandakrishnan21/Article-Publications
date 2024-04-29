@@ -26,7 +26,7 @@ const PublicationForm = () => {
   const [author5, setAuthor5] = useState("");
   const [dept, setDept] = useState("");
   const [journal, setJournal] = useState("");
-  const [pubYear, setPubyear] = useState(0);
+  const [pubYear, setPubyear] = useState("");
   const [issn, setIssn] = useState("");
   const [vol, setVol] = useState(0);
   const [issue, setIssue] = useState(0);
@@ -104,6 +104,13 @@ const PublicationForm = () => {
     }
   };
 
+  const handleYear = (e) => {
+    const value = e.target.value;
+    if (/^\d{4}$/.test(value) || value === "") {
+      setPubyear(value);
+    }
+  };
+
   return (
     <div className="FormMainDiv">
       <div className="FormInnerDiv">
@@ -111,7 +118,7 @@ const PublicationForm = () => {
           <p className="FormTitle">Publication Form</p>
           <p className="FormSubtitle">Add your paper here</p>
         </div>
-        <form onSubmit={handleSubmit} className="FormStyle">
+        <form onSubmit={handleSubmit} className="FormStyle" autoComplete="off">
           {/* title */}
           <div>
             <Label htmlFor="title">Title of Paper</Label>
@@ -209,21 +216,6 @@ const PublicationForm = () => {
                   ))}
                 </SelectContent>
               </Select>
-
-              {/* <select
-                required
-                onChange={(e) => setDept(e.target.value)}
-                name="dept"
-                id="dept"
-                className="inputFields"
-              >
-                <option value="">Choose department</option>
-                {depts.map((dept, index) => (
-                  <option key={index} value={dept}>
-                    {dept}
-                  </option>
-                ))}
-              </select> */}
             </div>
             <div className="w-full">
               <Label htmlFor="journal">Journal name</Label>
@@ -264,7 +256,7 @@ const PublicationForm = () => {
               <Label htmlFor="pubYear">Publication year</Label>
               <Input
                 required
-                onChange={(e) => setPubyear(e.target.value)}
+                onChange={handleYear}
                 type="number"
                 id="pubYear"
                 placeholder="Year of Publication"

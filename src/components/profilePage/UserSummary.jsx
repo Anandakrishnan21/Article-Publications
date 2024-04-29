@@ -95,6 +95,7 @@ function UserSummary() {
       <div className="summaryDiv px-4 lg:px-6">
         {data.map((item) => (
           <div
+            key={item.id}
             className={`${item.bg} ${item.dark} dark:text-neutral-50 rounded-xl p-4`}
           >
             <div className="w-full flex justify-end">

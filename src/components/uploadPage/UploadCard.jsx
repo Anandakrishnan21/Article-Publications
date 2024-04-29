@@ -60,20 +60,20 @@ function UploadCard() {
   };
 
   return (
-    <div className="flex flex-col md:flex-row md:justify-center items-center md:items-start gap-4 md:p-4 py-10">
+    <div className="subscriptionDiv">
       {CardContent.map((card) => (
         <div
           key={card.id}
-          className="cardDesign h-[550px] justify-around w-4/5 md:w-1/3 lg:w-1/4 p-5 gap-4 py-10"
+          className="subscriptionCard"
         >
           <div className="flex flex-col gap-2 font-semibold">
-            <span className="uploadCard w-16 justify-center items-center p-0.5 rounded px-4">
-              Basic
+            <span className="planDiv">
+              Pro
             </span>
             <div className="flex items-center">
               <h1 className="text-3xl">
                 Free
-                <span className="px-2 text-base font-light">for 2 months</span>
+                <span className="px-2 text-base font-light">for 1 year</span>
               </h1>
             </div>
           </div>

@@ -42,14 +42,18 @@ function CardProfile({ data, user }) {
         </div>
         <div className="lg:h-3/5 flex flex-col justify-center gap-4">
           {info.map((item) => (
-            <div className="flex flex-col gap-1">
-              <Label className="font-semibold">{item.label}</Label>
+            <form key={item.id} className="flex flex-col gap-1" autoComplete="off">
+              <Label htmlFor={item.label} className="font-semibold">
+                {item.label}
+              </Label>
               <Input
+                id={item.label}
+                autoComplete="off"
                 className="inputFields cursor-pointer"
                 value={item.input}
                 readOnly
               />
-            </div>
+            </form>
           ))}
           <ProfileUpdate user={user} id={data._id} />
         </div>
