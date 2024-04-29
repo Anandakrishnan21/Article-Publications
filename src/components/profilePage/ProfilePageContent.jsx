@@ -14,7 +14,7 @@ function ProfilePageContent() {
     const fetchData = async () => {
       try {
         // await new Promise((resolve) => setTimeout(resolve, 2000));
-        const res = await fetch("http://localhost:3000/api/register", {
+        const res = await fetch("/api/register", {
           cache: "no-store",
         });
 
