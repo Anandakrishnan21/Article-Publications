@@ -8,7 +8,7 @@ function DashboardPage() {
   const [selectedTab, setSelectedTab] = useState("journal");
 
   return (
-    <div>
+    <div className="w-screen">
       <Tab selectedTab= {selectedTab} setSelectedTab={setSelectedTab} journal="journal" conference="conference" />
       {selectedTab === "journal" ? (
         <DisplayUserJournal />

@@ -11,7 +11,7 @@ function HomePage() {
   const { data: session } = useSession();
 
   return (
-    <div>
+    <div className="w-screen">
       <>
         <Suspense fallback={<Loading />}>
           <Tab

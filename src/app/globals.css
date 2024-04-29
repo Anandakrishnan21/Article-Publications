@@ -320,7 +320,7 @@
 }
 
 .subscriptionDiv {
-  @apply flex flex-col md:flex-row md:justify-center items-center md:items-start gap-4 p-4
+  @apply w-screen flex flex-col md:flex-row md:justify-center md:items-start gap-4 p-4
 }
 
 .subscriptionCard {

@@ -68,7 +68,7 @@ export function SideBar() {
   return (
     <>
       <aside
-        className={`${commonClasses} sticky top-0 justify-between z-10 shadow-md shadow-fuchsia-300 dark:shadow-neutral-800 ${
+        className={`${commonClasses} hidden md:flex sticky top-0 justify-between z-10 shadow-md shadow-fuchsia-300 dark:shadow-neutral-800 ${
           isLargeOpen ? "lg:hidden" : "lg:flex"
         }`}
       >
