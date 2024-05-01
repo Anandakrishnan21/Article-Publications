@@ -44,7 +44,7 @@ function YearlyFilter({
           value={selectedStartYear}
           className="inputFields"
         >
-          <SelectTrigger className="inputLabel dark:bg-neutral-900 h-8">
+          <SelectTrigger className="inputLabel dark:bg-neutral-900 dark:text-white h-8">
             <SelectValue placeholder="Start year" />
           </SelectTrigger>
           <SelectContent>
@@ -61,7 +61,7 @@ function YearlyFilter({
           value={selectedEndYear}
           className="inputFields mr-2"
         >
-          <SelectTrigger className="inputLabel dark:bg-neutral-900 h-8">
+          <SelectTrigger className="inputLabel dark:bg-neutral-900 dark:text-white h-8">
             <SelectValue placeholder="End year" />
           </SelectTrigger>
           <SelectContent>
@@ -72,7 +72,11 @@ function YearlyFilter({
             ))}
           </SelectContent>
         </Select>
-        <Button onClick={handleFilterByYearRange} aria-label="Filter" className="ExportBtn h-8">
+        <Button
+          onClick={handleFilterByYearRange}
+          aria-label="Filter"
+          className="ExportBtn h-8"
+        >
           <IoFilter />
         </Button>
       </div>

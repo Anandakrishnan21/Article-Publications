@@ -1,12 +1,14 @@
-
 import EditConferenceForm from "@/components/publicationForms/EditConferenceForm";
 import React from "react";
 
 const getPaperById = async (id) => {
   try {
-    const res = await fetch(`https://particles-omega-two.vercel.app/api/addConference/${id}`, {
-      catch: "no-store",
-    });
+    const res = await fetch(
+      `https://particles-omega-two.vercel.app/api/addConference/${id}`,
+      {
+        catch: "no-store",
+      }
+    );
     if (!res.ok) {
       throw new Error("Failed to fetch Paper");
     }
@@ -34,9 +36,22 @@ async function ConferenceEditPage({ params }) {
     doi,
   } = paper;
   return (
-    <div>
-      <EditConferenceForm id={id} title={title} author1={author1} author2={author2} author3={author3} author4={author4}
-       author5={author5} dept={dept} conference={conference} month={month} pubYear={pubYear} isbn={isbn} doi={doi} />
+    <div className="w-screen md:w-full">
+      <EditConferenceForm
+        id={id}
+        title={title}
+        author1={author1}
+        author2={author2}
+        author3={author3}
+        author4={author4}
+        author5={author5}
+        dept={dept}
+        conference={conference}
+        month={month}
+        pubYear={pubYear}
+        isbn={isbn}
+        doi={doi}
+      />
     </div>
   );
 }

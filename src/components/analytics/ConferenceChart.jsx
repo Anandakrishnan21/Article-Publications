@@ -202,7 +202,7 @@ function ConferenceChart({ conferenceChart }) {
       <Button
         variant="outline"
         onClick={handleDownloadCSV}
-        className="ExportBtn self-end h-8"
+        className="ExportBtn"
       >
         <p className="text-xs">Export CSV</p>
         <FaFileExcel />

@@ -3,9 +3,12 @@ import React from "react";
 
 const getPaperById = async (id) => {
   try {
-    const res = await fetch(`https://particles-omega-two.vercel.app/api/addPublication/${id}`, {
-      catch: "no-store",
-    });
+    const res = await fetch(
+      `https://particles-omega-two.vercel.app/api/addPublication/${id}`,
+      {
+        catch: "no-store",
+      }
+    );
     if (!res.ok) {
       throw new Error("Failed to fetch Paper");
     }
@@ -36,10 +39,25 @@ async function EditPage({ params }) {
     doi,
   } = paper;
   return (
-    <div>
-      <EditJournalForm id={id} title={title} author1={author1} author2={author2} author3={author3} author4={author4}
-       author5={author5} dept={dept} journal={journal} month={month} pubYear={pubYear} issn={issn} vol={vol} issue={issue} 
-       pageno={pageno} doi={doi} />
+    <div className="w-screen md:w-full">
+      <EditJournalForm
+        id={id}
+        title={title}
+        author1={author1}
+        author2={author2}
+        author3={author3}
+        author4={author4}
+        author5={author5}
+        dept={dept}
+        journal={journal}
+        month={month}
+        pubYear={pubYear}
+        issn={issn}
+        vol={vol}
+        issue={issue}
+        pageno={pageno}
+        doi={doi}
+      />
     </div>
   );
 }
