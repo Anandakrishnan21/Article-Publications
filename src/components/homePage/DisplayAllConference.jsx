@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { PaginationElement } from "../comp/Pagination";
-import ConferenceTable from "../comp/ConferenceTable";
+import { PaginationElement } from "../comp/button/Pagination";
+import ConferenceTable from "../comp/conference/ConferenceTable";
 import Loading from "@/app/home/loading";
 import { Button } from "@/components/ui/button";
 import PageNotFound from "../common/PageNotFound";

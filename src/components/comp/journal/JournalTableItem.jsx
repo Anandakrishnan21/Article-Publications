@@ -1,10 +1,10 @@
-import Link from "next/link";
 import React from "react";
-import EditBtn from "./EditBtn";
-import ConferenceDeleteBtn from "./ConferenceDeleteBtn";
+import EditBtn from "../button/EditBtn";
+import DeleteBtn from "../button/DeleteBtn";
+import Link from "next/link";
 import { useSession } from "next-auth/react";
 
-const ConferenceTableItem = ({ paper, setPapers }) => {
+const JournalTableItem = ({ paper, setPapers }) => {
   const { data: session } = useSession();
 
   const truncateTitle = (title) => {
@@ -17,6 +17,7 @@ const ConferenceTableItem = ({ paper, setPapers }) => {
 
   return (
     <div className="cardStyle" key={paper._id}>
+      {/* details */}
       <div className="TableItemDetailsDiv">
         <h1 className="TableItemH1 hidden md:flex">{paper.title}</h1>
         <h1 className="TableItemH1 flex md:hidden">
@@ -25,39 +26,45 @@ const ConferenceTableItem = ({ paper, setPapers }) => {
         <div className="TableItemDetailsInnerDiv">
           <p className="TableItemDetailsTitle">
             Authors:&nbsp;
-            <span className="TableOtherAuthors">
-              {paper.author1} {paper.author2} {paper.author3}
-              {paper.author4}
+            <span className="TableDetailsSpan">
+              {paper.author1} {paper.author2} {paper.author3} {paper.author4}
             </span>
           </p>
           {/* dept & journal */}
           <div className="Table-dept-journal">
             <p className="TableItemDetailsTitle">
-              Department:
-              <span className="TableDetailsSpan">{paper.dept}</span>
+              Department: <span className="TableDetailsSpan">{paper.dept}</span>
             </p>
             <p className="TableItemDetailsTitle">
-              Conference:
-              <span className="TableDetailsSpan">{paper.conference}</span>
+              Journal: <span className="TableDetailsSpan">{paper.journal}</span>
             </p>
           </div>
           {/* issn & vol page year month */}
           <div className="Table-issn-vol">
-            {paper.isbn ? (
+            {paper.issn ? (
               <p className="TableItemDetailsTitle">
-                Isbn no:
-                <span className="TableDetailsSpan">{paper.isbn}</span>
+                Issn no: <span className="TableDetailsSpan">{paper.issn}</span>
               </p>
             ) : null}
             <div className="TableDetails-vol-page-year-month">
+              {paper.vol ? (
+                <p className="TableItemDetailsTitle">
+                  Vol: <span className="TableDetailsSpan">{paper.vol}</span>
+                </p>
+              ) : null}
+              {paper.pageno ? (
+                <p className="TableItemDetailsTitle">
+                  page no:
+                  <span className="TableDetailsSpan">{paper.pageno}</span>
+                </p>
+              ) : null}
+
               <p className="TableItemDetailsTitle">
-                Year:
-                <span className="TableDetailsSpan">{paper.pubYear}</span>
+                Year: <span className="TableDetailsSpan">{paper.pubYear}</span>
               </p>
               {paper.month ? (
                 <p className="TableItemDetailsTitle">
-                  Month:
-                  <span className="TableDetailsSpan">{paper.month}</span>
+                  Month: <span className="TableDetailsSpan">{paper.month}</span>
                 </p>
               ) : null}
             </div>
@@ -73,12 +80,13 @@ const ConferenceTableItem = ({ paper, setPapers }) => {
           </p>
         </div>
       </div>
+      {/* buttons */}
       {session?.user?.email === paper.email ? (
         <div className="TableCrudButtonsDiv">
-          <Link href={`/home/editConference/${paper._id}`} className="w-full">
+          <Link href={`/home/editJournal/${paper._id}`} className="w-full">
             <EditBtn />
           </Link>
-          <ConferenceDeleteBtn id={paper._id} setPapers={setPapers} />
+          <DeleteBtn id={paper._id} setPapers={setPapers} />
         </div>
       ) : (
         <div className="TableViewOnlyDiv">
@@ -89,4 +97,4 @@ const ConferenceTableItem = ({ paper, setPapers }) => {
   );
 };
 
-export default ConferenceTableItem;
+export default JournalTableItem;

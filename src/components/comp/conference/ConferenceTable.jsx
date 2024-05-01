@@ -1,5 +1,5 @@
 import React from "react";
-import PdfExcelConfer from "./PdfExcelConfer";
+import PdfExcelConfer from "../pdfExcel/PdfExcelConfer";
 import ConferenceTableItem from "./ConferenceTableItem";
 
 function ConferenceTable({ currentItems, setPapers, papers }) {

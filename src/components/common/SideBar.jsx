@@ -17,13 +17,16 @@ import { Button } from "@/components/ui/button";
 import Pung from "@/components/ui/Pung";
 import { ModeToggle } from "../mode-toggle";
 import { VscColorMode } from "react-icons/vsc";
+import { X } from "lucide-react";
+import LogoImage from "./LogoImage";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join("");
 }
 export function SideBar() {
+  const { toggleSidebar } = useSidebarContext();
   const { data: session } = useSession();
-  const { isLargeOpen, isSmallOpen,close } = useSidebarContext();
+  const { isLargeOpen, isSmallOpen, close } = useSidebarContext();
   const segment = useSelectedLayoutSegment();
 
   const sidebarOptions = [
@@ -48,7 +51,7 @@ export function SideBar() {
     {
       name: "Analytics",
       href: "/home/analytics",
-      icon: IoBarChart ,
+      icon: IoBarChart,
       current: `/${segment}` === "/analytics" ? true : false,
     },
     {
@@ -82,7 +85,13 @@ export function SideBar() {
                   "group flex items-center justify-center gap-x-3 rounded-md p-2 text-sm tracking-wide leading-6"
                 )}
               >
-                <option.icon className={option.current ? "text-fuchsia-600 h-5 w-5 shrink-0" : "text-neutral-800 dark:text-neutral-600 h-5 w-5 shrink-0"}  />
+                <option.icon
+                  className={
+                    option.current
+                      ? "text-fuchsia-600 h-5 w-5 shrink-0"
+                      : "text-neutral-800 dark:text-neutral-600 h-5 w-5 shrink-0"
+                  }
+                />
               </Link>
             </li>
           ))}
@@ -104,15 +113,19 @@ export function SideBar() {
         </ul>
       </aside>
       <aside
-        className={`${commonClasses} flex flex-col justify-between z-10 w-56 shadow-md shadow-fuchsia-300 dark:shadow-neutral-800 lg:sticky absolute top-0 p-2 gap-2 ${
+        className={`${commonClasses} flex flex-col justify-between z-20 md:z-10 w-56 transition-width duration-300 shadow-md shadow-fuchsia-300 dark:shadow-neutral-800 lg:sticky absolute top-0 p-2 gap-2 ${
           isLargeOpen ? "lg:flex" : "lg:hidden"
         } ${
           isSmallOpen
-            ? "flex h-screen bg-neutral-50 dark:bg-neutral-950 max-h-screen pt-[72px]"
+            ? "flex h-screen bg-neutral-50 dark:bg-neutral-950 max-h-screen pt-0 md:pt-[72px]"
             : "hidden"
         }`}
       >
         <ul className="flex flex-col gap-3 w-full">
+          <div className="logoDiv">
+            <LogoImage />
+            <X className="closeBtn" onClick={toggleSidebar} />
+          </div>
           {sidebarOptions.map((option) => (
             <li key={option.name}>
               <Link
@@ -122,7 +135,13 @@ export function SideBar() {
                   "group flex items-center gap-x-3 rounded-md p-2 text-sm tracking-wide leading-6"
                 )}
               >
-                <option.icon className={option.current ? "text-fuchsia-600 h-5 w-5 shrink-0" : "text-neutral-800 dark:text-neutral-600 h-5 w-5 shrink-0"} />
+                <option.icon
+                  className={
+                    option.current
+                      ? "text-fuchsia-600 h-5 w-5 shrink-0"
+                      : "text-neutral-800 dark:text-neutral-600 h-5 w-5 shrink-0"
+                  }
+                />
                 {option.name}
               </Link>
             </li>

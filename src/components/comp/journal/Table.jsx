@@ -1,5 +1,5 @@
 import React from "react";
-import PdfExcel from "./PdfExcel";
+import PdfExcel from "../pdfExcel/PdfExcel";
 import JournalTableItem from "./JournalTableItem";
 
 function Table({ currentItems, setPapers, papers }) {

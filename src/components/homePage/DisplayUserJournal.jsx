@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
-import { PaginationElement } from "../comp/Pagination";
-import Table from "../comp/Table";
+import { PaginationElement } from "../comp/button/Pagination";
+import Table from "../comp/journal/Table";
 import Loading from "@/app/home/loading";
 import { Button } from "@/components/ui/button";
 import PageNotFound from "../common/PageNotFound";

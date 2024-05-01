@@ -1,5 +1,5 @@
 "use client"
-import Tab from "@/components/comp/Tab";
+import Tab from "@/components/comp/button/Tab";
 import DisplayUserConference from "@/components/homePage/DisplayUserConference";
 import DisplayUserJournal from "@/components/homePage/DisplayUserJournal";
 import React, { useState } from "react";

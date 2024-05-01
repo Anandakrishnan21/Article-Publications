@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import GoogleButton from "../registerPage/GoogleButton";
+import GoogleButton from "./GoogleButton";
 
 function Separator({ url, linkName }) {
   return (

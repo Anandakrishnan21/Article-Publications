@@ -2,7 +2,7 @@
 import React, { Suspense, useState } from "react";
 import DisplayAllPapers from "@/components/homePage/DisplayAllPapers";
 import DisplayAllConference from "@/components/homePage/DisplayAllConference";
-import Tab from "@/components/comp/Tab";
+import Tab from "@/components/comp/button/Tab";
 import { useSession } from "next-auth/react";
 import Loading from "./loading";
 
