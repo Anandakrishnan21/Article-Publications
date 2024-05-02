@@ -228,7 +228,7 @@
 }
 
 .ExportBtn {
-  @apply h-8 gap-3 px-3 md:px-5 self-end text-white dark:text-black;
+  @apply h-8 gap-3 px-3 md:px-5 self-end text-black dark:text-white;
 }
 
 .summaryDiv {
