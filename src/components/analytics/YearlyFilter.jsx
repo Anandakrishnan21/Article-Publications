@@ -75,7 +75,7 @@ function YearlyFilter({
         <Button
           onClick={handleFilterByYearRange}
           aria-label="Filter"
-          className="ExportBtn h-8"
+          className="ExportBtn h-8 text-white dark:text-black"
         >
           <IoFilter />
         </Button>
