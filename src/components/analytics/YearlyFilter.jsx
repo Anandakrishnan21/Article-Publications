@@ -22,7 +22,7 @@ function YearlyFilter({
     <div className="filterDiv">
       {yearlyDifferences.length > 0 && (
         <div className="flex items-center text-sm gap-1">
-          <p className="text-blue-950">
+          <p className="text-blue-950 dark:text-white">
             Change from {selectedStartYear} to {selectedEndYear} is &nbsp;
             {yearlyDifferences.map((item) => (
               <span
